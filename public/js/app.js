@@ -54306,6 +54306,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         QuestionOne: __WEBPACK_IMPORTED_MODULE_0__questions_QuestionOne___default.a,
         QuestionTwo: __WEBPACK_IMPORTED_MODULE_1__questions_QuestionTwo___default.a
+    }, methods: {
+        save: function save(event) {
+            console.log(event);
+        }
     },
     mounted: function mounted() {
         $('.slider').slick({
@@ -54459,12 +54463,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'question-one',
+    data: function data() {
+        return {
+            answer: null,
+            error: null
+        };
+    },
+
     methods: {
         nextSlide: function nextSlide() {
-            $(".slider").slick('slickNext');
+            if (this.answer != null) {
+                this.$emit('save', [1, this.answer]);
+                $(".slider").slick('slickNext');
+            } else {
+                this.error = "Je moet iets invullen";
+            }
         }
     }
 });
@@ -54478,9 +54499,41 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "question" }, [
+    _vm.error
+      ? _c(
+          "div",
+          { staticClass: "alert alert-light", attrs: { role: "alert" } },
+          [_vm._v("\n        " + _vm._s(_vm.error) + "\n    ")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
     _c("div", { staticClass: "row justify-content-md-center" }, [
       _c("div", { staticClass: "col-md-4 text-center" }, [
         _c("p", [_vm._v("Hoeveel rij je?")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.answer,
+              expression: "answer"
+            }
+          ],
+          attrs: { type: "number" },
+          domProps: { value: _vm.answer },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.answer = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("br"),
+        _c("br"),
         _vm._v(" "),
         _c(
           "button",
@@ -54675,7 +54728,17 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "questions slider" },
-    [_c("question-one"), _vm._v(" "), _c("question-two")],
+    [
+      _c("question-one", {
+        on: {
+          save: function($event) {
+            _vm.save($event)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("question-two")
+    ],
     1
   )
 }

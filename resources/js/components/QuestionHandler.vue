@@ -1,7 +1,7 @@
 <template>
     <div class="questions slider">
         
-        <question-one></question-one>
+        <question-one v-on:save="save($event)"></question-one>
         <question-two></question-two>
     </div>
 </template>
@@ -15,6 +15,10 @@
         components:{
             QuestionOne,
             QuestionTwo
+        },methods:{
+            save: function(event){
+                console.log(event);
+            }
         },
         mounted: function() {
             $('.slider').slick({
