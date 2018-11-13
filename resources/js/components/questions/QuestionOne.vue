@@ -17,6 +17,18 @@
             nextSlide:function(){
                 $(".slider").slick('slickNext');
             }
+        },
+        data(){
+            return{
+                data: null,
+            }
+        },
+        mounted: function(){
+            axios.get("/api/data")
+                .then((response)  =>  {
+                    this.data = response.data;
+                    console.log(this.data)
+            })
         }
     }
 </script>

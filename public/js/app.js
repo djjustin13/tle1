@@ -54460,6 +54460,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         nextSlide: function nextSlide() {
             $(".slider").slick('slickNext');
         }
+    },
+    data: function data() {
+        return {
+            data: null
+        };
+    },
+
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get("/api/data").then(function (response) {
+            _this.data = response.data;
+            console.log(_this.data);
+        });
     }
 });
 
