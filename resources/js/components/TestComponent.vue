@@ -1,19 +1,17 @@
 <template>
-    <div id="main">
-        <div class="content text-center">
-            <h1>Playground!</h1>
-            <hr>
-            <p>Data uit een variable <b>{{ name }}</b></p>
-            <p>Data opgehaald van /api/test route: <b>{{ data }}</b></p>
-            <hr>
-            <input type="text" v-model="name">
-            <br>
+    <div class="content text-center">
+        <h1>Playground!</h1>
+        <hr>
+        <p>Data uit een variable <b>{{ name }}</b></p>
+        <p>Data opgehaald van /api/test route: <b>{{ data }}</b></p>
+        <hr>
+        <input type="text" v-model="name">
+        <br>
 
-            Type hier iets:
-            <input type="text" v-model="something">
-            <p v-if="something">Vet!</p>
-            <hr>
-        </div>
+        Type hier iets:
+        <input type="text" v-model="something">
+        <p v-if="something">Vet!</p>
+        <hr>
     </div>
 </template>
 

@@ -54221,6 +54221,9 @@ var index_esm = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_QuestionHandler___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_QuestionHandler__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_TestComponent__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_TestComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_TestComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_NotFound__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_NotFound___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_NotFound__);
+
 
 
 
@@ -54230,6 +54233,11 @@ var routes = [{
 }, {
     path: '/test',
     component: __WEBPACK_IMPORTED_MODULE_1__components_TestComponent___default.a
+}, { path: '/404',
+    component: __WEBPACK_IMPORTED_MODULE_2__components_NotFound___default.a
+}, {
+    path: '*',
+    redirect: '/404'
 }];
 
 /***/ }),
@@ -54919,8 +54927,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'test-component',
@@ -54955,72 +54961,70 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "main" } }, [
-    _c("div", { staticClass: "content text-center" }, [
-      _c("h1", [_vm._v("Playground!")]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("Data uit een variable "),
-        _c("b", [_vm._v(_vm._s(_vm.name))])
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v("Data opgehaald van /api/test route: "),
-        _c("b", [_vm._v(_vm._s(_vm.data))])
-      ]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.name,
-            expression: "name"
-          }
-        ],
-        attrs: { type: "text" },
-        domProps: { value: _vm.name },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.name = $event.target.value
-          }
+  return _c("div", { staticClass: "content text-center" }, [
+    _c("h1", [_vm._v("Playground!")]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v("Data uit een variable "),
+      _c("b", [_vm._v(_vm._s(_vm.name))])
+    ]),
+    _vm._v(" "),
+    _c("p", [
+      _vm._v("Data opgehaald van /api/test route: "),
+      _c("b", [_vm._v(_vm._s(_vm.data))])
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.name,
+          expression: "name"
         }
-      }),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v("\n\n        Type hier iets:\n        "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.something,
-            expression: "something"
+      ],
+      attrs: { type: "text" },
+      domProps: { value: _vm.name },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
           }
-        ],
-        attrs: { type: "text" },
-        domProps: { value: _vm.something },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.something = $event.target.value
-          }
+          _vm.name = $event.target.value
         }
-      }),
-      _vm._v(" "),
-      _vm.something ? _c("p", [_vm._v("Vet!")]) : _vm._e(),
-      _vm._v(" "),
-      _c("hr")
-    ])
+      }
+    }),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v("\n\n    Type hier iets:\n    "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.something,
+          expression: "something"
+        }
+      ],
+      attrs: { type: "text" },
+      domProps: { value: _vm.something },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.something = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _vm.something ? _c("p", [_vm._v("Vet!")]) : _vm._e(),
+    _vm._v(" "),
+    _c("hr")
   ])
 }
 var staticRenderFns = []
@@ -55030,6 +55034,88 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-70d64aa0", module.exports)
+  }
+}
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(71)
+/* template */
+var __vue_template__ = __webpack_require__(72)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/NotFound.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2ce50e5a", Component.options)
+  } else {
+    hotAPI.reload("data-v-2ce50e5a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'not-found'
+});
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("p", [_vm._v("Page not found..")])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2ce50e5a", module.exports)
   }
 }
 
