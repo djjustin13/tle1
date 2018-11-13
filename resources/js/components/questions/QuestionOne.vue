@@ -2,7 +2,7 @@
     <div class="question">
         <div class="row justify-content-md-center">
             <div class="col-md-4 text-center">
-                <p>Question 1</p>
+                <p>Hoeveel rij je?</p>
                 <button @click="nextSlide()">Next</button>
             </div>
         </div>
