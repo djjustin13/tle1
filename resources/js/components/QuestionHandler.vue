@@ -7,11 +7,11 @@
 </template>
 
 <script>
-    import QuestionOne from './QuestionOne';
-    import QuestionTwo from './QuestionTwo';
+    import QuestionOne from './questions/QuestionOne';
+    import QuestionTwo from './questions/QuestionTwo';
 
     export default {
-        name: 'home',
+        name: 'question-handler',
         components:{
             QuestionOne,
             QuestionTwo

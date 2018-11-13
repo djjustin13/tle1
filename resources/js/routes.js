@@ -1,8 +1,8 @@
-import Home from './components/Home';
+import QuestionHandler from './components/QuestionHandler';
 
 export const routes = [
     {
         path: '/',
-        component: Home
+        component: QuestionHandler
     }
 ];
