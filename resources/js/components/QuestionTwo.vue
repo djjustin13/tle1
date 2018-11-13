@@ -20,3 +20,9 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .question{
+        background-color: #98C6AF;
+    }
+</style>

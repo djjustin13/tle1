@@ -1,5 +1,5 @@
 <template>
-    <div class="question q1">
+    <div class="question">
         <div class="row justify-content-md-center">
             <div class="col-md-4 text-center">
                 <p>Question 1</p>
@@ -20,3 +20,11 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .question{
+        background-color: #6AE5FF;
+    }
+</style>
+
+
