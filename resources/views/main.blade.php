@@ -17,9 +17,7 @@
         <div id="app">
             <main-app></main-app>
         </div>
-        <p>JOEHOE</p>
         <script src="{{ asset('js/app.js')  }}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     </body>
 </html>
  
