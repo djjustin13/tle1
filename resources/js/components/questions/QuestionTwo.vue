@@ -15,7 +15,8 @@
         name: 'question-two',
         methods: {
             nextSlide:function(){
-                $(".slider").slick('slickNext');
+                // $(".slider").slick('slickNext');
+                this.$router.push('overview')
             }
         }
     }

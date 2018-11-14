@@ -54219,10 +54219,13 @@ var index_esm = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routes; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_QuestionHandler__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_QuestionHandler___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_QuestionHandler__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_TestComponent__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_TestComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_TestComponent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_NotFound__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_NotFound___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_NotFound__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Overview__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Overview___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Overview__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_TestComponent__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_TestComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_TestComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_NotFound__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_NotFound___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_NotFound__);
+
 
 
 
@@ -54231,10 +54234,18 @@ var routes = [{
     path: '/',
     component: __WEBPACK_IMPORTED_MODULE_0__components_QuestionHandler___default.a
 }, {
+    path: '/overview',
+    component: __WEBPACK_IMPORTED_MODULE_1__components_Overview___default.a
+
+},
+
+//App routes before this section//
+{
     path: '/test',
-    component: __WEBPACK_IMPORTED_MODULE_1__components_TestComponent___default.a
-}, { path: '/404',
-    component: __WEBPACK_IMPORTED_MODULE_2__components_NotFound___default.a
+    component: __WEBPACK_IMPORTED_MODULE_2__components_TestComponent___default.a
+}, {
+    path: '/404',
+    component: __WEBPACK_IMPORTED_MODULE_3__components_NotFound___default.a
 }, {
     path: '*',
     redirect: '/404'
@@ -54305,6 +54316,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -54314,18 +54327,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         QuestionOne: __WEBPACK_IMPORTED_MODULE_0__questions_QuestionOne___default.a,
         QuestionTwo: __WEBPACK_IMPORTED_MODULE_1__questions_QuestionTwo___default.a
-    }, methods: {
+    },
+    data: function data() {
+        return {
+            answers: []
+        };
+    },
+    methods: {
         save: function save(event) {
-            console.log(event);
+            this.answers.push(event);
+
+            localStorage.setItem('answers', JSON.stringify(this.answers));
         }
     },
     mounted: function mounted() {
         $('.slider').slick({
+            lazyLoad: 'ondemand',
             accessibility: false,
             arrows: false,
             draggable: false,
             mobileFirst: true
         });
+
+        var data = localStorage.getItem('answers');
+        if (data) {
+            var object = JSON.parse(data);
+            this.answers = object;
+            $(".slider").slick('slickGoTo', this.answers.lengt);
+        };
     }
 });
 
@@ -54682,7 +54711,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: 'question-two',
     methods: {
         nextSlide: function nextSlide() {
-            $(".slider").slick('slickNext');
+            // $(".slider").slick('slickNext');
+            this.$router.push('overview');
         }
     }
 });
@@ -54733,22 +54763,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "questions slider" },
-    [
-      _c("question-one", {
-        on: {
-          save: function($event) {
-            _vm.save($event)
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "questions slider" },
+      [
+        _c("question-one", {
+          on: {
+            save: function($event) {
+              _vm.save($event)
+            }
           }
-        }
-      }),
-      _vm._v(" "),
-      _c("question-two")
-    ],
-    1
-  )
+        }),
+        _vm._v(" "),
+        _c("question-two")
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -55116,6 +55148,130 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-2ce50e5a", module.exports)
+  }
+}
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(74)
+/* template */
+var __vue_template__ = __webpack_require__(75)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Overview.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7f4ac338", Component.options)
+  } else {
+    hotAPI.reload("data-v-7f4ac338", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 74 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'question-handler',
+    components: {},
+    data: function data() {
+        return {
+            answers: null
+        };
+    },
+    methods: {
+        reset: function reset() {
+            localStorage.clear();
+            this.answers = null;
+        }
+    },
+    mounted: function mounted() {
+        console.log('a');
+        var data = localStorage.getItem('answers');
+        if (data) {
+            var object = JSON.parse(data);
+            this.answers = object;
+        }
+    }
+});
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("p", [_vm._v("Overview")]),
+    _vm._v("\n    " + _vm._s(_vm.answers) + "\n    "),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        attrs: { href: "#" },
+        on: {
+          click: function($event) {
+            _vm.reset()
+          }
+        }
+      },
+      [_vm._v("Clear storage")]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7f4ac338", module.exports)
   }
 }
 
