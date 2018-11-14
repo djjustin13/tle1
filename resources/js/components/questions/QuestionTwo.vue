@@ -39,7 +39,7 @@
 
 <style lang="scss" scoped>
     .question{
-        background-color: #9969D5;
+        background-color: #79AA83;
     }
 </style>
 

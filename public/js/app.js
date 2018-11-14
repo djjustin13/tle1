@@ -54456,7 +54456,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n.question[data-v-40a63283] {\n  background-color: #6AE5FF;\n}\n", ""]);
+exports.push([module.i, "\n.question[data-v-40a63283] {\n  background-color: #70BEE7;\n}\n", ""]);
 
 // exports
 
@@ -54695,7 +54695,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n.question[data-v-590de369] {\n  background-color: #9969D5;\n}\n", ""]);
+exports.push([module.i, "\n.question[data-v-590de369] {\n  background-color: #79AA83;\n}\n", ""]);
 
 // exports
 
@@ -55443,7 +55443,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n.question[data-v-fdf24e4e] {\n  background-color: #98C6AF;\n}\n", ""]);
+exports.push([module.i, "\n.question[data-v-fdf24e4e] {\n  background-color: #5A5C84;\n}\n", ""]);
 
 // exports
 
@@ -55646,7 +55646,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n.question[data-v-326ec07b] {\n  background-color: #1ba500;\n}\n", ""]);
+exports.push([module.i, "\n.question[data-v-326ec07b] {\n  background-color: #FE7D40;\n}\n", ""]);
 
 // exports
 
