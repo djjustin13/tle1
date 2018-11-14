@@ -5,7 +5,7 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col-md-4 text-center">
-                <p>Hoevaak douche je?</p>
+                <p>Hoe vaak eet je vlees</p>
                 <input type="number" v-model="answer">
                 <br><br>
                 <button @click="nextSlide()">Next</button>
@@ -17,7 +17,7 @@
 
 <script>
     export default {
-        name: 'question-two',
+        name: 'question-three',
         data(){
             return{
                 answer: null,
@@ -27,7 +27,7 @@
         methods: {
             nextSlide:function(){
                 if(this.answer != null){
-                    this.$emit('save', [2, this.answer])
+                    this.$emit('save', [3, this.answer])
                     $(".slider").slick('slickNext');
                 }else{
                     this.error = "Je moet iets invullen"
@@ -39,7 +39,7 @@
 
 <style lang="scss" scoped>
     .question{
-        background-color: #9969D5;
+        background-color: rgb(27, 165, 0);
     }
 </style>
 

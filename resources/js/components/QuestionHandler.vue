@@ -2,7 +2,9 @@
     <div>
         <div class="questions slider">
         <question-one v-on:save="save($event)"></question-one>
-        <question-two></question-two>
+        <question-two v-on:save="save($event)"></question-two>
+        <question-three v-on:save="save($event)"></question-three>
+        <question-four v-on:save="save($event)"></question-four>
         </div>
     </div>
     
@@ -11,12 +13,16 @@
 <script>
     import QuestionOne from './questions/QuestionOne';
     import QuestionTwo from './questions/QuestionTwo';
+    import QuestionThree from './questions/QuestionThree';
+    import QuestionFour from './questions/QuestionFour';
 
     export default {
         name: 'question-handler',
         components:{
             QuestionOne,
-            QuestionTwo
+            QuestionTwo,
+            QuestionThree,
+            QuestionFour
         },
         data(){
             return{
@@ -24,8 +30,10 @@
             }
         },methods:{
             save: function(event){
-                this.answers.push(event);
-
+                this.answers.push({
+                    question : event[0],
+                    answer : event[1]
+                });
                 localStorage.setItem('answers', JSON.stringify(this.answers));
             }
         },
@@ -42,7 +50,7 @@
             if (data){
                 let object = JSON.parse(data);
                 this.answers = object;
-                $(".slider").slick('slickGoTo', this.answers.lengt)
+                $(".slider").slick('slickGoTo', this.answers.length)
             };
         }
     }

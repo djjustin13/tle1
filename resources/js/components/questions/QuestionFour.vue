@@ -5,9 +5,8 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col-md-4 text-center">
-                <p>Hoevaak douche je?</p>
-                <input type="number" v-model="answer">
-                <br><br>
+                <p>Rook je</p>
+                <input type="text" v-model="answer">
                 <button @click="nextSlide()">Next</button>
             </div>
         </div>
@@ -17,7 +16,7 @@
 
 <script>
     export default {
-        name: 'question-two',
+        name: 'question-four',
         data(){
             return{
                 answer: null,
@@ -27,11 +26,12 @@
         methods: {
             nextSlide:function(){
                 if(this.answer != null){
-                    this.$emit('save', [2, this.answer])
-                    $(".slider").slick('slickNext');
+                    this.$emit('save', [3, this.answer])
+                    this.$router.push('overview')
+                    // $(".slider").slick('slickNext');
                 }else{
                     this.error = "Je moet iets invullen"
-                } 
+                }        
             }
         }
     }
@@ -39,8 +39,6 @@
 
 <style lang="scss" scoped>
     .question{
-        background-color: #9969D5;
+        background-color: #98C6AF;
     }
 </style>
-
-
