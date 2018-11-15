@@ -13,7 +13,7 @@ class DataController extends Controller
      */
     public function index()
     {
-        return 'test data';
+        return 'API JONGEH';
     }
 
     /**
