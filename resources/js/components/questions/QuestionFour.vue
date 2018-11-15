@@ -5,7 +5,7 @@
         </div>
         <div class="row justify-content-md-center">
             <div class="col-md-4 text-center">
-                <p>Rook je</p>
+                <p>Rook je?</p>
                 <input type="text" v-model="answer">
                 <button @click="nextSlide()">Next</button>
             </div>
