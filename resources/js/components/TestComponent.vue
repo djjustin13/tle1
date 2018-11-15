@@ -19,9 +19,7 @@
     export default {
         name: 'test-component',
         methods: {
-            nextSlide:function(){
-                $(".slider").slick('slickNext');
-            }
+            
         },
         data(){
             return{

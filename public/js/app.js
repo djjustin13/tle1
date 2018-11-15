@@ -55044,11 +55044,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'test-component',
-    methods: {
-        nextSlide: function nextSlide() {
-            $(".slider").slick('slickNext');
-        }
-    },
+    methods: {},
     data: function data() {
         return {
             name: "henk",
