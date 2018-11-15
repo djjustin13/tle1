@@ -7,7 +7,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6 text-center">
                     <h1 class="py-2">Hoevaak per week eet je vlees?</h1>
-                    <img class="card-img" src="/storage/meat.png" alt="meat">
+                    <img class="card-img" src="/img/meat.png" alt="meat">
                     <select class="custom-select custom-select-sm question-select" name="meat" v-model="answer">
                         <option selected value="iedere dag">Iedere dag</option>
                         <option value="4-6">4 tot 6 dagen</option>

@@ -54574,7 +54574,7 @@ var render = function() {
           _vm._v(" "),
           _c("img", {
             staticClass: "card-img",
-            attrs: { src: "/storage/meat.png", alt: "meat" }
+            attrs: { src: "/img/meat.png", alt: "meat" }
           }),
           _vm._v(" "),
           _c(
