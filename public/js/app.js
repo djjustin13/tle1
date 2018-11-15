@@ -54456,7 +54456,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.question[data-v-40a63283] {\n  background-color: #70BEE7;\n}\n", ""]);
+exports.push([module.i, "\n.question[data-v-40a63283] {\n  background-color: #5A5C84;\n}\n.btn-question[data-v-40a63283] {\n  color: #5A5C84;\n}\n", ""]);
 
 // exports
 
@@ -54517,6 +54517,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'question-one',
@@ -54548,53 +54557,89 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "question" }, [
-    _vm.error
-      ? _c(
-          "div",
-          { staticClass: "alert alert-light", attrs: { role: "alert" } },
-          [_vm._v("\n        " + _vm._s(_vm.error) + "\n    ")]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-md-center" }, [
-      _c("div", { staticClass: "col-md-4 text-center" }, [
-        _c("p", [_vm._v("Hoeveel rij je?")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
+    _c("div", { staticClass: "container" }, [
+      _vm.error
+        ? _c(
+            "div",
+            { staticClass: "alert alert-light", attrs: { role: "alert" } },
+            [_vm._v("\n            " + _vm._s(_vm.error) + "\n        ")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("div", { staticClass: "col-12 col-md-6 text-center" }, [
+          _c("h1", { staticClass: "py-2" }, [
+            _vm._v("Hoevaak per week eet je vlees?")
+          ]),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "card-img",
+            attrs: { src: "/storage/meat.png", alt: "meat" }
+          }),
+          _vm._v(" "),
+          _c(
+            "select",
             {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.answer,
-              expression: "answer"
-            }
-          ],
-          attrs: { type: "number" },
-          domProps: { value: _vm.answer },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.answer,
+                  expression: "answer"
+                }
+              ],
+              staticClass: "custom-select custom-select-sm question-select",
+              attrs: { name: "meat" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.answer = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
               }
-              _vm.answer = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("br"),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.nextSlide()
-              }
-            }
-          },
-          [_vm._v("Next")]
-        )
+            },
+            [
+              _c("option", { attrs: { selected: "", value: "iedere dag" } }, [
+                _vm._v("Iedere dag")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "4-6" } }, [
+                _vm._v("4 tot 6 dagen")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "1-3" } }, [
+                _vm._v("1 tot 3 dagen")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "niet" } }, [
+                _vm._v("Helemaal niet")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "py-4" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-light btn-question px-4",
+                on: {
+                  click: function($event) {
+                    _vm.nextSlide()
+                  }
+                }
+              },
+              [_vm._v("Volgende")]
+            )
+          ])
+        ])
       ])
     ])
   ])
@@ -55176,7 +55221,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "row justify-content-md-center" }, [
       _c("div", { staticClass: "col-md-4 text-center" }, [
-        _c("p", [_vm._v("Rook je")]),
+        _c("p", [_vm._v("Rook je?")]),
         _vm._v(" "),
         _c("input", {
           directives: [

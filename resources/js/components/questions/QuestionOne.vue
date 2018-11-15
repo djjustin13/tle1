@@ -1,14 +1,23 @@
 <template>
     <div class="question">
-        <div v-if="error" class="alert alert-light" role="alert">
-            {{ error }}
-        </div>
-        <div class="row justify-content-md-center">
-            <div class="col-md-4 text-center">
-                <p>Hoeveel rij je?</p>
-                <input type="number" v-model="answer">
-                <br><br>
-                <button @click="nextSlide()">Next</button>
+        <div class="container">
+            <div v-if="error" class="alert alert-light" role="alert">
+                {{ error }}
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6 text-center">
+                    <h1 class="py-2">Hoevaak per week eet je vlees?</h1>
+                    <img class="card-img" src="/storage/meat.png" alt="meat">
+                    <select class="custom-select custom-select-sm question-select" name="meat" v-model="answer">
+                        <option selected value="iedere dag">Iedere dag</option>
+                        <option value="4-6">4 tot 6 dagen</option>
+                        <option value="1-3">1 tot 3 dagen</option>
+                        <option value="niet">Helemaal niet</option>
+                    </select>
+                    <div class="py-4">
+                        <button class="btn btn-light btn-question px-4" @click="nextSlide()">Volgende</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -39,7 +48,12 @@
 
 <style lang="scss" scoped>
     .question{
-        background-color: #70BEE7;
+        //background-color: #70BEE7;
+        background-color: #5A5C84;
+    }
+
+    .btn-question{
+        color: #5A5C84;
     }
 </style>
 

@@ -10472,3 +10472,14 @@ a.text-dark:focus {
   height: 100vh;
 }
 
+.btn-question {
+  font-size: 1.5em;
+  border-radius: 40px;
+  width: 70%;
+}
+
+.question-select {
+  border-radius: 40px;
+  width: 70%;
+}
+
