@@ -50,7 +50,11 @@
             if (data){
                 let object = JSON.parse(data);
                 this.answers = object;
-                $(".slider").slick('slickGoTo', this.answers.length)
+                if(this.answers.length > 3){
+                    this.$router.push('overview')
+                }else{
+                    $(".slider").slick('slickGoTo', this.answers.length)
+                }
             };
         }
     }
