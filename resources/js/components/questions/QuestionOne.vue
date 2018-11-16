@@ -5,7 +5,7 @@
                 {{ error }}
             </div>
             <div class="row justify-content-center">
-                <div class="col-12 col-md-6 text-center">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                     <h1 class="py-2">Hoevaak per week eet je vlees?</h1>
                     <img class="card-img" src="/img/meat.png" alt="meat">
                     <select class="custom-select custom-select-sm question-select" name="meat" v-model="answer">
