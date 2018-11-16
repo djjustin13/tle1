@@ -27,7 +27,7 @@ class DataController extends Controller
     }
 
     /**
-     * Store a newly created resource in img.
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -60,7 +60,7 @@ class DataController extends Controller
     }
 
     /**
-     * Update the specified resource in img.
+     * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -72,7 +72,7 @@ class DataController extends Controller
     }
 
     /**
-     * Remove the specified resource from img.
+     * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
