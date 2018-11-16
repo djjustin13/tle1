@@ -9,7 +9,7 @@
                     <h1 class="py-2">Hoevaak per week eet je vlees?</h1>
                     <img class="card-img" src="/img/meat.png" alt="meat">
                     <select class="custom-select custom-select-sm question-select" name="meat" v-model="answer">
-                        <option selected value="iedere dag">Iedere dag</option>
+                        <option value="iedere dag">Iedere dag</option>
                         <option value="4-6">4 tot 6 dagen</option>
                         <option value="1-3">1 tot 3 dagen</option>
                         <option value="niet">Helemaal niet</option>
@@ -29,7 +29,7 @@
         name: 'question-one',
         data(){
             return{
-                answer: null,
+                answer: "iedere dag",
                 error: null,
             }
         },
