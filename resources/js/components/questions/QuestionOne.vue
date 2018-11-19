@@ -15,7 +15,7 @@
                         <option value="niet">Helemaal niet</option>
                     </select>
                     <div class="py-4">
-                        <button class="btn btn-light btn-question px-4" @click="nextSlide()">Volgende</button>
+                        <button class="btn btn-light question-btn px-4" @click="nextSlide()">Volgende</button>
                     </div>
                 </div>
             </div>
