@@ -27,7 +27,7 @@
         methods: {
             nextSlide:function(){
                 if(this.answer != null){
-                    this.$emit('save', [3, this.answer])
+                    this.$emit('save', [4, this.answer])
                     $(".slider").slick('slickNext');
                 }else{
                     this.error = "Je moet iets invullen"

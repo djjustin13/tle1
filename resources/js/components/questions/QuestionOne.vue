@@ -52,8 +52,9 @@
         background-color: #5A5C84;
     }
 
-    .btn-question{
+    .question-btn{
         color: #5A5C84;
+        width: 70%;
     }
 </style>
 

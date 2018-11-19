@@ -3,6 +3,7 @@
         <div class="questions slider">
         <question-one v-on:save="save($event)"></question-one>
         <question-two v-on:save="save($event)"></question-two>
+
         <question-three v-on:save="save($event)"></question-three>
         <question-four v-on:save="save($event)"></question-four>
         </div>

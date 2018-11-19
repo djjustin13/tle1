@@ -26,7 +26,7 @@
         methods: {
             nextSlide:function(){
                 if(this.answer != null){
-                    this.$emit('save', [4, this.answer])
+                    this.$emit('save', [5, this.answer])
                     this.$router.push('overview')
                     // $(".slider").slick('slickNext');
                 }else{
