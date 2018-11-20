@@ -10,10 +10,13 @@
                     <h1 class="py-2">Hoeveel dagen per week eet je vlees?</h1>
                     <img class="card-img" src="/img/meat.png" alt="meat">
                     <select class="custom-select custom-select-sm question-select" name="meat" v-model="answer">
+                        <option value="1">1 dag</option>
+                        <option value="2">2 dagen</option>
+                        <option value="3">3 dagen</option>
+                        <option value="4">4 dagen</option>
+                        <option value="5">5 dagen</option>
+                        <option value="6">6 dagen</option>
                         <option value="7">7 dagen</option>
-                        <option value="5">4 tot 6 dagen</option>
-                        <option value="2">1 tot 3 dagen</option>
-                        <option value="0">Helemaal niet</option>
                     </select>
                     <div class="py-4">
                         <button class="btn btn-light question-btn px-4" @click="nextSlide()">Volgende</button>

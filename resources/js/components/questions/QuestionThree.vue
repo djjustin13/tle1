@@ -36,12 +36,6 @@
                         <br>
                         <input class="form-control" type="number" v-model="minuteAnswer">
                         <label> {{minuteAnswer}} minuten</label>
-                        <!--<select class="custom-select custom-select-sm question-select" name="shower" v-model="minuteAnswer">-->
-                            <!--<option value="0-5">0 tot 5 minuten</option>-->
-                            <!--<option value="5-10">5 tot 10 minuten</option>-->
-                            <!--<option value="10-20">10 tot 20 minuten</option>-->
-                            <!--<option value="20-30">meer dan 20 minuten</option>-->
-                        <!--</select>-->
                         <div class="py-4">
                             <button class="btn btn-light question-btn px-4" @click="saveMinuteAnswer()">Volgende</button>
                         </div>

@@ -24,12 +24,6 @@
                         <img class="card-img" src="/img/cigarette.png" alt="meat">
                         <input class="form-control" type="number" v-model="cigaretteAmount">
                         <label> {{cigaretteAmount}} sigaretten</label>
-                        <!--<select class="custom-select custom-select-sm question-select" name="meat" v-model="cigaretteAmount">-->
-                            <!--<option value="3">0 tot 5 sigaretten per dag</option>-->
-                            <!--<option value="7">5 tot 10 sigaretten per dag</option>-->
-                            <!--<option value="15">10 tot 20 sigaretten per dag</option>-->
-                            <!--<option value="20">meer dan 20 sigaretten per dag</option>-->
-                        <!--</select>-->
                         <div class="py-4">
                             <button class="btn btn-light question-btn px-4" @click="saveCigaretteAmount()">Volgende</button>
                         </div>
