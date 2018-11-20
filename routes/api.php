@@ -19,6 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('/data', 'DataController');
 
-Route::get('/api/calculate/{allScoreData}', 'DataController@calculateAllScores');
-Route::get('/api/compare/{category}/{score}', 'DataController@compareScore');
-Route::get('/api/challenge/{challenge}/{option}' , 'DataController@setChallenge');
+Route::get('/api/calculate/{allScoreData}', 'DataController@calculate');
+Route::get('/api/compare/{category}/{score}', 'DataController@compare');
+Route::get('/api/challenge/{challenge}/{option}' , 'DataController@challenge');
