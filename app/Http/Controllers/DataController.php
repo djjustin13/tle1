@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Data;
 
 class DataController extends Controller
 {
@@ -21,6 +22,17 @@ class DataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function calculate(){
+
+    }
+
+    public function compare($category){
+        $result = Data::where('data_name', '=', $category)->get();
+
+        dd($result, $score);
+    }
+
     public function create()
     {
         //
