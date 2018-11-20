@@ -16,9 +16,9 @@ class Data extends Migration
         Schema::create('data', function (Blueprint $table) {
             $table->increments('id');
             $table->string('data_name');
-            // CO2 export per year average
+            // CO2 export per year average in kilograms
             $table->integer('co2_year_average');
-            // C02 per km, minute, day average
+            // C02 per km, minute, day average in grams
             $table->integer('co2_by_unit');
             $table->timestamps();
         });
