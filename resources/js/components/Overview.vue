@@ -5,6 +5,7 @@
         <br>
         <a @click="reset()" href="#">Clear storage & restart</a>
     </div>
+
 </template>
 
 <script>
@@ -27,7 +28,7 @@
             let data = localStorage.getItem('answers');
             if (data){
                 let object = JSON.parse(data);
-                this.answers = object;
+                this.answers = data;
             }
         }
     }

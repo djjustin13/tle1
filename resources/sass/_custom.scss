@@ -2,6 +2,11 @@ body{
   font-family: $font-family-sans-serif
 }
 
+.btn{
+  font-size: 1.5em;
+  border-radius: 40px;
+}
+
 .question{
   color: #FFFFFF;
   width: 100vw;
@@ -11,11 +16,15 @@ body{
 }
 
 .question-btn{
-  font-size: 1.5em;
-  border-radius: 40px;
+  width: 50%;
+}
+
+.yes-no-btn{
+  width: 30%;
 }
 
 .question-select{
   border-radius: 40px;
   width: 70%;
 }
+
