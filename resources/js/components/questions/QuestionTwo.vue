@@ -30,7 +30,7 @@
                             <option value="hybride">Hybride</option>
                         </select>
                         <div class="py-4">
-                            <button class="btn btn-light question-btn px-4" @click="saveCar()">Volgende</button>
+                            <button class="btn btn-light question-btn px-4" @click="saveCarType()">Volgende</button>
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@
                 carType: null,
                 carTypeSet: false,
                 km: null,
-                answer: null,
+                answer: [],
                 error: null,
             }
         },
@@ -74,19 +74,20 @@
             },
             no:function(){
                 this.hasCar = false;
-                this.answer = null;
+                this.answer = 'no';
                 this.saveCar()
                 this.nextSlide()
             },
-            saveCar:function(){
+            saveCarType:function(){
                 this.carTypeSet = true
-                this.$emit('save', [2, this.carType])
+                this.answer.push(this.carType);
             },
             saveKm:function(){
-                this.$emit('save', [3, this.km])
+                this.answer.push(this.km);
                 this.nextSlide()
             },
             nextSlide:function(){
+                this.$emit('save', [2, this.answer])
                 $(".slider").slick('slickNext');
             },
         }
