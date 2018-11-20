@@ -23,7 +23,10 @@ class DataController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function calculate(){
+    public function calculate(Request $request){
+
+
+        return $request->data + 10;
 
     }
 

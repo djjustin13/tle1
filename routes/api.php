@@ -20,6 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('/data', 'DataController');
 
-Route::post('/calculate/{allScoreData}', 'DataController@calculate');
+Route::post('/calculate', 'DataController@calculate');
 Route::post('/compare/{category}', 'DataController@compare');
 Route::post('/challenge/{challenge}/{option}' , 'DataController@challenge');
