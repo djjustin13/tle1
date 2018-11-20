@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,3 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('/data', 'DataController');
+
+Route::post('/calculate', 'DataController@calculate');
+Route::get('/compare/{category}', 'DataController@compare');
+Route::post('/challenge/{challenge}/{option}' , 'DataController@challenge');

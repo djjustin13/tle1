@@ -7,11 +7,9 @@
         <hr>
         <input type="text" v-model="name">
         <br>
-
-        Type hier iets:
-        <input type="text" v-model="something">
-        <p v-if="something">Vet!</p>
         <hr>
+        <input type="text" v-model="something">
+        <button @click="sendData()">Stuur {{something}}</button>
     </div>
 </template>
 
@@ -26,6 +24,14 @@
                 name: "henk",
                 something: null,
                 data: null,
+            }
+        },methods:{
+            sendData:function(){
+                axios.post('api/calculate', {
+                    data: this.something
+                }).then((response)  =>  {
+                    console.log(response.data)
+                })
             }
         },
         mounted: function(){
