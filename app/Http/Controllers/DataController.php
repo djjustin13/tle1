@@ -72,8 +72,8 @@ class DataController extends Controller
 
     /**
      * Private functions declared here.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * 
+     * 
      */
     private function shower($result, $input) {
         // Declare some basic variables like year and day.
