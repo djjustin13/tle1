@@ -30,12 +30,30 @@ class DataController extends Controller
 
     }
 
-    public function compare($category){
+    public function compare($category, Request $request){
+
         $result = Data::where('data_name', '=', $category)->get();
+
+        if ($result[0]->id == 1){
+            return $this->shower($result, $request);
+        } else if ($result[0]->id == 2 || $result[0]->id == 3 || $result[0]->id == 4 || $result[0]->id == 5 || $result[0]->id == 6 || $result[0]->id == 10){
+            return $this->vehicle($result, $request);
+        }
+
+        return $result;
+
+    }
+
+    /**
+     * Private functions declared here.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    private function shower($result, $request) {
 
         // Declare some basic variables like year and day.
         $numDaysYear = 365;
-        $numDaysWeek = 7;
+        $numDaysWeek = $request->days;
 
         $work = true;
 
@@ -43,8 +61,7 @@ class DataController extends Controller
         $avgDischargeYear = $result[0]->co2_year_average;
         $avgDischargeMin = $result[0]->co2_by_unit;
 
-        // Fetch user results. Now not working since we don't post any data. Still some test data.
-        $usrDailyMin = 10;
+        $usrDailyMin = $request->minutes;
         $usrWeeklyMin = $usrDailyMin * $numDaysWeek;
 
         $usrDischargePerDay = $usrDailyMin * $avgDischargeMin;
@@ -52,74 +69,27 @@ class DataController extends Controller
         // We divide by 1000 to transform the gram to kilogram.
         $usrDiscargePerYear = $usrDischargePerDay * $numDaysYear / 1000;
 
-        if ($usrDiscargePerYear === $avgDischargeYear || $usrDiscargePerYear > $avgDischargeYear) {
+        if ($usrDiscargePerYear == $avgDischargeYear || $usrDiscargePerYear > $avgDischargeYear) {
             $work = false;
         } else if ($usrDiscargePerYear < $avgDischargeYear) {
             $work = true;
         }
 
-        dd($work);
+        $calculations = [
+            'avgDischargeYear' => $avgDischargeYear,
+            'avgDischargeMin' => $avgDischargeMin,
+            'usrDailyMin' => $usrDailyMin,
+            'usrWeeklyMin' => $usrWeeklyMin,
+            'usrDischargePerDay' => $usrDischargePerDay,
+            'usrDischargePerYear' => $usrDiscargePerYear,
+            'usrBelowAverage' => $work
+        ];
 
+        return response()->json($calculations);
     }
 
-    public function create()
-    {
-        //
+    private function vehicle($result) {
+        return 'vehicle';
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

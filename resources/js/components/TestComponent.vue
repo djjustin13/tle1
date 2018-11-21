@@ -8,29 +8,30 @@
         <input type="text" v-model="name">
         <br>
         <hr>
-        <input type="text" v-model="something">
-        <button @click="sendData()">Stuur {{something}}</button>
+        <input type="number" v-model="days" placeholder="Dagen">
+        <input type="number" v-model="minutes" placeholder="Minuten">
+        <button @click="sendData()">Stuur</button>
     </div>
 </template>
 
 <script>
     export default {
         name: 'test-component',
-        methods: {
-            
-        },
         data(){
             return{
                 name: "henk",
-                something: null,
+                days:null,
+                minutes: null,
                 data: null,
             }
         },methods:{
             sendData:function(){
-                axios.post('api/calculate', {
-                    data: this.something
+                axios.post('api/compare/shower', {
+                    minutes: this.minutes,
+                    days: this.days,
+
                 }).then((response)  =>  {
-                    console.log(response.data)
+                    console.log(response)
                 })
             }
         },
