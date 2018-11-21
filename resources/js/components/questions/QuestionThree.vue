@@ -55,7 +55,7 @@
                 weekAnswer: "7",
                 weekAnswerSet: false,
                 minuteAnswer: "5",
-                answer: [],
+                answer: {},
                 error: null,
             }
         },
@@ -68,10 +68,10 @@
             },
             saveWeekAnswer:function(){
                 this.weekAnswerSet = true
-                this.answer.push(this.weekAnswer)
+                this.answer['days'] = this.weekAnswer
             },
             saveMinuteAnswer:function(){
-                this.answer.push(this.minuteAnswer)
+                this.answer['minutes'] = this.minuteAnswer
                 this.nextSlide()
             },
             nextSlide:function(){

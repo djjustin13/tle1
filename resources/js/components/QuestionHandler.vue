@@ -27,14 +27,13 @@
         },
         data(){
             return{
-                answers: []
+                answers: {}
             }
         },methods:{
             save: function(event){
-                this.answers.push({
-                    question : event[0],
-                    answer : event[1]
-                });
+                this.answers[event[0]] = event[1];
+
+                console.log(this.answers);
                 localStorage.setItem('answers', JSON.stringify(this.answers));
             }
         },

@@ -26,10 +26,10 @@
                         <h1>Wat voor auto?</h1>
                         <img class="card-img" src="/img/car.png" alt="meat">
                         <select  class="custom-select custom-select-sm question-select" name="car" v-model="carType">
-                            <option value="benzine">Benzine</option>
-                            <option value="diesel">Diesel</option>
-                            <option value="elektrisch">Elektrisch</option>
-                            <option value="hybride">Hybride</option>
+                            <option value="benzin_car">Benzine</option>
+                            <option value="diesel_car">Diesel</option>
+                            <option value="electric_car">Elektrisch</option>
+                            <option value="hybrid_car">Hybride</option>
                         </select>
                         <div class="py-4">
                             <button class="btn btn-light question-btn px-4" @click="saveCarType()">Volgende</button>
@@ -66,7 +66,7 @@
                 carType: "benzine",
                 carTypeSet: false,
                 km: 250,
-                answer: [],
+                answer: {},
                 error: null,
             }
         },
@@ -82,15 +82,15 @@
             },
             no:function(){
                 this.hasCar = false
-                this.answer.push(this.hasCar);
+                this.answer = this.hasCar;
                 this.nextSlide()
             },
             saveCarType:function(){
                 this.carTypeSet = true
-                this.answer.push({ type: this.carType});
+                this.answer['type'] = this.carType;
             },
             saveKm:function(){
-                this.answer.push({ km: this.km});
+                this.answer['km'] = this.km;
                 this.nextSlide()
             },
             nextSlide:function(){

@@ -32,8 +32,7 @@
         },methods:{
             sendData:function(){
                 axios.post('api/compare/'+ this.carType, {
-                    car: this.carType,
-                    km: this.km,
+                    input: this.km,
 
                 }).then((response)  =>  {
                     console.log(response)

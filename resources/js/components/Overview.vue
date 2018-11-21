@@ -22,14 +22,22 @@
                 localStorage.clear();
                 this.answers = null;
                 this.$router.push('/')
+            },
+            sendData:function(){
+                axios.post('api/calculate', this.answers)
+                .then((response)  =>  {
+                    console.log(response.data)
+                })
             }
         },
         mounted: function() {
             let data = localStorage.getItem('answers');
             if (data){
                 let object = JSON.parse(data);
-                this.answers = data;
+                this.answers = object;
             }
+
+            this.sendData();
         }
     }
 </script>
