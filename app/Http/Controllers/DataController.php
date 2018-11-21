@@ -12,6 +12,10 @@ class DataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // Global variables used by various functions
+    public $numDaysYear = 365;
+    public $numWeeksYear = 52;
+
     public function index()
     {
         return 'API JONGEH';
@@ -37,7 +41,7 @@ class DataController extends Controller
         if ($result[0]->id == 1){
             return $this->shower($result, $request);
         } else if ($result[0]->id == 2 || $result[0]->id == 3 || $result[0]->id == 4 || $result[0]->id == 5 || $result[0]->id == 6 || $result[0]->id == 10){
-            return $this->vehicle($result, $request);
+            return $this->vehicle($request);
         }
 
         return $result;
@@ -52,7 +56,6 @@ class DataController extends Controller
     private function shower($result, $request) {
 
         // Declare some basic variables like year and day.
-        $numDaysYear = 365;
         $numDaysWeek = $request->days;
 
         $work = true;
@@ -67,7 +70,7 @@ class DataController extends Controller
         $usrDischargePerDay = $usrDailyMin * $avgDischargeMin;
 
         // We divide by 1000 to transform the gram to kilogram.
-        $usrDiscargePerYear = $usrDischargePerDay * $numDaysYear / 1000;
+        $usrDiscargePerYear = $usrDischargePerDay * $this->numDaysYear / 1000;
 
         if ($usrDiscargePerYear == $avgDischargeYear || $usrDiscargePerYear > $avgDischargeYear) {
             $work = false;
@@ -88,8 +91,38 @@ class DataController extends Controller
         return response()->json($calculations);
     }
 
-    private function vehicle($result) {
-        return 'vehicle';
+    private function vehicle(Request $request) {
+
+        $resultFromDB = Data::where('data_name', '=', $request->car)->get();
+
+        $numKMWeek = $request->km;
+
+        $work = true;
+
+        // Fetch discharge per year from selected category.
+        $avgDischargeYear = $resultFromDB[0]->co2_year_average;
+        $avgDischargeKm = $resultFromDB[0]->co2_by_unit;
+
+        $usrWeeklyDischarge = $numKMWeek * $avgDischargeKm;
+        $usrAnnualDischarge = $usrWeeklyDischarge * $this->numWeeksYear / 1000;
+
+        if ($usrAnnualDischarge == $avgDischargeYear || $usrAnnualDischarge > $avgDischargeYear) {
+            $work = false;
+        } else if ($usrAnnualDischarge < $avgDischargeYear) {
+            $work = true;
+        }
+
+        $calculations = [
+            'avgDischargeYear' => $avgDischargeYear,
+            'avgDischargeKM' => $avgDischargeKm,
+            'usrWeeklyDischarge' => $usrWeeklyDischarge,
+            'usrWeeklyKM' => $numKMWeek,
+            'usrAnnualDischarge' => $usrAnnualDischarge,
+            'usrBelowAverage' => $work
+        ];
+
+        return response()->json($calculations);
+
     }
 
 }

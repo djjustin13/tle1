@@ -8,8 +8,13 @@
         <input type="text" v-model="name">
         <br>
         <hr>
-        <input type="number" v-model="days" placeholder="Dagen">
-        <input type="number" v-model="minutes" placeholder="Minuten">
+        <select  class="custom-select custom-select-sm question-select"  v-model="carType">
+            <option value="benzin_car">Benzine</option>
+            <option value="diesel_car">Diesel</option>
+            <option value="electric_car">Elektrisch</option>
+            <option value="hybrid_car">Hybride</option>
+        </select>
+        <input type="number" min="0" max="10000" v-model="km">
         <button @click="sendData()">Stuur</button>
     </div>
 </template>
@@ -20,15 +25,15 @@
         data(){
             return{
                 name: "henk",
-                days:null,
-                minutes: null,
+                carType:null,
+                km: null,
                 data: null,
             }
         },methods:{
             sendData:function(){
-                axios.post('api/compare/shower', {
-                    minutes: this.minutes,
-                    days: this.days,
+                axios.post('api/compare/'+ this.carType, {
+                    car: this.carType,
+                    km: this.km,
 
                 }).then((response)  =>  {
                     console.log(response)
