@@ -30,20 +30,18 @@ class DataController extends Controller
     public function calculate(Request $request){
 
 
-        //Calculate meat answer
-            //Call meat function
+        // Calculate meat answer
+        //     Call meat function
 
-        //Calculate car answer
+        // Calculate car answer
         if($request->car != false){
-            $data = Data::where('data_name', '=', $request->car['type'])->first();
-           
-            $car = $this.vehicle($data, $request->car);
-            
+            $car = $this->vehicle($request->car);
         }
 
         //Calculate shower answer
-        $data = Data::where('data_name', '=', 'shower');
-        $shower = $this.shower($request->shower);
+        $data = Data::where('data_name', '=', 'shower')->first();
+        
+        $shower = $this->shower($data, $request->shower);
 
         //Calculate smoke answer
         if($request->smoke != false){
@@ -55,7 +53,7 @@ class DataController extends Controller
             'shower' => $shower,
         ];
 
-        return $data;
+        return response()->json($data);
     }
 
     public function compare($category, Request $request){
@@ -68,9 +66,8 @@ class DataController extends Controller
         } else if ($result->id == 2 || $result->id == 3 || $result->id == 4 || $result->id == 5 || $result->id == 6 || $result->id == 10){
             return $this->vehicle($category, $input);
         }
-
-        return $result;
-
+        
+        return response()->json($result);
     }
 
     /**
@@ -79,9 +76,8 @@ class DataController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     private function shower($result, $input) {
-
         // Declare some basic variables like year and day.
-        $numDaysWeek = $input;
+        $numDaysWeek = $input['days'];
 
         $work = true;
 
@@ -89,7 +85,7 @@ class DataController extends Controller
         $avgDischargeYear = $result->co2_year_average;
         $avgDischargeMin = $result->co2_by_unit;
 
-        $usrDailyMin = $request->minutes;
+        $usrDailyMin = $input['minutes'];
         $usrWeeklyMin = $usrDailyMin * $numDaysWeek;
 
         $usrDischargePerDay = $usrDailyMin * $avgDischargeMin;
@@ -113,14 +109,14 @@ class DataController extends Controller
             'usrBelowAverage' => $work
         ];
 
-        return response()->json($calculations);
+        return $calculations;
     }
 
-    private function vehicle($category, $input) {
-
-        $resultFromDB = Data::where('data_name', '=', $category)->get();
-
-        $numKMWeek = $input;
+    private function vehicle($input) {
+        
+        $resultFromDB = Data::where('data_name', '=', $input['type'])->first();
+        
+        $numKMWeek = $input['km'];
 
         $work = true;
 
@@ -146,7 +142,7 @@ class DataController extends Controller
             'usrBelowAverage' => $work
         ];
 
-        return response()->json($calculations);
+        return $calculations;
 
     }
 
