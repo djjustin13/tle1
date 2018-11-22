@@ -59,16 +59,18 @@ class DataController extends Controller
 
     public function compare($category, Request $request){
 
-        $result = Data::where('data_name', '=', $category)->first();
+        $resultFromDB = Data::where('data_name', '=', $category)->first();
         $input = $request->input;
 
-        if ($result[0]->id == 1){
-            return $this->shower($result, $input);
-        } else if ($result->id == 2 || $result->id == 3 || $result->id == 4 || $result->id == 5 || $result->id == 6 || $result->id == 10){
-            return $this->vehicle($result, $input);
+        if ($resultFromDB[0]->id == 1){
+            return $this->shower($resultFromDB, $input);
+        } else if ($resultFromDB->id == 2 || $resultFromDB->id == 3 || $resultFromDB->id == 4 || $resultFromDB->id == 5 || $resultFromDB->id == 6 || $resultFromDB->id == 10){
+            return $this->vehicle($resultFromDB, $input);
+        } else if ($resultFromDB->id == 8) {
+            return $this->flesheaters($resultFromDB, $input);
         }
         
-        return response()->json($result);
+        return response()->json($resultFromDB);
     }
 
     /**
@@ -142,5 +144,20 @@ class DataController extends Controller
         return $calculations;
 
     }
+
+    private function flesheaters($resultFromDB, $input){
+        $avgDischargePerKG = $resultFromDB->co2_by_unit;
+        $avgDischargePerYear = $resultFromDB->co2_year_average;
+
+        $usrNumDaysPerWeek = $input;
+
+        // On average a daily meal consists of 100 grams of meat.
+        $usrWeeklyAmountOfFlesh = $usrNumDaysPerWeek * 100;
+
+        return $input;
+
+
+    }
+
 
 }
