@@ -2,6 +2,10 @@ import QuestionHandler from './components/QuestionHandler';
 import Overview from './components/Overview';
 import TestComponent from './components/TestComponent';
 import NotFound from './components/NotFound';
+import ChallengeCar from './components/challenges/ChallengeCar';
+import ChallengeMeat from './components/challenges/ChallengeMeat';
+import ChallengeShower from './components/challenges/ChallengeShower';
+import ChallengeSmoking from './components/challenges/ChallengeSmoking';
 
 export const routes = [
     {
@@ -12,6 +16,22 @@ export const routes = [
         path: '/overview',
         component: Overview
 
+    },
+    {
+        path: '/challengecar',
+        component: ChallengeCar
+    },
+    {
+        path: '/challengecar',
+        component: ChallengeMeat
+    },
+    {
+        path: '/challengecar',
+        component: ChallengeShower
+    },
+    {
+        path: '/challengecar',
+        component: ChallengeSmoking
     },
 
     //App routes before this section//

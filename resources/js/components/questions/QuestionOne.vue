@@ -52,7 +52,6 @@
 
 <style lang="scss" scoped>
     .question{
-        //background-color: #70BEE7;
         background-color: #5A5C84;
     }
 

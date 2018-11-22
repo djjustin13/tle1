@@ -18,41 +18,51 @@
 
     export default {
         name: 'question-handler',
-        components:{
+        components: {
             QuestionOne,
             QuestionTwo,
             QuestionThree,
             QuestionFour
         },
-        data(){
-            return{
+        data() {
+            return {
                 answers: {}
             }
-        },methods:{
-            save: function(event){
+        }, methods: {
+            save: function (event) {
                 this.answers[event[0]] = event[1];
                 localStorage.setItem('answers', JSON.stringify(this.answers));
+            },
+
+            sliderSetup: function () {
+                $('.slider').slick({
+                    lazyLoad: 'ondemand',
+                    accessibility: false,
+                    arrows: false,
+                    draggable: false,
+                    mobileFirst: true,
+                });
+            },
+
+            pageChecker: function () {
+                let data = localStorage.getItem('answers');
+                if (data){
+                    let object = JSON.parse(data);
+                    this.answers = object;
+                    if(this.answers.length > 3){
+                        this.$router.push('overview')
+                    }else{
+                        $(".slider").slick('slickGoTo', Object.keys(this.answers).length)
+                    }
+                }
             }
         },
-        mounted: function() {
-            $('.slider').slick({
-                lazyLoad: 'ondemand',
-                accessibility: false,
-                arrows: false,
-                draggable: false,
-                mobileFirst: true,
-            });
 
-            let data = localStorage.getItem('answers');
-            if (data){
-                let object = JSON.parse(data);
-                this.answers = object;
-                if(this.answers.length > 3){
-                    this.$router.push('overview')
-                }else{
-                    $(".slider").slick('slickGoTo', this.answers.length)
-                }
-            };
+        mounted: function() {
+
+            this.sliderSetup()
+            this.pageChecker()
+
         }
     }
 </script>
