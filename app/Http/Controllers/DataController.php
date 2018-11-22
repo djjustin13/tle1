@@ -68,8 +68,9 @@ class DataController extends Controller
             return $this->vehicle($resultFromDB, $input);
         } else if ($resultFromDB->id == 8) {
             return $this->flesheaters($resultFromDB, $input);
+        } else if ($resultFromDB->id == 7){
+            return $this->smoking($resultFromDB, $input);
         }
-        
         return response()->json($resultFromDB);
     }
 
@@ -179,5 +180,34 @@ class DataController extends Controller
         return $calculations;
     }
 
+    private function smoking($resultFromDB, $input) {
+        $work = false;
+
+        // Average discharge results from db
+        $avgAnnualDischarge = $resultFromDB->co2_year_average;
+        $avgDischargePerPeuk = $resultFromDB->co2_by_unit;
+
+        // Gather user input
+        $usrAmountOfCigs = $input;
+
+        $usrDischargePerWeek = $usrAmountOfCigs * $avgDischargePerPeuk;
+        $usrAnnualDischarge = $usrDischargePerWeek * $this->numWeeksYear / 1000;
+
+        if ($usrAnnualDischarge == $avgAnnualDischarge || $usrAnnualDischarge > $avgAnnualDischarge) {
+            $work = false;
+        } else if ($usrAnnualDischarge < $avgAnnualDischarge) {
+            $work = true;
+        }
+
+        $calculations = [
+            'avgDischargeYear' => $avgAnnualDischarge,
+            'UitstootPerPeuk' => $avgDischargePerPeuk,
+            'usrAmountOfCigs' => $usrAmountOfCigs,
+            'usrDischargePerWeek' => $usrDischargePerWeek,
+            'usrAnnualDischarge' => $usrAnnualDischarge,
+            'usrBelowAverage' => $work
+        ];
+        return $calculations;
+    }
 
 }

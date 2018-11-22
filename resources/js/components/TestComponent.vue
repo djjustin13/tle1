@@ -8,15 +8,7 @@
         <input type="text" v-model="name">
         <br>
         <hr>
-        <select class="custom-select custom-select-sm question-select" name="meat" v-model="answer">
-            <option value="1">1 dag</option>
-            <option value="2">2 dagen</option>
-            <option value="3">3 dagen</option>
-            <option value="4">4 dagen</option>
-            <option value="5">5 dagen</option>
-            <option value="6">6 dagen</option>
-            <option value="7">7 dagen</option>
-        </select>
+        <input class="form-control" type="number" v-model="cigaretteAmount">
         <button @click="sendData()">Stuur</button>
     </div>
 </template>
@@ -27,13 +19,13 @@
         data(){
             return{
                 name: "henk",
-                answer: null,
+                cigaretteAmount: null,
                 data: null,
             }
         },methods:{
             sendData:function(){
-                axios.post('api/compare/flesheaters', {
-                    input: this.answer,
+                axios.post('api/compare/smoking', {
+                    input: this.cigaretteAmount,
 
                 }).then((response)  =>  {
                     console.log(response)
