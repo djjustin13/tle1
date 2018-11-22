@@ -8,7 +8,6 @@
         <question-four v-on:save="save($event)"></question-four>
         </div>
     </div>
-    
 </template>
 
 <script>

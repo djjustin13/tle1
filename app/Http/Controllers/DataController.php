@@ -62,7 +62,7 @@ class DataController extends Controller
         $resultFromDB = Data::where('data_name', '=', $category)->first();
         $input = $request->input;
 
-        if ($resultFromDB[0]->id == 1){
+        if ($resultFromDB->id == 1){
             return $this->shower($resultFromDB, $input);
         } else if ($resultFromDB->id == 2 || $resultFromDB->id == 3 || $resultFromDB->id == 4 || $resultFromDB->id == 5 || $resultFromDB->id == 6 || $resultFromDB->id == 10){
             return $this->vehicle($resultFromDB, $input);
