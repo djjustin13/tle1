@@ -146,7 +146,10 @@ class DataController extends Controller
     }
 
     private function flesheaters($resultFromDB, $input){
-        $avgDischargePerKG = $resultFromDB->co2_by_unit;
+        $work = true;
+
+        // Average discharge per 1KG of meat in grams.
+        $avgDischargePerG = $resultFromDB->co2_by_unit;
         $avgDischargePerYear = $resultFromDB->co2_year_average;
 
         $usrNumDaysPerWeek = $input;
@@ -154,9 +157,26 @@ class DataController extends Controller
         // On average a daily meal consists of 100 grams of meat.
         $usrWeeklyAmountOfFlesh = $usrNumDaysPerWeek * 100;
 
-        return $input;
+        // We divide the discharge per grams by 1000 to calculate the discharge per gram and then multiply by users weekly amount of meat in grams.
+        $usrWeeklyDischarge = $avgDischargePerG / 1000 * $usrWeeklyAmountOfFlesh;
 
+        $usrYearlyDischarge = $usrWeeklyDischarge * $this->numWeeksYear / 1000;
 
+        if ($usrYearlyDischarge == $avgDischargePerYear || $usrYearlyDischarge > $avgDischargePerYear) {
+            $work = false;
+        } else if ($usrYearlyDischarge < $avgDischargePerYear) {
+            $work = true;
+        }
+
+        $calculations = [
+            'avgDischargeYear' => $avgDischargePerYear,
+            'avgDischargePerG' => $avgDischargePerG,
+            'usrWeeklyAmountOfFleshInGrams' => $usrWeeklyAmountOfFlesh,
+            'usrWeeklyDischarge' => $usrWeeklyDischarge,
+            'usrYearlyDischarge' => $usrYearlyDischarge,
+            'usrBelowAverage' => $work
+        ];
+        return $calculations;
     }
 
 
