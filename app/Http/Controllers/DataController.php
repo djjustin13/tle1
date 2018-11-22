@@ -92,11 +92,11 @@ class DataController extends Controller
         $usrDischargePerDay = $usrDailyMin * $avgDischargeMin;
 
         // We divide by 1000 to transform the gram to kilogram.
-        $usrDiscargePerYear = $usrDischargePerDay * $this->numDaysYear / 1000;
+        $usrDischargePerYear = $usrDischargePerDay * $this->numDaysYear / 1000;
 
-        if ($usrDiscargePerYear == $avgDischargeYear || $usrDiscargePerYear > $avgDischargeYear) {
+        if ($usrDischargePerYear == $avgDischargeYear || $usrDischargePerYear > $avgDischargeYear) {
             $work = false;
-        } else if ($usrDiscargePerYear < $avgDischargeYear) {
+        } else if ($usrDischargePerYear < $avgDischargeYear) {
             $work = true;
         }
 
@@ -106,7 +106,7 @@ class DataController extends Controller
             'usrDailyMin' => $usrDailyMin,
             'usrWeeklyMin' => $usrWeeklyMin,
             'usrDischargePerDay' => $usrDischargePerDay,
-            'usrDischargePerYear' => $usrDiscargePerYear,
+            'usrDischargePerYear' => $usrDischargePerYear,
             'usrBelowAverage' => $work
         ];
 
