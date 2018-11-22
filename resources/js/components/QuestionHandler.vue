@@ -32,8 +32,6 @@
         },methods:{
             save: function(event){
                 this.answers[event[0]] = event[1];
-
-                console.log(this.answers);
                 localStorage.setItem('answers', JSON.stringify(this.answers));
             }
         },
