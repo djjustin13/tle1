@@ -50,6 +50,13 @@
                     let object = JSON.parse(data);
                     this.car = object.car;
                     this.km = this.car.km;
+
+                    axios.post('api/compare/'+ this.car.type, {
+                        input: this.car,
+                    }).then((response)  =>  {
+                        console.log(response)
+                    })
+
                 }
             },
 
