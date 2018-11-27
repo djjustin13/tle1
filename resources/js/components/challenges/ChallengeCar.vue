@@ -4,7 +4,11 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
-                    <h1>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} kilometer per week</h1>
+                    <div v-if="error" class="alert alert-light" role="alert">
+                        {{ error }}
+                    </div>
+
+                    <h2>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} kilometer per week</h2>
                     <img class="card-img" src="/img/car.png" alt="meat">
 
                     <h2>Bespaar veel Co2 door minder te rijden. Pak de fiets, of neem wat vaker het openbaar vervoer.</h2>
@@ -13,6 +17,8 @@
 
                     <input class="form-control-range" type="range" name="km" min="1" :max="car.km" v-model="km">
                     <p>{{km}} Kilometer</p>
+                    <p>{{co2km}} Kilometer</p>
+
                     <div class="py-4">
                         <button class="btn btn-light question-btn px-4" @click="saveKm()">Wat bespaar ik hiermee?</button>
                     </div>
@@ -31,9 +37,11 @@
         name: "challenge-car",
         data(){
             return{
-                car: null,
+                error: null,
+                car: {},
                 carType: null,
                 km: null,
+                co2km: null,
             }
         },methods:{
             parseJson:function() {

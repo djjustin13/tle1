@@ -11,7 +11,6 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
 
-
                     <div v-if="hasCar === null">
                         <h1 class="py-2">Heb je een auto?</h1>
                         <img class="card-img" src="/img/car.png" alt="meat">
@@ -20,7 +19,6 @@
                             <button class="btn btn-light yes-no-btn mx-1" @click="no()">Nee</button>
                         </div>
                     </div>
-
 
                     <div v-if="hasCar && carTypeSet === false">
                         <h1>Wat voor auto?</h1>

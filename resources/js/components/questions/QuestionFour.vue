@@ -1,4 +1,5 @@
 <template>
+
     <div class="question">
         <div class="container">
             <div v-if="error" class="alert alert-light" role="alert">
@@ -7,8 +8,8 @@
 
             <a @click="reset()" href="#">Clear storage & restart</a>
 
-            <div class="row justify-content-md-center">
-                <div class="col-md-4 text-center">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
 
                     <div v-if="doesSmoke === null">
                         <h1 class="py-2">Rook je?</h1>
