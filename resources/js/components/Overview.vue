@@ -56,10 +56,8 @@
             }
         },
         mounted: function() {
-
-            this.sendData();
             this.parseJson();
-
+            this.sendData();
         }
     }
 </script>

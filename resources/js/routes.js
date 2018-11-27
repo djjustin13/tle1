@@ -15,22 +15,21 @@ export const routes = [
     {   
         path: '/overview',
         component: Overview
-
     },
     {
         path: '/challengecar',
         component: ChallengeCar
     },
     {
-        path: '/challengecar',
+        path: '/challengemeat',
         component: ChallengeMeat
     },
     {
-        path: '/challengecar',
+        path: '/challengeshower',
         component: ChallengeShower
     },
     {
-        path: '/challengecar',
+        path: '/challengesmoking',
         component: ChallengeSmoking
     },
 
