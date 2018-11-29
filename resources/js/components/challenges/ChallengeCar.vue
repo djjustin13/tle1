@@ -8,16 +8,14 @@
                         {{ error }}
                     </div>
 
-                    <h2>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} kilometer per week</h2>
+                    <h2>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} kilometer per week. Hiermee verbruik je {{weeklyCo2}} kg co2 </h2>
                     <img class="card-img" src="/img/car.png" alt="meat">
 
-                    <h2>Bespaar veel Co2 door minder te rijden. Pak de fiets, of neem wat vaker het openbaar vervoer.</h2>
+                    <p>vul in hoeveel kilometer je minder wilt gaan rijden</p>
 
-                    <p>vul in hoeveel kilometer je vanaf nu wilt gaan rijden</p>
-
-                    <input class="form-control-range" type="range" name="km" min="1" :max="car.km" v-model="km">
-                    <p>{{km}} Kilometer</p>
-                    <p>{{co2km}} Kilometer</p>
+                    <input class="form-control-range" type="range" name="km" min="0" :max="car.km" v-model="km">
+                    <p>{{km}} Kilometer. </p>
+                    <p>Hiermee bespaar je weekelijks {{co2}} Kilo Co2</p>
 
                     <div class="py-4">
                         <button class="btn btn-light question-btn px-4" @click="saveKm()">Wat bespaar ik hiermee?</button>
@@ -40,8 +38,9 @@
                 error: null,
                 car: {},
                 carType: null,
-                km: null,
-                co2km: null,
+                co2PerKm: null,
+                weeklyCo2: null,
+                km: 0,
             }
         },methods:{
             parseJson:function() {
@@ -49,15 +48,19 @@
                 if (data){
                     let object = JSON.parse(data);
                     this.car = object.car;
-                    this.km = this.car.km;
-
-                    axios.post('api/compare/'+ this.car.type, {
-                        input: this.car,
-                    }).then((response)  =>  {
-                        console.log(response)
-                    })
-
                 }
+            },
+
+            getData:function() {
+                axios.post('api/compare/'+ this.car.type, {
+                    input: this.car,
+                }).then((response)  =>  {
+                    this.co2PerKm = response.data.avgDischargeKM
+                    this.weeklyCo2 = response.data.usrWeeklyDischarge / 1000
+                    console.log(response)
+                }).catch(function (error) {
+                        console.log(error.response);
+                    })
             },
 
             checkCar: function(){
@@ -79,17 +82,27 @@
             },
 
             saveKm:function(){
-                this.car['km'] = this.km;
+                this.car['km'] = this.kms;
                 this.nextSlide()
-            }
+            },
+
         },
 
         mounted: function(){
 
             this.parseJson();
+            this.getData();
             this.checkCar();
 
+        },
+
+        computed: {
+            co2 : function(){
+                return (this.km * this.co2PerKm)/1000
+            },
+
         }
+
     }
 </script>
 
