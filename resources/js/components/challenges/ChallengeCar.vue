@@ -8,13 +8,13 @@
                         {{ error }}
                     </div>
 
-                    <h2>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} kilometer per week. Hiermee verbruik je {{weeklyCo2}} kg co2 </h2>
-                    <img class="card-img" src="/img/car.png" alt="meat">
+                    <h2>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} kilometer per week. Hiermee stoot je {{weeklyCo2}} kg co2 uit</h2>
+                    <img class="card-img" src="/img/car.png" alt="car image">
 
-                    <p>vul in hoeveel kilometer je minder wilt gaan rijden</p>
+                    <p>Vul in hoeveel kilometer je minder wilt gaan rijden</p>
 
-                    <input class="form-control-range" type="range" name="km" min="0" :max="car.km" v-model="km">
-                    <p>{{km}} Kilometer. </p>
+                    <input class="form-control-range" type="range" name="km" min="0" :max="car.km" v-model="targetKm">
+                    <p>{{targetKm}} Kilometer. </p>
                     <p>Hiermee bespaar je weekelijks {{co2}} Kilo Co2</p>
 
                     <div class="py-4">
@@ -40,7 +40,7 @@
                 carType: null,
                 co2PerKm: null,
                 weeklyCo2: null,
-                km: 0,
+                targetKm: 0,
             }
         },methods:{
             parseJson:function() {
@@ -98,7 +98,7 @@
 
         computed: {
             co2 : function(){
-                return (this.km * this.co2PerKm)/1000
+                return (this.targetKm * this.co2PerKm)/1000
             },
 
         }
@@ -108,6 +108,6 @@
 
 <style>
     .challenge{
-        background-color: #5A5C84;
+        background-color: #44999E;
     }
 </style>

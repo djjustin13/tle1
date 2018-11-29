@@ -1,13 +1,109 @@
 <template>
-    
+
+    <div class="challenge">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
+                    <div v-if="error" class="alert alert-light" role="alert">
+                        {{ error }}
+                    </div>
+
+                    <h2>Je eet nu {{ meatDays }} {{day1}} per week vlees. Hiermee stoot je {{weeklyCo2}} kg Co2 uit.</h2>
+
+                    <img class="card-img" src="/img/meat.png" alt="meat image">
+
+                    <p>Vul in hoeveel extra dagen je vleesvrij wilt gaan eten:</p>
+
+                    <select class="custom-select custom-select-sm question-select" name="meat" v-model="targetDays">
+                        <option value="1">1 dag</option>
+                        <option value="2">2 dagen</option>
+                        <option value="3">3 dagen</option>
+                        <option value="4">4 dagen</option>
+                        <option value="5">5 dagen</option>
+                        <option value="6">6 dagen</option>
+                        <option value="7">7 dagen</option>
+                    </select>
+
+                    <p>Door {{targetDays}} extra {{day2}} per week geen vlees te eten, bespaar je weekelijks {{co2}} kilo Co2</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </template>
 
 <script>
     export default {
         name: "challenge-meat",
+        data(){
+            return{
+                error: null,
+                meatDays: null,
+                dailyCo2: null,
+                weeklyCo2: null,
+                targetDays: 1,
+                day1: '',
+            }
+        },methods:{
+
+            parseJson:function() {
+                let data = localStorage.getItem('answers');
+                if (data){
+                    let object = JSON.parse(data);
+                    this.meatDays = object.meat;
+                    if(this.meatDays == 1){
+                        this.day1 = 'dag'
+                    }else{
+                        this.day1 = 'dagen'
+                    }
+                }
+            },
+
+            getData:function() {
+                axios.post('api/compare/flesheaters', {
+                    input: this.meatDays,
+                }).then((response)  =>  {
+                    this.weeklyCo2 = response.data.usrWeeklyDischarge / 1000
+                    this.dailyCo2 = response.data.avgDischargePerKG / 10
+                    console.log(response)
+                }).catch(function (error) {
+                    console.log(error.response);
+                })
+            },
+
+            saveKm:function(){
+                this.car['km'] = this.kms;
+                this.nextSlide()
+            },
+
+        },
+
+        mounted: function(){
+
+            this.parseJson();
+            this.getData();
+        },
+
+        computed: {
+            day2: function(){
+                console.log(this.targetDays)
+                if(this.targetDays == 1){
+                    return 'dag'
+                }else{
+                    return 'dagen'
+                }
+            },
+
+            co2 : function(){
+                return (this.targetDays * this.dailyCo2) /1000
+            },
+        }
     }
 </script>
 
 <style scoped>
-
+    .challenge{
+        background-color: #5A5C84;
+    }
 </style>

@@ -42,7 +42,7 @@ Expected question input data
 ### Examples
 #### Meat
 ```javascript
-axios.post('api/compare/meat', {
+axios.post('api/compare/flesheaters', {
     `input: 7
 })`
 ```
