@@ -2,6 +2,14 @@ body{
   font-family: $font-family-sans-serif
 }
 
+.dropdown-toggle::after{
+  display: none!important;
+}
+
+.v-select .dropdown-toggle {
+  border: none!important;
+}
+
 .btn{
   font-size: 1.5em;
   border-radius: 40px;

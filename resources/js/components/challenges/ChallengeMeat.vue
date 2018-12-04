@@ -14,13 +14,16 @@
 
                     <p>Vul in hoeveel extra dagen je vleesvrij wilt gaan eten:</p>
 
-                    <v-select :options="[hoi, toi]">{{maxTargetDay}} {{dayDays(maxTargetDay)}}</v-select>
+                    <div class="v-select">
+                        <v-select v-model="targetDays" :options="maxTargetDays">
+                        </v-select>
+                    </div>
 
-                        <select class="custom-select custom-select-sm question-select" name="meat" v-model="targetDays">
-                            <option v-for="maxTargetDay in maxTargetDays" :value=maxTargetDay>{{maxTargetDay}} {{dayDays(maxTargetDay)}}</option>
-                        </select>
+                        <!--<select class="custom-select custom-select-sm question-select" name="meat" >-->
+                            <!--<option v-for="maxTargetDay in maxTargetDays" :value=maxTargetDay>{{maxTargetDay}} {{dayDays(maxTargetDay)}}</option>-->
+                        <!--</select>-->
 
-                    <p>Door {{targetDays}} extra {{dayDays(targetDays)}} per week geen vlees te eten, bespaar je weekelijks {{co2}} kilo Co2</p>
+                    <p>Door {{targetDays.value}} extra {{dayDays(targetDays.value)}} per week geen vlees te eten, bespaar je weekelijks {{co2}} kilo Co2</p>
 
                 </div>
             </div>
@@ -41,7 +44,7 @@
                 meatDays: null,
                 dailyCo2: null,
                 weeklyCo2: null,
-                targetDays: 1,
+                targetDays: {label: '1 dag', value: 1},
                 maxTargetDays: [],
                 day1: '',
 
@@ -79,7 +82,7 @@
 
             calculateTargetDays:function() {
                 for(let i = 0; i < this.meatDays; i++) {
-                    this.maxTargetDays.push(i+1)
+                    this.maxTargetDays.push({label: i+1+ ' '+ this.dayDays(i+1) , value:  i+1})
                 }
             },
 
@@ -106,7 +109,15 @@
 </script>
 
 <style scoped>
+
     .challenge{
         background-color: #5A5C84;
     }
+
+
+    .v-select{
+        background-color: white;
+        border-radius: 10px;
+    }
+
 </style>

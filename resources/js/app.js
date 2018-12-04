@@ -5,6 +5,8 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import {routes} from './routes';
 import MainApp from './components/MainApp';
+import vSelect from 'vue-select'
+Vue.component('v-select', vSelect)
 
 
 Vue.use(VueRouter);
