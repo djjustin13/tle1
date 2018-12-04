@@ -8,23 +8,19 @@
                         {{ error }}
                     </div>
 
-                    <h2>Je eet nu {{ meatDays }} {{day1}} per week vlees. Hiermee stoot je {{weeklyCo2}} kg Co2 uit.</h2>
+                    <h2>Je eet nu {{meatDays}} {{dayDays(meatDays)}} per week vlees. Hiermee stoot je {{weeklyCo2}} kg Co2 uit.</h2>
 
                     <img class="card-img" src="/img/meat.png" alt="meat image">
 
                     <p>Vul in hoeveel extra dagen je vleesvrij wilt gaan eten:</p>
 
-                    <select class="custom-select custom-select-sm question-select" name="meat" v-model="targetDays">
-                        <option value="1">1 dag</option>
-                        <option value="2">2 dagen</option>
-                        <option value="3">3 dagen</option>
-                        <option value="4">4 dagen</option>
-                        <option value="5">5 dagen</option>
-                        <option value="6">6 dagen</option>
-                        <option value="7">7 dagen</option>
-                    </select>
+                    <v-select :options="[hoi, toi]">{{maxTargetDay}} {{dayDays(maxTargetDay)}}</v-select>
 
-                    <p>Door {{targetDays}} extra {{day2}} per week geen vlees te eten, bespaar je weekelijks {{co2}} kilo Co2</p>
+                        <select class="custom-select custom-select-sm question-select" name="meat" v-model="targetDays">
+                            <option v-for="maxTargetDay in maxTargetDays" :value=maxTargetDay>{{maxTargetDay}} {{dayDays(maxTargetDay)}}</option>
+                        </select>
+
+                    <p>Door {{targetDays}} extra {{dayDays(targetDays)}} per week geen vlees te eten, bespaar je weekelijks {{co2}} kilo Co2</p>
 
                 </div>
             </div>
@@ -34,6 +30,9 @@
 </template>
 
 <script>
+
+
+
     export default {
         name: "challenge-meat",
         data(){
@@ -43,7 +42,10 @@
                 dailyCo2: null,
                 weeklyCo2: null,
                 targetDays: 1,
+                maxTargetDays: [],
                 day1: '',
+
+
             }
         },methods:{
 
@@ -52,11 +54,6 @@
                 if (data){
                     let object = JSON.parse(data);
                     this.meatDays = object.meat;
-                    if(this.meatDays == 1){
-                        this.day1 = 'dag'
-                    }else{
-                        this.day1 = 'dagen'
-                    }
                 }
             },
 
@@ -66,10 +63,24 @@
                 }).then((response)  =>  {
                     this.weeklyCo2 = response.data.usrWeeklyDischarge / 1000
                     this.dailyCo2 = response.data.avgDischargePerKG / 10
-                    console.log(response)
+                    //console.log(response)
                 }).catch(function (error) {
                     console.log(error.response);
                 })
+            },
+
+            dayDays:function(input) {
+                if(input == 1){
+                    return 'dag'
+                }else{
+                    return 'dagen'
+                }
+            },
+
+            calculateTargetDays:function() {
+                for(let i = 0; i < this.meatDays; i++) {
+                    this.maxTargetDays.push(i+1)
+                }
             },
 
             saveKm:function(){
@@ -83,18 +94,10 @@
 
             this.parseJson();
             this.getData();
+            this.calculateTargetDays();
         },
 
         computed: {
-            day2: function(){
-                console.log(this.targetDays)
-                if(this.targetDays == 1){
-                    return 'dag'
-                }else{
-                    return 'dagen'
-                }
-            },
-
             co2 : function(){
                 return (this.targetDays * this.dailyCo2) /1000
             },

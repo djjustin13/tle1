@@ -22,6 +22,7 @@
     "dependencies": {
         "slick-carousel": "^1.8.1",
         "vue-router": "^3.0.1",
+        "vue-select": "^2.5.1",
         "vuex": "^3.0.1"
     }
 }
