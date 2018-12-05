@@ -23,12 +23,11 @@
                     <div v-if="hasCar && carTypeSet === false">
                         <h1>Wat voor auto?</h1>
                         <img class="card-img" src="/img/car.png" alt="meat">
-                        <select  class="custom-select custom-select-sm question-select" name="car" v-model="carType">
-                            <option value="benzin_car">Benzine</option>
-                            <option value="diesel_car">Diesel</option>
-                            <option value="electric_car">Elektrisch</option>
-                            <option value="hybrid_car">Hybride</option>
-                        </select>
+
+                        <div class="v-select">
+                            <v-select v-model="carType" :options="car"></v-select>
+                        </div>
+
                         <div class="py-4">
                             <button class="btn btn-light question-btn px-4" @click="saveCarType()">Volgende</button>
                         </div>
@@ -61,11 +60,17 @@
         data(){
             return{
                 hasCar: null,
-                carType: "benzine",
+                carType: {label:'Benzine', value:'benzin_car'},
                 carTypeSet: false,
                 km: 250,
                 answer: {},
                 error: null,
+                car: [
+                    {label:'Benzine', value:'benzin_car'},
+                    {label:'Diesel', value:'diesel_car'},
+                    {label:'Elektrisch', value:'electric_car'},
+                    {label:'Hybride', value:'hybrid_car'}
+                ]
             }
         },
         methods: {
@@ -85,7 +90,7 @@
             },
             saveCarType:function(){
                 this.carTypeSet = true
-                this.answer['type'] = this.carType;
+                this.answer['type'] = this.carType.value;
             },
             saveKm:function(){
                 this.answer['km'] = this.km;

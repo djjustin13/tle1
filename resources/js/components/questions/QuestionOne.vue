@@ -9,15 +9,11 @@
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                     <h1 class="py-2">Hoeveel dagen per week eet je vlees?</h1>
                     <img class="card-img" src="/img/meat.png" alt="meat">
-                    <select class="custom-select custom-select-sm question-select" name="meat" v-model="answer">
-                        <option value="1">1 dag</option>
-                        <option value="2">2 dagen</option>
-                        <option value="3">3 dagen</option>
-                        <option value="4">4 dagen</option>
-                        <option value="5">5 dagen</option>
-                        <option value="6">6 dagen</option>
-                        <option value="7">7 dagen</option>
-                    </select>
+
+                    <div class="v-select">
+                        <v-select v-model="answer" :options="dayArray"></v-select>
+                    </div>
+
                     <div class="py-4">
                         <button class="btn btn-light question-btn px-4" @click="nextSlide()">Volgende</button>
                     </div>
@@ -31,21 +27,43 @@
 <script>
     export default {
         name: 'question-one',
-        data(){
-            return{
-                answer: "7",
+        data() {
+            return {
+                answer: {label: '7 dagen', value: 7},
                 error: null,
+                dayArray: []
             }
         },
         methods: {
-            nextSlide:function(){
-                if(this.answer != null){
-                    this.$emit('save', ["meat", this.answer])
+            nextSlide: function () {
+                if (this.answer != null) {
+                    this.$emit('save', ["meat", this.answer.value])
                     $(".slider").slick('slickNext');
-                }else{
+                } else {
                     this.error = "Je moet iets invullen"
-                } 
+                }
+            },
+
+            setDayArray: function () {
+                for (let i = 0; i < 7; i++) {
+                    this.dayArray.push({label: i + 1 + ' ' + this.dayDays(i + 1), value: i + 1})
+                    console.log('test')
+                }
+            },
+
+            dayDays: function (input) {
+                if (input == 1) {
+                    return 'dag'
+                } else {
+                    return 'dagen'
+                }
+
             }
+        },
+
+        mounted: function () {
+
+            this.setDayArray();
         }
     }
 </script>
@@ -58,6 +76,10 @@
     .question-btn{
         color: #5A5C84;
         width: 70%;
+    }
+
+    .v-select{
+
     }
 </style>
 

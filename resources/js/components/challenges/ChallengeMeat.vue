@@ -19,10 +19,6 @@
                         </v-select>
                     </div>
 
-                        <!--<select class="custom-select custom-select-sm question-select" name="meat" >-->
-                            <!--<option v-for="maxTargetDay in maxTargetDays" :value=maxTargetDay>{{maxTargetDay}} {{dayDays(maxTargetDay)}}</option>-->
-                        <!--</select>-->
-
                     <p>Door {{targetDays.value}} extra {{dayDays(targetDays.value)}} per week geen vlees te eten, bespaar je weekelijks {{co2}} kilo Co2</p>
 
                 </div>
@@ -114,10 +110,8 @@
         background-color: #5A5C84;
     }
 
-
     .v-select{
-        background-color: white;
-        border-radius: 10px;
+
     }
 
 </style>

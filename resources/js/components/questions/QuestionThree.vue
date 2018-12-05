@@ -15,15 +15,11 @@
                         <img class="card-img" src="/img/shower.png" alt="meat">
                         <br>
                         <br>
-                        <select class="custom-select custom-select-sm question-select" name="shower" v-model="weekAnswer">
-                            <option value="1">1 keer</option>
-                            <option value="2">2 keer</option>
-                            <option value="3">3 keer</option>
-                            <option value="4">4 keer</option>
-                            <option value="5">5 keer</option>
-                            <option value="6">6 keer</option>
-                            <option value="7">7 keer</option>
-                        </select>
+
+                        <div class="v-select">
+                            <v-select v-model="weekAnswer" :options="dayArray"></v-select>
+                        </div>
+
                         <div class="py-4">
                             <button class="btn btn-light question-btn px-4" @click="saveWeekAnswer()">Volgende</button>
                         </div>
@@ -52,11 +48,12 @@
         name: 'question-three',
         data(){
             return{
-                weekAnswer: "7",
+                weekAnswer: {label: '7 keer', value: 7},
                 weekAnswerSet: false,
                 minuteAnswer: "5",
                 answer: {},
                 error: null,
+                dayArray: []
             }
         },
         methods: {
@@ -66,9 +63,14 @@
                 this.$router.push('/')
                 location.reload()
             },
+            setDayArray: function () {
+                for (let i = 7; i > 0; i--) {
+                    this.dayArray.push({label: i + ' keer', value: i + 1})
+                }
+            },
             saveWeekAnswer:function(){
                 this.weekAnswerSet = true
-                this.answer['days'] = this.weekAnswer
+                this.answer['days'] = this.weekAnswer.value
             },
             saveMinuteAnswer:function(){
                 this.answer['minutes'] = this.minuteAnswer
@@ -82,7 +84,12 @@
                      this.error = "Je moet iets invullen"
                 }
             }
+        },
+
+        mounted: function(){
+            this.setDayArray()
         }
+
     }
 </script>
 
