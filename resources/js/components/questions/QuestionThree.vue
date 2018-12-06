@@ -17,7 +17,7 @@
                         <br>
 
                         <div class="v-select">
-                            <v-select v-model="weekAnswer" :options="dayArray"></v-select>
+                            <v-select id="shower" v-model="weekAnswer" :options="dayArray"></v-select>
                         </div>
 
                         <div class="py-4">
@@ -30,7 +30,7 @@
                         <img class="card-img" src="/img/shower.png" alt="meat">
                         <br>
                         <br>
-                        <input class="form-control" type="number" v-model="minuteAnswer">
+                        <v-numberInput controls min="1" max="60" placeholder="vul in" v-model="minuteAnswer"></v-numberInput>
                         <label> {{minuteAnswer}} minuten</label>
                         <div class="py-4">
                             <button class="btn btn-light question-btn px-4" @click="saveMinuteAnswer()">Volgende</button>
@@ -101,6 +101,7 @@
     .question-btn{
         color: #6AAD80;
     }
+
 </style>
 
 

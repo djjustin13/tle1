@@ -25,7 +25,7 @@
                         <img class="card-img" src="/img/car.png" alt="meat">
 
                         <div class="v-select">
-                            <v-select v-model="carType" :options="car"></v-select>
+                            <v-select id="car" v-model="carType" :options="car"></v-select>
                         </div>
 
                         <div class="py-4">
@@ -37,8 +37,15 @@
                         <h1>Hoeveel kilometer rij je per week?</h1>
                         <img class="card-img" src="/img/car.png" alt="meat">
 
-                        <input class="form-control-range" type="range" name="km" min="1" max="500" v-model="km">
-                            <p>{{km}} Kilometer</p>
+                        <v-slider
+                                v-model="km"
+                                min='1'
+                                max='500'
+                                interval="1"
+                                formatter='{value} kilometer'
+                                dot-size="30"
+                        />
+
                         <div class="py-4">
                             <button class="btn btn-light question-btn px-4" @click="saveKm()">Volgende</button>
                         </div>

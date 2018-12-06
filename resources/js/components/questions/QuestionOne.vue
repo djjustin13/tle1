@@ -11,7 +11,7 @@
                     <img class="card-img" src="/img/meat.png" alt="meat">
 
                     <div class="v-select">
-                        <v-select v-model="answer" :options="dayArray"></v-select>
+                        <v-select id="meat" v-model="answer" :options="dayArray"></v-select>
                     </div>
 
                     <div class="py-4">
@@ -45,8 +45,8 @@
             },
 
             setDayArray: function () {
-                for (let i = 0; i < 7; i++) {
-                    this.dayArray.push({label: i + 1 + ' ' + this.dayDays(i + 1), value: i + 1})
+                for (let i = 7; i > -1; i--) {
+                    this.dayArray.push({label: i  + ' ' + this.dayDays(i), value: i + 1})
                     console.log('test')
                 }
             },
@@ -78,9 +78,6 @@
         width: 70%;
     }
 
-    .v-select{
-
-    }
 </style>
 
 

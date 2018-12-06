@@ -15,7 +15,7 @@
                     <p>Vul in hoeveel extra dagen je vleesvrij wilt gaan eten:</p>
 
                     <div class="v-select">
-                        <v-select v-model="targetDays" :options="maxTargetDays">
+                        <v-select id="meat" v-model="targetDays" :options="maxTargetDays">
                         </v-select>
                     </div>
 
@@ -98,7 +98,7 @@
 
         computed: {
             co2 : function(){
-                return (this.targetDays * this.dailyCo2) /1000
+                return (this.targetDays.value * this.dailyCo2) /1000
             },
         }
     }
