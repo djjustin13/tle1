@@ -3,6 +3,7 @@
         <div class="container">
             <div v-if="error" class="alert alert-light" role="alert">
                 {{ error }}
+
             </div>
 
             <div class="row justify-content-center">
@@ -21,6 +22,7 @@
                     <hr>
                     {{ answers }}
                     <br>
+                    {{ carChallenge }}
                     <a @click="reset()" href="#">Clear storage & restart</a>
                     <br>
                     <button @click="$router.push('challengecar')" class="btn btn-dark">Car Challenge!</button>
