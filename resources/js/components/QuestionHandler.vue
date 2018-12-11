@@ -1,16 +1,17 @@
 <template>
     <div>
         <div class="questions slider">
-        <question-one v-on:save="save($event)"></question-one>
-        <question-two v-on:save="save($event)"></question-two>
-
-        <question-three v-on:save="save($event)"></question-three>
-        <question-four v-on:save="save($event)"></question-four>
+            <homepage v-on:save="save($event)"></homepage>
+            <question-one v-on:save="save($event)"></question-one>
+            <question-two v-on:save="save($event)"></question-two>
+            <question-three v-on:save="save($event)"></question-three>
+            <question-four v-on:save="save($event)"></question-four>
         </div>
     </div>
 </template>
 
 <script>
+    import homepage from './questions/homepage';
     import QuestionOne from './questions/QuestionOne';
     import QuestionTwo from './questions/QuestionTwo';
     import QuestionThree from './questions/QuestionThree';
@@ -19,6 +20,7 @@
     export default {
         name: 'question-handler',
         components: {
+            homepage,
             QuestionOne,
             QuestionTwo,
             QuestionThree,
