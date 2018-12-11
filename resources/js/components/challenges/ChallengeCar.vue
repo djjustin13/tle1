@@ -8,19 +8,19 @@
                         {{ error }}
                     </div>
 
-                    <h3>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} km per week. Hiermee stoot je <grey>{{weeklyCo2}} kilo CO₂</grey> uit</h3>
+                    <h3>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} km per week. Hiermee stoot je <span class="grey">{{weeklyCo2}} kilo CO₂</span> uit</h3>
                     <img class="card-img" src="/img/car.png" alt="car image">
 
                     <v-slider
                             v-model="targetKm"
-                            min='1'
+                            :min= 1
                             :max='car.km'
-                            interval="1"
+                            :interval= 1
                             formatter='{value} kilometer'
-                            dot-size="30"
+                            :dot-size= 30
                     />
                     <small>Vul in hoeveel kilometer je minder wilt gaan rijden</small>
-                    <p>Hiermee bespaar je weekelijks <orange>{{co2}} Kilo CO₂</orange></p>
+                    <p>Hiermee bespaar je weekelijks <span class="orange">{{co2}} Kilo CO₂</span></p>
 
                     <div class="py-4">
                         <button class="btn btn-light question-btn px-4" @click="saveKm()">save</button>
@@ -44,6 +44,7 @@
                 car: {},
                 carType: null,
                 co2PerKm: null,
+                avgDischargeYear: null,
                 weeklyCo2: null,
                 targetKm: 1,
                 carChallenge: {},
@@ -62,8 +63,8 @@
                     input: this.car,
                 }).then((response)  =>  {
                     this.co2PerKm = response.data.avgDischargeKM
+                    this.avgDischargeYear = response.data.avgDischargeYear
                     this.weeklyCo2 = response.data.usrWeeklyDischarge / 1000
-                    console.log(response)
                 }).catch(function (error) {
                         console.log(error.response);
                     })
@@ -86,13 +87,13 @@
                 }
 
             },
-
+            //Saves all data. Values are per week.
             saveKm:function(){
-                this.carChallenge["Type"] = 'car'
-                this.carChallenge["Old"] = this.car.km
-                this.carChallenge["Target"] = this.targetKm
-                this.carChallenge["Median"] = this.co2PerKm
-
+                this.carChallenge["oldKm"] = this.car.km
+                this.carChallenge["newKm"] = (this.car.km - this.targetKm)
+                this.carChallenge["oldCo2"] = this.weeklyCo2
+                this.carChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
+                this.carChallenge["avgCo2"] = ((this.avgDischargeYear / 365)* 7)
 
                 localStorage.setItem('carChallenge', JSON.stringify(this.carChallenge));
                 this.$router.push('overview')
@@ -123,11 +124,11 @@
         background-color: #44999E;
     }
 
-    orange{
+    .orange{
         color: rgb(233, 149, 110)
     }
 
-    grey{
+    .grey{
         color: rgb(80, 76, 89)
     }
 </style>

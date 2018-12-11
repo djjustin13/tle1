@@ -30,7 +30,7 @@
                         <img class="card-img" src="/img/shower.png" alt="meat">
                         <br>
                         <br>
-                        <v-numberInput controls min="1" max="60" placeholder="vul in" v-model="minuteAnswer"></v-numberInput>
+                        <v-numberInput controls :min=1 :max=60 placeholder="vul in" v-model="minuteAnswer"></v-numberInput>
                         <label> {{minuteAnswer}} minuten</label>
                         <div class="py-4">
                             <button class="btn btn-light question-btn px-4" @click="saveMinuteAnswer()">Volgende</button>
@@ -50,7 +50,7 @@
             return{
                 weekAnswer: {label: '7 keer', value: 7},
                 weekAnswerSet: false,
-                minuteAnswer: "5",
+                minuteAnswer: 5,
                 answer: {},
                 error: null,
                 dayArray: []

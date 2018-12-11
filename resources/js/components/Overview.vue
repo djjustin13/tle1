@@ -32,8 +32,8 @@
         },
         data(){
             return{
-                answers: {},
-                carChallenge: {},
+                answers: null,
+                carChallenge: null,
             }
         },methods:{
             reset:function(){
