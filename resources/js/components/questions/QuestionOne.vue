@@ -47,7 +47,6 @@
             setDayArray: function () {
                 for (let i = 7; i > -1; i--) {
                     this.dayArray.push({label: i  + ' ' + this.dayDays(i), value: i + 1})
-                    console.log('test')
                 }
             },
 
