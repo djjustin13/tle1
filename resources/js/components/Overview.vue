@@ -45,7 +45,8 @@
         },
         data(){
             return{
-                answers: null,
+                answers: {},
+                carChallenge: {},
             }
         },methods:{
             reset:function(){
@@ -62,16 +63,24 @@
                     console.log(error.response);
                 })
             },
-            parseJson:function() {
+            getAnswers:function() {
                 let data = localStorage.getItem('answers');
                 if (data){
                     let object = JSON.parse(data);
                     this.answers = object;
                 }
+            },
+            getCarChallenge:function() {
+                let data = localStorage.getItem('carChallenge');
+                if (data){
+                    let object = JSON.parse(data);
+                    this.carChallenge = object;
+                }
             }
         },
         mounted: function() {
-            this.parseJson();
+            this.getAnswers();
+            this.getCarChallenge();
             this.sendData();
         }
     }
