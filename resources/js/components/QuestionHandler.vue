@@ -1,18 +1,11 @@
 <template>
     <div>
         <div class="questions slider">
-<<<<<<< HEAD
             <homepage v-on:save="save($event)"></homepage>
             <question-one v-on:save="save($event)"></question-one>
             <question-two v-on:save="save($event)"></question-two>
             <question-three v-on:save="save($event)"></question-three>
             <question-four v-on:save="save($event)"></question-four>
-=======
-        <question-one v-on:save="save($event)"></question-one>
-        <question-two v-on:save="save($event)"></question-two>
-        <question-three v-on:save="save($event)"></question-three>
-        <question-four v-on:save="save($event)"></question-four>
->>>>>>> 0398f9257db6b5815f1eaa00c5295e98ce507861
         </div>
     </div>
 </template>

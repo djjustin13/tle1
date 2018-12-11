@@ -39,11 +39,11 @@
 
                         <v-slider
                                 v-model="km"
-                                min='1'
-                                max='500'
-                                interval="1"
+                                :min='1'
+                                :max='500'
+                                :interval="1"
                                 formatter='{value} kilometer'
-                                dot-size="30"
+                                :dot-size="30"
                         />
 
                         <div class="py-4">
