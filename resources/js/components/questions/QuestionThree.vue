@@ -26,7 +26,7 @@
                     </div>
 
                     <div v-if="weekAnswerSet">
-                        <h1 class="py-2">Hoelang douche je gemiddeld?</h1>
+                        <h1 class="py-2">Hoelang douche je gemiddeld per dag?</h1>
                         <img class="card-img" src="/img/shower.png" alt="meat">
                         <br>
                         <br>
