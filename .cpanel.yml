@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/justin1q/awareness010.justinderuiter.nl/
+    - cp -r */ $DEPLOYPATH
