@@ -3,9 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="/icons/180x180.png">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <meta name="apple-mobile-web-app-title" content="010 Awareness">
+        <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <title>TLE</title>
+        <link rel="manifest" href="/manifest.json">
         <link rel="stylesheet" href="{{ asset('css/app.css')  }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">

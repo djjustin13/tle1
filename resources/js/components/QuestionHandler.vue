@@ -63,7 +63,8 @@
         mounted: function() {
 
             this.sliderSetup()
-            this.pageChecker()
+            //Fucking buggy right nog, bye xx
+            // this.pageChecker()
 
         }
     }

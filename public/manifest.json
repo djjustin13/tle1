@@ -1,0 +1,15 @@
+{
+    "name": "Awareness 010 ",
+    "short_name": "Awareness 010 ",
+    "lang": "nl-NL",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#70BEE7",
+    "icons": [
+      {
+        "src": "/icons/180x180.png",
+        "sizes": "180x180",
+        "type": "image/png"
+      }
+    ]
+  }

@@ -1,36 +1,25 @@
 <template>
-    <div>
-        <div class="container">
-            <div v-if="error" class="alert alert-light" role="alert">
+    <div class="overview">
+        <div v-if="error" class="alert alert-light" role="alert">
                 {{ error }}
-            </div>
-
-            <div class="row justify-content-center">
+        </div>
+        <div class="container-fluid">
+            <img class="sun asset" src="/img/sun.png" alt="Sun">
+            <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
+            <img class="cloud2 asset" src="/img/cloud_lg.png" alt="Cloud">
+            <div class="row justify-content-center content">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                     <img class="house-img" src="/img/house.png" alt="house" usemap="#image-map">
                     <map name="image-map">
-                        <area target="" alt="Room 1" title="Room 1" href="#room1" coords="178,79,281,94,280,148,178,149" shape="poly">
-                        <area target="" alt="Room 2" title="Room 2" href="#room2" coords="286,95,342,105,341,148,285,149" shape="poly">
-                        <area target="" alt="Meat" title="Meat" href="#meat" coords="178,162,281,161,281,243,178,271" shape="poly">
+                        <area target="" alt="Shower" title="Douchen" @click="$router.push('challengeshower')" coords="178,79,281,94,280,148,178,149" shape="poly">
+                        <area target="" alt="Smoke" title="Roken" @click="$router.push('challengesmoking')" coords="286,95,342,105,341,148,285,149" shape="poly">
+                        <area target="" alt="Meat" title="Vlees eten" @click="$router.push('challengemeat')" coords="178,162,281,161,281,243,178,271" shape="poly">
                         <area target="" alt="Room 4" title="Room 4" href="#room4" coords="285,161,342,157,343,225,285,241" shape="poly">
-                        <area target="" alt="Garage" title="Garage" href="#garage" coords="0,156,47,156,48,238,0,221" shape="poly">
+                        <area target="" alt="Garage" title="Auto gebruik" @click="$router.push('challengecar')" coords="0,156,47,156,48,238,0,221" shape="poly">
                         <area target="" alt="Solar panel" title="Solar panel" href="#roof" coords="100,16,290,53,344,100,176,76" shape="poly">
                     </map>
-                    <hr>
-                    <p>Overview</p>
-                    <hr>
-                    {{ answers }}
-                    <br>
-                    <a @click="reset()" href="#">Clear storage & restart</a>
-                    <br>
-                    <button @click="$router.push('challengecar')" class="btn btn-dark">Car Challenge!</button>
-                    <br>
-                    <button @click="$router.push('challengemeat')" class="btn btn-dark">Meat Challenge!</button>
-                    <br>
-                    <button @click="$router.push('challengeshower')" class="btn btn-dark">Shower Challenge!</button>
-                    <br>
-                    <button @click="$router.push('challengesmoking')" class="btn btn-dark">Smoking Challenge!</button>
-
+                   
+                    <!-- <a @click="reset()" href="#">Clear storage & restart</a> -->
                 </div>
             </div>
         </div>
@@ -45,6 +34,7 @@
         },
         data(){
             return{
+                error: null,
                 answers: null,
                 carChallenge: null,
             }
@@ -68,6 +58,7 @@
                 if (data){
                     let object = JSON.parse(data);
                     this.answers = object;
+                    this.error = object;
                 }
             },
             getCarChallenge:function() {
@@ -87,8 +78,35 @@
 </script>
 
 <style lang="scss" scoped>
-    .house-img{
+    .alert{
+        position: absolute;
+        top: 0;
         width: 100%;
+    }
+
+    .overview{
+        background: linear-gradient(0deg, #79AA83 45%, #70BEE7 45%);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+
+    .asset{
+        position: absolute;
+        transform: scale(1.4, 1.4);
+
+        &.sun{
+           top: 10%;
+           left: 45%;
+        }
+        &.cloud1{
+           top: 14%;
+           left: 60%;
+        }
+        &.cloud2{
+           top: 9%;
+           left: 30%;
+        }
     }
 
 </style>
