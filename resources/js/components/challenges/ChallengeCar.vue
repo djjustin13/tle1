@@ -9,7 +9,7 @@
                     </div>
 
                     <h3>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} km per week. Hiermee stoot je <span class="grey">{{weeklyCo2}} kilo CO₂</span> uit</h3>
-                    <img class="card-img" src="/img/car.png" alt="car image">
+                    <img id="image" class="card-img" src="/img/car.png" alt="car image">
 
                     <v-slider
                             v-model="targetKm"
@@ -26,7 +26,7 @@
                         <button class="btn btn-light question-btn px-4" @click="saveKm()">save</button>
                     </div>
 
-                    <p>nieuwe auto? klik hier om je type te veranderen.</p>
+                    <small>nieuwe auto? klik hier om je type te veranderen.</small>
 
                 </div>
             </div>
@@ -95,8 +95,27 @@
                 this.carChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
                 this.carChallenge["avgCo2"] = ((this.avgDischargeYear / 365)* 7)
 
+                //document.getElementById("image").style.WebkitTransform = "rotate(20deg)";
+
+                let elem = document.getElementById("image");
+                let pos = 0;
+                let id = setInterval(frame, 5);
+                function frame() {
+                    if (pos == 360) {
+                        clearInterval(id);
+                    } else {
+                        pos++;
+                        elem.style.WebkitTransform = "rotate(" + pos + "deg)"
+                    }
+                }
+
                 localStorage.setItem('carChallenge', JSON.stringify(this.carChallenge));
-                this.$router.push('overview')
+
+
+                setTimeout(() => this.$router.push('overview'), 2000);
+
+
+
             },
 
         },

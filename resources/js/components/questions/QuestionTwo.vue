@@ -1,6 +1,6 @@
 <template>
 
-    <div class="question">
+    <div class="question background">
         <div class="container">
             <div v-if="error" class="alert alert-light" role="alert">
                 {{ error }}
@@ -127,6 +127,12 @@
 
     .yes-no-btn{
         color: #44999E;
+    }
+
+    .background {
+        background: linear-gradient(-100deg,#23A6D5, #23D5AB) !important;
+	    background-size: 400% 400%;
+        animation: Gradient 15s ease infinite;
     }
 
 </style>
