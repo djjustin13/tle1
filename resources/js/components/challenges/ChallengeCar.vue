@@ -9,7 +9,9 @@
                     </div>
 
                     <h3>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} km per week. Hiermee stoot je <span class="grey">{{weeklyCo2}} kilo CO₂</span> uit</h3>
-                    <img id="image" class="card-img" src="/img/car.png" alt="car image">
+                    <div id = "image-container">
+                        <img id="image" class="card-img" src="/img/car.png" alt="car image">
+                    </div>
 
                     <v-slider
                             v-model="targetKm"
@@ -99,20 +101,24 @@
 
                 let elem = document.getElementById("image");
                 let pos = 0;
-                let id = setInterval(frame, 5);
+                let id = setInterval(frame, 1);
+                let that = this
                 function frame() {
-                    if (pos == 360) {
+                    if (pos >= 900) {
                         clearInterval(id);
+                        localStorage.setItem('carChallenge', JSON.stringify(that.carChallenge));
+                        that.$router.push('overview')
                     } else {
-                        pos++;
-                        elem.style.WebkitTransform = "rotate(" + pos + "deg)"
+                        pos+=3;
+                        elem.style.left = pos + "px";
+                        document.getElementById("image").style.WebkitTransform = "rotate(340deg)";
                     }
                 }
 
-                localStorage.setItem('carChallenge', JSON.stringify(this.carChallenge));
 
 
-                setTimeout(() => this.$router.push('overview'), 2000);
+
+                //setTimeout(() => this.$router.push('overview'), 2000);
 
 
 
@@ -149,5 +155,10 @@
 
     .grey{
         color: rgb(80, 76, 89)
+    }
+
+    #image{
+        position: relative;
+
     }
 </style>

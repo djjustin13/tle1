@@ -11,7 +11,7 @@
                     <img class="card-img" src="/img/meat.png" alt="meat">
 
                     <div class="v-select">
-                        <v-select id="meat" v-model="answer" :options="dayArray" :searchable=false></v-select>
+                        <v-select id="meat" v-model="answer" :options="dayArray" :filterable=false :searchable=false></v-select>
                     </div>
 
                     <div class="py-4">
