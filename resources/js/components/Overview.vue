@@ -3,11 +3,16 @@
         <div v-if="error" class="alert alert-light" role="alert">
                 {{ error }}
         </div>
+        <div class="row justify-content-center top-text">      
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
+                <p>Jouw levensstijl staat op dit moment gelijk aan 2 zonnepanelen.</p>
+            </div>
+        </div>
+        <img class="sun asset" src="/img/sun.png" alt="Sun">
+        <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
+        <img class="cloud2 asset" src="/img/cloud_lg.png" alt="Cloud">
         <div class="container-fluid">
-            <img class="sun asset" src="/img/sun.png" alt="Sun">
-            <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
-            <img class="cloud2 asset" src="/img/cloud_lg.png" alt="Cloud">
-            <div class="row justify-content-center content">
+            <div class="row justify-content-center">      
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                     <img class="house-img" src="/img/house.png" alt="house" usemap="#image-map">
                     <map name="image-map">
@@ -21,6 +26,11 @@
                    
                     <!-- <a @click="reset()" href="#">Clear storage & restart</a> -->
                 </div>
+            </div>
+        </div>
+        <div class="row justify-content-center bottom-text">      
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
+                <p>Klik op de iconen in je huis om te kijken wat je kunt veranderen om je leven duurzamer te maken!</p>
             </div>
         </div>
     </div>
@@ -58,7 +68,6 @@
                 if (data){
                     let object = JSON.parse(data);
                     this.answers = object;
-                    this.error = object;
                 }
             },
             getCarChallenge:function() {
@@ -83,6 +92,25 @@
         top: 0;
         width: 100%;
     }
+
+    .top-text{
+        position: absolute;
+        margin: 0;
+        top: 6%;
+        width: 100%;
+        z-index: 5;
+    }
+
+    .bottom-text{
+        position: absolute;
+        margin: 0;
+        bottom: 4%;
+        width: 100%;
+        z-index: 5;
+        color: #ffffff;
+    }
+
+
 
     .overview{
         background: linear-gradient(0deg, #79AA83 45%, #70BEE7 45%);
