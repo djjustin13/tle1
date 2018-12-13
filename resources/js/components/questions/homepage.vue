@@ -10,7 +10,7 @@
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                     <h1 class="py-2">Awareness010</h1>
                     <h2>Verlaag stap voor stap jouw ecologische voetafdruk!</h2>
-                    <img class="card-img" src="/img/meat.png" alt="meat">
+                    <img class="card-img" src="/img/sun.png" alt="meat">
 
                     <div class="py-4">
                         <button class="btn btn-light question-btn px-3" @click="nextSlide()">Start de vragen!</button>
@@ -34,11 +34,6 @@
             nextSlide: function () {
                 $(".slider").slick('slickNext');
             },
-        },
-
-        mounted: function () {
-
-            this.setDayArray();
         }
     }
 </script>
