@@ -1,5 +1,5 @@
 <template>
-    <div class="question">
+    <div class="question background">
         <div class="container">
             <div v-if="error" class="alert alert-light" role="alert">
                 {{ error }}
@@ -100,6 +100,12 @@
 
     .question-btn{
         color: #6AAD80;
+    }
+
+    .background {
+        background: linear-gradient(-100deg, #58B4D5, #23A6D5,) !important;
+        background-size: 400% 400%;
+        animation: Gradient 15s ease infinite;
     }
 
 </style>
