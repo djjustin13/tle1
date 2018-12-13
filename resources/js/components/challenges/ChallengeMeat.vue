@@ -15,7 +15,7 @@
                     <p>Vul in hoeveel extra dagen je vleesvrij wilt gaan eten:</p>
 
                     <div class="v-select">
-                        <v-select id="meat" v-model="targetDays" :options="maxTargetDays">
+                        <v-select id="meat" v-model="targetDays" :options="maxTargetDays" filterable=false>
                         </v-select>
                     </div>
 
