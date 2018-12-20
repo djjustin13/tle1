@@ -21,6 +21,10 @@
 
                     <p>Door {{targetDays.value}} extra {{dayDays(targetDays.value)}} per week geen vlees te eten, bespaar je weekelijks {{co2}} kilo Co2</p>
 
+                    <div class="py-4">
+                        <button class="btn btn-light question-btn px-4" @click="saveMeat()">save</button>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -43,7 +47,7 @@
                 targetDays: {label: '1 dag', value: 1},
                 maxTargetDays: [],
                 day1: '',
-
+                meatChallenge: {},
 
             }
         },methods:{
@@ -62,7 +66,6 @@
                 }).then((response)  =>  {
                     this.weeklyCo2 = response.data.usrWeeklyDischarge / 1000
                     this.dailyCo2 = response.data.avgDischargePerKG / 10
-                    //console.log(response)
                 }).catch(function (error) {
                     console.log(error.response);
                 })
@@ -82,9 +85,15 @@
                 }
             },
 
-            saveKm:function(){
-                this.car['km'] = this.kms;
-                this.nextSlide()
+            saveMeat:function(){
+                this.meatChallenge["oldDays"] = this.meatDays
+                this.meatChallenge["newKm"] = (this.meatDays - this.targetDays)
+                this.meatChallenge["oldCo2"] = this.weeklyCo2
+                this.meatChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
+                this.meatChallenge["avgCo2"] = ((this.avgDischargeYear / 365)* 7)
+
+                localStorage.setItem('carChallenge', JSON.stringify(this.carChallenge));
+                this.$router.push('overview')
             },
 
         },

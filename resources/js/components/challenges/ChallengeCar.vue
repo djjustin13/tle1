@@ -25,7 +25,7 @@
                     <p>Hiermee bespaar je weekelijks <span class="orange">{{co2}} Kilo CO₂</span></p>
 
                     <div class="py-4">
-                        <button class="btn btn-light question-btn px-4" @click="saveKm()">save</button>
+                        <button class="btn btn-light question-btn px-4" @click="saveCar()">save</button>
                     </div>
 
                     <small>nieuwe auto? klik hier om je type te veranderen.</small>
@@ -90,7 +90,7 @@
 
             },
             //Saves all data. Values are per week.
-            saveKm:function(){
+            saveCar:function(){
                 this.carChallenge["oldKm"] = this.car.km
                 this.carChallenge["newKm"] = (this.car.km - this.targetKm)
                 this.carChallenge["oldCo2"] = this.weeklyCo2

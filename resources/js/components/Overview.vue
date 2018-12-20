@@ -47,6 +47,7 @@
                 error: null,
                 answers: null,
                 carChallenge: null,
+                meatChallenge: null,
             }
         },methods:{
             reset:function(){
@@ -60,27 +61,34 @@
                     console.log(response.data)
                 })
                 .catch(function (error) {
-                    console.log(error.response);
+                    console.log(error.response)
                 })
             },
             getAnswers:function() {
-                let data = localStorage.getItem('answers');
+                let data = localStorage.getItem('answers')
                 if (data){
-                    let object = JSON.parse(data);
-                    this.answers = object;
+                    this.answers = JSON.parse(data)
                 }
             },
-            getCarChallenge:function() {
-                let data = localStorage.getItem('carChallenge');
-                if (data){
-                    let object = JSON.parse(data);
-                    this.carChallenge = object;
-                }
-            }
+            // getCarChallenge:function() {
+            //     let data = localStorage.getItem('carChallenge')
+            //     if (data){
+            //         this.carChallenge =  JSON.parse(data)
+            //         console.log(this.carChallenge)
+            //     }
+            // },
+            // getMeatChallenge:function() {
+            //     let data = localStorage.getItem('meatChallenge')
+            //     if (data){
+            //         this.meatChallenge = JSON.parse(data)
+            //         console.log(this.meatChallenge)
+            //     }
+            // }
         },
         mounted: function() {
             this.getAnswers();
-            this.getCarChallenge();
+            // this.getCarChallenge();
+            // this.getMeatChallenge();
             this.sendData();
         }
     }
@@ -109,8 +117,6 @@
         z-index: 5;
         color: #ffffff;
     }
-
-
 
     .overview{
         background: linear-gradient(0deg, #79AA83 45%, #70BEE7 45%);

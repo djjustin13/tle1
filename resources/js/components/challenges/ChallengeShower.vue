@@ -15,7 +15,6 @@
                     <v-numberInput controls :min=1 :max=shower.days placeholder="vul in" v-model="dayChallenge"></v-numberInput><span>dagen</span>
                     <v-numberInput controls :min=1 :max=shower.minutes placeholder="vul in" v-model="minuteChallenge"></v-numberInput><span>minuten</span>
 
-
                     <p>Dit bespaart je weekelijks <span class="orange">{{calculateSave}} Kilo CO₂</span></p>
 
                     <div class="py-4">
