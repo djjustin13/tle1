@@ -31,12 +31,19 @@ class DataController extends Controller
 
 
         // Calculate meat answer
-        //     Call meat function
+        if($request->meat != false){
+            $data= Data::where('data_name', '=', 'flesheaters')->first();
+            $flesheaters = $this->flesheaters($data, $request->flesheaters);
+        } else {
+            $flesheaters = "deze boi eet geen vlees";
+        }
 
         // Calculate car answer
         if($request->car != false){
             $data = Data::where('data_name', '=', $request->car['type'])->first();
             $car = $this->vehicle($data, $request->car);
+        } else {
+            $car = ' deze boi rijdt niet';
         }
 
         //Calculate shower answer
@@ -46,12 +53,17 @@ class DataController extends Controller
 
         //Calculate smoke answer
         if($request->smoke != false){
-            //call smoke function
+            $data= Data::where('data_name', '=', 'smoking')->first();
+            $smoking = $this->smoking($data, $request->smoke);
+        } else {
+            $smoking = 'rookt niet';
         }
 
         $data = [
             'car' => $car,
             'shower' => $shower,
+            'meat' => $flesheaters,
+            'smoking' => $smoking
         ];
 
         return response()->json($data);
