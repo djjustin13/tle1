@@ -14,7 +14,13 @@
         <div class="container-fluid">
             <div class="row justify-content-center">      
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
-                    <img class="house-img" src="/img/house.png" alt="house" usemap="#image-map">
+                    <div class="house">
+                        <img class="house-img" src="/img/house.png" alt="house" usemap="#image-map">
+                        <span class="icon icon-car" @click="$router.push('challengecar')"></span>
+                        <span class="icon icon-smoke" @click="$router.push('challengesmoking')"></span>
+                        <span class="icon icon-meat" @click="$router.push('challengemeat')"></span>
+                        <span class="icon icon-shower" @click="$router.push('challengeshower')"></span>
+                    </div>
                     <map name="image-map">
                         <area target="" alt="Garage" title="Auto gebruik" @click="$router.push('challengecar')" coords="20,253,55,258,54,316,20,307" shape="poly">
                         <area target="" alt="Smoke" title="Roken" @click="$router.push('challengesmoking')" coords="177,178,269,190,270,239,177,239" shape="poly">
@@ -140,6 +146,96 @@
            left: 30%;
         }
     }
+
+    .house{
+        position: relative; 
+        width: 345px;
+
+        .icon{
+            cursor: pointer;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            display: inline-block;
+            position: absolute;
+            transition: all 0.2s ease-out;
+
+            &.icon-meat{
+                top: 273px;
+                left: 200px;
+                background-color: #5A5C84;
+                &:after{
+                    content: '';
+                    position: absolute;
+                    left: 5px;
+                    top: 4px;
+                    width: 30px;
+                    height: 30px;
+                    background-image: url(/img/icons/meat.png);
+                    background-size: contain;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+            }
+
+            &.icon-smoke{
+                top: 193px;
+                left: 200px;
+                background-color: #6E7FA9;
+                &:after{
+                    content: '';
+                    position: absolute;
+                    left: 5px;
+                    width: 30px;
+                    height: 30px;
+                    background-image: url(/img/icons/smoking.png);
+                    background-size: contain;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+            }
+
+            &.icon-car{
+                top: 264px;
+                left: 16px;
+                background-color: #5A979D;
+                &:after{
+                    content: '';
+                    position: absolute;
+                    left: 3px;
+                    width: 35px;
+                    height: 35px;
+                    background-image: url(/img/icons/car.png);
+                    background-size: contain;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+            }
+
+            &.icon-shower{
+                top: 262px;
+                left: 278px;
+                background-color: #79AA83;
+                &:after{
+                    content: '';
+                    position: absolute;
+                    left: 3px;
+                    width: 35px;
+                    height: 35px;
+                    background-image: url(/img/icons/shower.png);
+                    background-size: contain;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+            }
+
+            &:hover{
+                transform: scale(1.2,1.2);
+            }
+        }
+    }
+
+    
 
 </style>
 
