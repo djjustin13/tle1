@@ -22,7 +22,7 @@
                             :dot-size= 30
                     />
                     <small>Vul in hoeveel kilometer je minder wilt gaan rijden</small>
-                    <p>Hiermee bespaar je weekelijks <span class="orange">{{co2}} Kilo CO₂</span></p>
+                    <p>Hiermee bespaar je weekelijks <span class="orange">{{co2.toFixed(2)}} Kilo CO₂</span></p>
 
                     <div class="py-4">
                         <button class="btn btn-light question-btn px-4" @click="saveCar()">save</button>
@@ -97,8 +97,6 @@
                 this.carChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
                 this.carChallenge["avgCo2"] = ((this.avgDischargeYear / 365)* 7)
 
-                //document.getElementById("image").style.WebkitTransform = "rotate(20deg)";
-
                 let elem = document.getElementById("image");
                 let pos = 0;
                 let id = setInterval(frame, 1);
@@ -114,14 +112,6 @@
                         document.getElementById("image").style.WebkitTransform = "rotate(340deg)";
                     }
                 }
-
-
-
-
-                //setTimeout(() => this.$router.push('overview'), 2000);
-
-
-
             },
 
         },
@@ -138,9 +128,7 @@
             co2 : function(){
                 return (this.targetKm * this.co2PerKm)/1000
             },
-
         }
-
     }
 </script>
 

@@ -19,7 +19,7 @@
                         </v-select>
                     </div>
 
-                    <p>Door {{targetDays.value}} extra {{dayDays(targetDays.value)}} per week geen vlees te eten, bespaar je weekelijks {{co2}} kilo Co2</p>
+                    <p>Door {{targetDays.value}} extra {{dayDays(targetDays.value)}} per week geen vlees te eten, bespaar je weekelijks {{co2.toFixed(2)}} kilo Co2</p>
 
                     <div class="py-4">
                         <button class="btn btn-light question-btn px-4" @click="saveMeat()">save</button>
@@ -87,12 +87,12 @@
 
             saveMeat:function(){
                 this.meatChallenge["oldDays"] = this.meatDays
-                this.meatChallenge["newKm"] = (this.meatDays - this.targetDays)
+                this.meatChallenge["newDays"] = (this.meatDays - this.targetDays.value)
                 this.meatChallenge["oldCo2"] = this.weeklyCo2
                 this.meatChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
                 this.meatChallenge["avgCo2"] = ((this.avgDischargeYear / 365)* 7)
 
-                localStorage.setItem('carChallenge', JSON.stringify(this.carChallenge));
+                localStorage.setItem('meatChallenge', JSON.stringify(this.meatChallenge));
                 this.$router.push('overview')
             },
 
@@ -100,9 +100,9 @@
 
         mounted: function(){
 
-            this.parseJson();
-            this.getData();
-            this.calculateTargetDays();
+            this.parseJson()
+            this.getData()
+            this.calculateTargetDays()
         },
 
         computed: {

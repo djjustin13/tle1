@@ -70,25 +70,26 @@
                     this.answers = JSON.parse(data)
                 }
             },
-            // getCarChallenge:function() {
-            //     let data = localStorage.getItem('carChallenge')
-            //     if (data){
-            //         this.carChallenge =  JSON.parse(data)
-            //         console.log(this.carChallenge)
-            //     }
-            // },
-            // getMeatChallenge:function() {
-            //     let data = localStorage.getItem('meatChallenge')
-            //     if (data){
-            //         this.meatChallenge = JSON.parse(data)
-            //         console.log(this.meatChallenge)
-            //     }
-            // }
+            getCarChallenge:function() {
+                let data = localStorage.getItem('carChallenge')
+                console.log(data)
+                if (data){
+                    this.carChallenge =  JSON.parse(data)
+                    console.log(this.carChallenge)
+                }
+            },
+            getMeatChallenge:function() {
+                let data = localStorage.getItem('meatChallenge')
+                if (data){
+                    this.meatChallenge = JSON.parse(data)
+                    console.log(this.meatChallenge)
+                }
+            }
         },
         mounted: function() {
             this.getAnswers();
-            // this.getCarChallenge();
-            // this.getMeatChallenge();
+            this.getCarChallenge();
+            this.getMeatChallenge();
             this.sendData();
         }
     }

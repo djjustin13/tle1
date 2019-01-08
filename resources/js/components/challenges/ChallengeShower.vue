@@ -7,18 +7,18 @@
                         {{ error }}
                     </div>
 
-                    <h3>Je douchet {{shower.days}} {{dayDays(shower.days)}} per week en {{shower.minutes}} minuten per dag. Hiermee stoot je <span class="grey">{{co2}} kilo CO₂</span> uit</h3>
+                    <h3>Je douchet {{shower.days}} {{dayDays(shower.days)}} per week en {{shower.minutes}} minuten per dag. Hiermee stoot je <span class="grey">{{weeklyCo2}} kilo CO₂</span> uit</h3>
                     <div id = "image-container">
                         <img id="image" class="card-img" src="/img/shower.png" alt="car image">
                     </div>
                     <p>Vul in hoevaak je vanaf nu wilt gaan douchen</p>
-                    <v-numberInput controls :min=1 :max=shower.days placeholder="vul in" v-model="dayChallenge"></v-numberInput><span>dagen</span>
-                    <v-numberInput controls :min=1 :max=shower.minutes placeholder="vul in" v-model="minuteChallenge"></v-numberInput><span>minuten</span>
+                    <v-numberInput controls :min=1 :max=shower.days placeholder="vul in" v-model="targetDays"></v-numberInput><span>{{dayDays(targetDays)}}</span>
+                    <v-numberInput controls :min=1 :max=shower.minutes placeholder="vul in" v-model="targetMinutes"></v-numberInput><span>{{minuteMinutes(targetMinutes)}}</span>
 
-                    <p>Dit bespaart je weekelijks <span class="orange">{{calculateSave}} Kilo CO₂</span></p>
+                    <p>Dit bespaart je weekelijks <span class="orange">{{co2.toFixed(2)}} Kilo CO₂</span></p>
 
                     <div class="py-4">
-                        <button class="btn btn-light question-btn px-4" @click="">save</button>
+                        <button class="btn btn-light question-btn px-4" @click="saveShower()">save</button>
                     </div>
 
                 </div>
@@ -36,9 +36,11 @@
                 error: null,
                 shower: {},
                 co2PerDay: null,
+                weeklyCo2: null,
                 avgDischargeMin: null,
-                minuteChallenge: 5,
-                dayChallenge: null
+                targetMinutes: null,
+                targetDays: null,
+                showerChallenge: {},
             }
         },
         methods: {
@@ -47,6 +49,7 @@
                 if (data) {
                     let object = JSON.parse(data);
                     this.shower = object.shower;
+                    console.log(this.shower)
                 }
             },
 
@@ -54,12 +57,25 @@
                 axios.post('api/compare/shower', {
                     input: this.shower,
                 }).then((response) => {
-                    console.log(response)
                     this.co2PerDay = response.data.usrDischargePerDay
                     this.avgDischargeMin = response.data.avgDischargeMin
+                    this.weeklyCo2 = (this.co2PerDay * this.shower.days)/1000
                 }).catch(function (error) {
                     console.log(error.response);
                 })
+            },
+
+            checkChallenge: function () {
+                let data = localStorage.getItem('showerChallenge');
+                if(data){
+                    let object = JSON.parse(data);
+                    this.targetMinutes = object.newMinutes
+                    this.targetDays = object.newDays
+                }
+                else{
+                    this.targetMinutes = 5
+                    this.targetDays = 7
+                }
             },
 
             dayDays:function(input) {
@@ -70,23 +86,39 @@
                 }
             },
 
+            minuteMinutes:function(input) {
+                if(input == 1){
+                    return 'minuut'
+                }else{
+                    return 'minuten'
+                }
+            },
+            //Saves all data. Values are per week.
+            saveShower:function(){
+                this.showerChallenge["oldDays"] = this.shower.days
+                this.showerChallenge["oldMinutes"] = this.shower.minutes
+                this.showerChallenge["newDays"] = this.targetDays
+                this.showerChallenge["newMinutes"] = this.targetMinutes
+                this.showerChallenge["oldCo2"] = this.weeklyCo2
+                this.showerChallenge["newCo2"] = (this.weeklyCo2 - this.calculateSave)
+                localStorage.setItem('showerChallenge', JSON.stringify(this.showerChallenge));
+                this.$router.push('overview')
+            }
+
         },
         mounted: function(){
 
             this.parseJson();
             this.getData();
+            this.checkChallenge();
 
-            this.dayChallenge = this.shower.days
+            // this.dayChallenge = this.shower.days
 
         },
 
         computed: {
             co2 : function() {
-                return (this.co2PerDay * this.shower.days)/1000
-            },
-
-            calculateSave : function() {
-                return this.co2 - ((this.dayChallenge * this.minuteChallenge * this.avgDischargeMin) / 1000)
+                return this.weeklyCo2 - ((this.targetDays * this.targetMinutes * this.avgDischargeMin) / 1000)
 
             }
 
