@@ -78,9 +78,10 @@
     }
 
     .background {
-        background: linear-gradient(-100deg,#23D5AB, #23A6D5) !important;
-        background-size: 400% 400%;
-        animation: Gradient 15s ease infinite;
+        // background: linear-gradient(-100deg,#23D5AB, #23A6D5) !important;
+        // background-size: 400% 400%;
+        // animation: Gradient 15s ease infinite;
+        background-color: #5A5C84;
     }
 
 </style>
