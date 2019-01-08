@@ -26,7 +26,7 @@
         "slick-carousel": "^1.8.1",
         "vue-router": "^3.0.2",
         "vue-select": "^2.5.1",
-        "vue-slider-component": "^2.8.2",
+        "vue-slider-component": "^2.8.4",
         "vue-template-compiler": "^2.5.20",
         "vuex": "^3.0.1"
     }
