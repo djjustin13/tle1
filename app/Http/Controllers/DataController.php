@@ -181,7 +181,6 @@ class DataController extends Controller
 
         // We divide the discharge per kilo by 1000 to calculate the discharge per gram and then multiply by users weekly amount of meat in grams.
         $usrWeeklyDischarge = $avgDischargePerKG / 1000 * $usrWeeklyAmountOfFlesh;
-        return $usrWeeklyDischarge;
 
         $usrYearlyDischarge = $usrWeeklyDischarge * $this->numWeeksYear / 1000;
 
