@@ -151,6 +151,7 @@
     .house{
         position: relative; 
         width: 345px;
+        margin: 0 auto;
 
         .icon{
             cursor: pointer;
