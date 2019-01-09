@@ -5,7 +5,8 @@
         </div>
         <div class="row justify-content-center top-text">      
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
-                <p>Jouw levensstijl staat op dit moment gelijk aan 2 zonnepanelen.</p>
+                <!-- <p>Jouw levensstijl staat op dit moment gelijk aan 2 zonnepanelen.</p> -->
+                <p v-if="totalScore">Jij gooit {{ totalScore }} Kilo's aan CO2 in de lucht!</p>
             </div>
         </div>
         <img class="sun asset" src="/img/sun.png" alt="Sun">
@@ -97,24 +98,22 @@
             totalScore: function () {
             let total = 0
 
-            if(this.userData.car.usrAnnualDischarge != undefined){
-                console.log('car')
-                total + this.userData.car.usrAnnualDischarge
-            } 
-            if(this.userData.meat.usrAnnualDischarge != undefined){
-                console.log('meat')
-                total + this.userData.meat.usrAnnualDischarge
-            } 
-            if(this.userData.shower.usrAnnualDischarge != undefined){
-                console.log('shower')
-                total + this.userData.shower.usrAnnualDischarge
-            } 
-            if(this.userData.smoking.usrAnnualDischarge != undefined){
-                console.log('smoking')
-                total + this.userData.smoking.usrAnnualDischarge
-
-            } 
-            return total
+            if (Object.keys(this.userData).length != 0){
+                if(this.userData.car != false){
+                    total += this.userData.car.usrDischargePerYear
+                } 
+                if(this.userData.meat != false){
+                    total += this.userData.meat.usrDischargePerYear
+                } 
+                if(this.userData.shower != false){
+                    total += this.userData.shower.usrDischargePerYear
+                } 
+                if(this.userData.smoking != false){
+                    total += this.userData.smoking.usrDischargePerYear
+                } 
+            }
+            
+            return Math.round( total * 100 ) / 100
             }
         },
         mounted: function() {

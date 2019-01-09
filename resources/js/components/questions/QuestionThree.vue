@@ -65,7 +65,7 @@
             },
             setDayArray: function () {
                 for (let i = 7; i > 0; i--) {
-                    this.dayArray.push({label: i + ' keer', value: i + 1})
+                    this.dayArray.push({label: i + ' keer', value: i})
                 }
             },
             saveWeekAnswer:function(){
