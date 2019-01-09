@@ -50,6 +50,7 @@
             return{
                 error: null,
                 answers: null,
+                userData: {},
                 carChallenge: null,
                 meatChallenge: null,
             }
@@ -63,6 +64,8 @@
                 axios.post('api/calculate', this.answers)
                 .then((response)  =>  {
                     console.log(response.data)
+                    this.userData = response.data
+                    console.log('Total score: '+this.totalScore)
                 })
                 .catch(function (error) {
                     console.log(error.response)
@@ -88,6 +91,30 @@
                     this.meatChallenge = JSON.parse(data)
                     console.log(this.meatChallenge)
                 }
+            }
+        },
+        computed: {
+            totalScore: function () {
+            let total = 0
+
+            if(this.userData.car.usrAnnualDischarge != undefined){
+                console.log('car')
+                total + this.userData.car.usrAnnualDischarge
+            } 
+            if(this.userData.meat.usrAnnualDischarge != undefined){
+                console.log('meat')
+                total + this.userData.meat.usrAnnualDischarge
+            } 
+            if(this.userData.shower.usrAnnualDischarge != undefined){
+                console.log('shower')
+                total + this.userData.shower.usrAnnualDischarge
+            } 
+            if(this.userData.smoking.usrAnnualDischarge != undefined){
+                console.log('smoking')
+                total + this.userData.smoking.usrAnnualDischarge
+
+            } 
+            return total
             }
         },
         mounted: function() {

@@ -64,7 +64,7 @@
                 axios.post('api/compare/flesheaters', {
                     input: this.meatDays,
                 }).then((response)  =>  {
-                    this.weeklyCo2 = response.data.usrWeeklyDischarge / 1000
+                    this.weeklyCo2 = response.data.usrDischargePerWeek / 1000
                     this.dailyCo2 = response.data.avgDischargePerKG / 10
                 }).catch(function (error) {
                     console.log(error.response);

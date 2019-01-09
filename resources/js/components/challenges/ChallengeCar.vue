@@ -66,7 +66,7 @@
                 }).then((response)  =>  {
                     this.co2PerKm = response.data.avgDischargeKM
                     this.avgDischargeYear = response.data.avgDischargeYear
-                    this.weeklyCo2 = response.data.usrWeeklyDischarge / 1000
+                    this.weeklyCo2 = response.data.usrDischargePerWeek / 1000
                 }).catch(function (error) {
                         console.log(error.response);
                     })

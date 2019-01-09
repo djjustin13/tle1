@@ -54,9 +54,9 @@
                     input: this.cigarettesPerDay,
                 }).then((response)  =>  {
                     console.log(response)
-                    this.weeklyCigarette = this.cigarettesPerDay * 7
-                    this.dischargePerCigarette = response.data.UitstootPerPeuk
-                    this.weeklyCo2 = this.weeklyCigarette * this.dischargePerCigarette
+                    this.weeklyCigarette = response.data.usrWeeklyCig
+                    this.dischargePerCigarette = response.data.avgDischargeCig
+                    this.weeklyCo2 = response.data.usrDischargePerWeek
                 }).catch(function (error) {
                     console.log(error.response);
                 })
