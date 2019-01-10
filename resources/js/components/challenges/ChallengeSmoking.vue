@@ -7,13 +7,13 @@
                         {{ error }}
                     </div>
 
-                    <h3>Je rookt nu {{ this.weeklyCigarette }} sigaretten per week. Daarmee stoot je {{ this.weeklyCo2 }} gram CO2 uit.</h3>
+                    <h2>Je rookt nu {{ this.weeklyCigarette }} sigaretten per week. Daarmee stoot je {{ this.weeklyCo2 }} gram CO2 uit.</h2>
                     <div id = "image-container">
                         <img id="image" class="card-img" src="/img/cigarette.png" alt="car image">
                     </div>
-                    <p>Vul in hoevaal sigaretten je vanaf nu wilt gaan roken per dag</p>
+                    <p class="challenge-question">Vul in hoevaal sigaretten je vanaf nu wilt gaan roken per dag</p>
                     <v-numberInput controls :min=0 :max=cigarettesPerDay placeholder="vul in" v-model="targetCigarettesDays"></v-numberInput>
-                    <p>Dit bespaart je weekelijks <span class="orange">{{co2.toFixed(2)}} gram CO₂</span></p>
+                    <p class="challenge-response">Dit bespaart je weekelijks <br /> <span class="orange challenge-response-data">{{co2.toFixed(2)}}</span> <br />gram CO₂</p>
 
                     <div class="py-4">
                         <button class="btn btn-light question-btn px-4" @click="saveSmoke()">save</button>
@@ -92,6 +92,16 @@
 </script>
 
 <style scoped>
+
+    .number-input .number-input__input {
+        color: #6A7FAD !important;
+    }
+
+    .question-btn{
+        color: #6A7FAD;
+        width: 70%;
+    }
+
     .challenge {
         background-color: #6A7FAD
     }

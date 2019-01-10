@@ -1,5 +1,5 @@
 <template>
-    <div class="challenge">
+    <div class="challenge shower-challenge">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
@@ -7,17 +7,17 @@
                         {{ error }}
                     </div>
 
-                    <h3>Je douchet {{shower.days}} {{dayDays(shower.days)}} per week en {{shower.minutes}} minuten per dag. Hiermee stoot je <span class="grey">{{weeklyCo2}} kilo CO₂</span> uit</h3>
+                    <h2>Je douchet {{shower.days}} {{dayDays(shower.days)}} per week en {{shower.minutes}} minuten per dag. Hiermee stoot je <span class="grey">{{weeklyCo2}} kilo CO₂</span> uit</h2>
                     <div id = "image-container">
                         <img id="image" class="card-img" src="/img/shower.png" alt="car image">
                     </div>
-                    <p>Vul in hoevaak je vanaf nu wilt gaan douchen</p>
+                    <p class="challenge-question">Vul in hoevaak je vanaf nu wilt gaan douchen</p>
                     <v-numberInput controls :min=1 :max=shower.days placeholder="vul in" v-model="targetDays"></v-numberInput><span>{{dayDays(targetDays)}}</span>
                     <v-numberInput controls :min=1 :max=shower.minutes placeholder="vul in" v-model="targetMinutes"></v-numberInput><span>{{minuteMinutes(targetMinutes)}}</span>
 
-                    <p>Dit bespaart je weekelijks <span class="orange">{{co2.toFixed(2)}} Kilo CO₂</span></p>
+                    <p class="challenge-response">Dit bespaart je weekelijks <br /> <span class="orange challenge-response-data">{{co2.toFixed(2)}} <br /></span>Kilo CO₂</p>
 
-                    <div class="py-4">
+                    <div class="py-4 challenge-btn-container">
                         <button class="btn btn-light question-btn px-4" @click="saveShower()">save</button>
                     </div>
 
@@ -138,6 +138,12 @@
 </script>
 
 <style scoped>
+
+    .question-btn{
+        color: #6AAD80;
+        width: 70%;
+    }
+
     .challenge{
         background-color: #6AAD80;
     }
