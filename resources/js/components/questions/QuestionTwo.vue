@@ -12,7 +12,7 @@
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
 
                     <div v-if="hasCar === null">
-                        <h1 class="py-2">Heb je een auto?</h1>
+                        <h1 class="py-2">Rijd je wel eens auto?</h1>
                         <img class="card-img" src="/img/car.png" alt="meat">
                         <div class="py-4">
                             <button class="btn btn-light yes-no-btn mx-1" @click="yes()">Ja</button>

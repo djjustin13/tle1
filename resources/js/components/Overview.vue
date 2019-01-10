@@ -82,6 +82,7 @@
             return{
                 error: null,
                 answers: null,
+                globalScore: 0,
                 userData: {},
                 carChallenge: null,
                 meatChallenge: null,
@@ -139,6 +140,18 @@
                     console.log(this.showerChallenge)
                 }
             },
+            updateOverview: function (){
+
+                if(this.globalScore >= 3000){
+                    console.log('Slecht')
+                }else if (this.globalScore < 3000 && this.globalScore <= 2000){
+                    console.log('Gemiddeld')
+                }else if(this.globalScore < 2000 && this.globalScore >= 3000){
+                    console.log('Goed')
+                }else if(this.globalScore < 2000){
+                    console.log('Supergoed')
+                }
+            }
         },
         computed: {
             originalScore: function () {
@@ -166,29 +179,30 @@
 
             if (Object.keys(this.userData).length != 0){
                 if(this.carChallenge){
-                    total += this.carChallenge.newCo2
+                    total += this.carChallenge.newCo2*52
                     console.log("Challenge")
                 }else if(this.userData.car != false){
                     total += this.userData.car.usrDischargePerYear
                 }
                 if(this.meatChallenge){
-                    total += this.meatChallenge.newCo2
+                    total += this.meatChallenge.newCo2*52
                 }else if(this.userData.meat != false){
                     total += this.userData.meat.usrDischargePerYear
                 } 
                 if(this.showerChallenge){
-                    total += this.showerChallenge.newCo2
+                    total += this.showerChallenge.newCo2*52
                 }else if(this.userData.shower != false){
                     total += this.userData.shower.usrDischargePerYear
                 } 
                 if(this.smokeChallenge){
-                    total += this.smokeChallenge.newCo2
+                    total += this.smokeChallenge.newCo2*52
                 }else if(this.userData.smoking != false){
                     total += this.userData.smoking.usrDischargePerYear
                 } 
             }
             console.log("new " + total + "--- original "+ this.originalScore)
-            
+            this.globalScore = Math.round( total * 100 ) / 100
+            this.updateOverview()
             return Math.round( total * 100 ) / 100
             }
         },
