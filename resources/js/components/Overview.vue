@@ -10,7 +10,7 @@
             </button>  
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                 <!-- <p>Jouw levensstijl staat op dit moment gelijk aan 2 zonnepanelen.</p> -->
-                <p v-if="totalScore">Jij gooit {{ totalScore }} Kilo's aan CO2 in de lucht!</p>
+                <p v-if="totalScore">Jij gooit {{ originalScore }} Kilo's aan CO2 in de lucht!</p>
             </div>
         </div>
         
@@ -85,6 +85,8 @@
                 userData: {},
                 carChallenge: null,
                 meatChallenge: null,
+                smokeChallenge: null,
+                showerChallenge: null,
             }
         },methods:{
             reset:function(){
@@ -97,7 +99,6 @@
                 .then((response)  =>  {
                     console.log(response.data)
                     this.userData = response.data
-                    console.log('Total score: '+this.totalScore)
                 })
                 .catch(function (error) {
                     console.log(error.response)
@@ -127,20 +128,20 @@
             getSmokeChallenge:function() {
                 let data = localStorage.getItem('smokeChallenge')
                 if (data){
-                    this.meatChallenge = JSON.parse(data)
-                    console.log(this.meatChallenge)
+                    this.smokeChallenge = JSON.parse(data)
+                    console.log(this.smokeChallenge)
                 }
             },
             getShowerChallenge:function() {
                 let data = localStorage.getItem('showerChallenge')
                 if (data){
-                    this.meatChallenge = JSON.parse(data)
-                    console.log(this.meatChallenge)
+                    this.showerChallenge = JSON.parse(data)
+                    console.log(this.showerChallenge)
                 }
             },
         },
         computed: {
-            totalScore: function () {
+            originalScore: function () {
             let total = 0
 
             if (Object.keys(this.userData).length != 0){
@@ -157,6 +158,36 @@
                     total += this.userData.smoking.usrDischargePerYear
                 } 
             }
+            
+            return Math.round( total * 100 ) / 100
+            },
+            totalScore: function () {
+            let total = 0
+
+            if (Object.keys(this.userData).length != 0){
+                if(this.carChallenge){
+                    total += this.carChallenge.newCo2
+                    console.log("Challenge")
+                }else if(this.userData.car != false){
+                    total += this.userData.car.usrDischargePerYear
+                }
+                if(this.meatChallenge){
+                    total += this.meatChallenge.newCo2
+                }else if(this.userData.meat != false){
+                    total += this.userData.meat.usrDischargePerYear
+                } 
+                if(this.showerChallenge){
+                    total += this.showerChallenge.newCo2
+                }else if(this.userData.shower != false){
+                    total += this.userData.shower.usrDischargePerYear
+                } 
+                if(this.smokeChallenge){
+                    total += this.smokeChallenge.newCo2
+                }else if(this.userData.smoking != false){
+                    total += this.userData.smoking.usrDischargePerYear
+                } 
+            }
+            console.log("new " + total + "--- original "+ this.originalScore)
             
             return Math.round( total * 100 ) / 100
             }
