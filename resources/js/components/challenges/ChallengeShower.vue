@@ -57,6 +57,7 @@
                 axios.post('api/compare/shower', {
                     input: this.shower,
                 }).then((response) => {
+                    console.log(response)
                     this.co2PerDay = response.data.usrDischargePerDay
                     this.avgDischargeMin = response.data.avgDischargeMin
                     this.weeklyCo2 = (this.co2PerDay * this.shower.days)/1000
@@ -95,11 +96,25 @@
             },
             //Saves all data. Values are per week.
             saveShower:function(){
-                this.showerChallenge["newDays"] = this.targetDays
-                this.showerChallenge["newMinutes"] = this.targetMinutes
-                this.showerChallenge["newCo2"] = (this.weeklyCo2 - this.calculateSave)
-                localStorage.setItem('showerChallenge', JSON.stringify(this.showerChallenge));
-                this.$router.push('overview')
+                this.shower.minutes = this.targetMinutes
+                this.shower.days = this.targetDays
+                axios.post('api/compare/shower', {
+                    input: this.shower,
+                }).then((response) => {
+                    
+                    this.showerChallenge["newDays"] = this.targetDays
+                    this.showerChallenge["newMinutes"] = this.targetMinutes
+                    this.showerChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
+                    this.showerChallenge["newUsrBelowAverage"] = response.data.usrBelowAverage
+                    localStorage.setItem('showerChallenge', JSON.stringify(this.showerChallenge));
+                    console.log(response)
+                    //this.$router.push('overview')
+                }).catch(function (error) {
+                    console.log(error.response);
+                })
+                
+                
+                
             }
 
         },
