@@ -3,12 +3,43 @@
         <div v-if="error" class="alert alert-light" role="alert">
                 {{ error }}
         </div>
-        <div class="row justify-content-center top-text">      
+        <div class="row justify-content-center top-text">    
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Wat kan beter?
+            </button>  
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                 <!-- <p>Jouw levensstijl staat op dit moment gelijk aan 2 zonnepanelen.</p> -->
-                <p v-if="totalScore">Jij gooit {{ totalScore }} Kilo's aan CO2 in de lucht!</p>
+                <p v-if="totalScore">Jij gooit {{ originalScore }} Kilo's aan CO2 in de lucht!</p>
             </div>
         </div>
+        
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Wat kan beter?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Auto Rijden: <br>
+                    Vlees eten: <br>
+                    Douchen: <br>
+                    Roken:
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+            </div>
         <img class="sun asset" src="/img/sun.png" alt="Sun">
         <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
         <img class="cloud2 asset" src="/img/cloud_lg.png" alt="Cloud">
@@ -54,6 +85,8 @@
                 userData: {},
                 carChallenge: null,
                 meatChallenge: null,
+                smokeChallenge: null,
+                showerChallenge: null,
             }
         },methods:{
             reset:function(){
@@ -66,7 +99,6 @@
                 .then((response)  =>  {
                     console.log(response.data)
                     this.userData = response.data
-                    console.log('Total score: '+this.totalScore)
                 })
                 .catch(function (error) {
                     console.log(error.response)
@@ -92,10 +124,24 @@
                     this.meatChallenge = JSON.parse(data)
                     console.log(this.meatChallenge)
                 }
-            }
+            },
+            getSmokeChallenge:function() {
+                let data = localStorage.getItem('smokeChallenge')
+                if (data){
+                    this.smokeChallenge = JSON.parse(data)
+                    console.log(this.smokeChallenge)
+                }
+            },
+            getShowerChallenge:function() {
+                let data = localStorage.getItem('showerChallenge')
+                if (data){
+                    this.showerChallenge = JSON.parse(data)
+                    console.log(this.showerChallenge)
+                }
+            },
         },
         computed: {
-            totalScore: function () {
+            originalScore: function () {
             let total = 0
 
             if (Object.keys(this.userData).length != 0){
@@ -114,13 +160,45 @@
             }
             
             return Math.round( total * 100 ) / 100
+            },
+            totalScore: function () {
+            let total = 0
+
+            if (Object.keys(this.userData).length != 0){
+                if(this.carChallenge){
+                    total += this.carChallenge.newCo2
+                    console.log("Challenge")
+                }else if(this.userData.car != false){
+                    total += this.userData.car.usrDischargePerYear
+                }
+                if(this.meatChallenge){
+                    total += this.meatChallenge.newCo2
+                }else if(this.userData.meat != false){
+                    total += this.userData.meat.usrDischargePerYear
+                } 
+                if(this.showerChallenge){
+                    total += this.showerChallenge.newCo2
+                }else if(this.userData.shower != false){
+                    total += this.userData.shower.usrDischargePerYear
+                } 
+                if(this.smokeChallenge){
+                    total += this.smokeChallenge.newCo2
+                }else if(this.userData.smoking != false){
+                    total += this.userData.smoking.usrDischargePerYear
+                } 
+            }
+            console.log("new " + total + "--- original "+ this.originalScore)
+            
+            return Math.round( total * 100 ) / 100
             }
         },
         mounted: function() {
-            this.getAnswers();
-            this.getCarChallenge();
-            this.getMeatChallenge();
-            this.sendData();
+            this.getAnswers()
+            this.getCarChallenge()
+            this.getMeatChallenge()
+            this.getSmokeChallenge()
+            this.getShowerChallenge()
+            this.sendData()
         }
     }
 </script>

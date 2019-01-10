@@ -91,12 +91,9 @@
             },
             //Saves all data. Values are per week.
             saveCar:function(){
-                this.carChallenge["oldKm"] = this.car.km
                 this.carChallenge["newKm"] = (this.car.km - this.targetKm)
-                this.carChallenge["oldCo2"] = this.weeklyCo2
                 this.carChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
-                this.carChallenge["avgCo2"] = ((this.avgDischargeYear / 365)* 7)
-
+                
                 let elem = document.getElementById("image");
                 let pos = 0;
                 let id = setInterval(frame, 1);
