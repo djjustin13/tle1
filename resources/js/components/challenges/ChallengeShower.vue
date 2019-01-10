@@ -104,11 +104,10 @@
                     
                     this.showerChallenge["newDays"] = this.targetDays
                     this.showerChallenge["newMinutes"] = this.targetMinutes
-                    this.showerChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
+                    this.showerChallenge["newCo2"] = response.data.usrDischargePerYear
                     this.showerChallenge["newUsrBelowAverage"] = response.data.usrBelowAverage
                     localStorage.setItem('showerChallenge', JSON.stringify(this.showerChallenge));
-                    console.log(response)
-                    //this.$router.push('overview')
+                    this.$router.push('overview')
                 }).catch(function (error) {
                     console.log(error.response);
                 })

@@ -62,10 +62,18 @@
                 })
             },
             saveSmoke:function(){
-                this.smokeChallenge["newAmount"] = this.targetCigarettesDays
-                this.smokeChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
-                localStorage.setItem('smokeChallenge', JSON.stringify(this.smokeChallenge));
-                this.$router.push('overview')
+                axios.post('api/compare/smoking', {
+                    input: this.targetCigarettesDays
+                }).then((response)  =>  {
+                    console.log(response)
+                    this.smokeChallenge["newAmount"] = this.targetCigarettesDays
+                    this.smokeChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
+                    this.smokeChallenge["newUsrBelowAverage"] = response.data.usrBelowAverage
+                    localStorage.setItem('smokeChallenge', JSON.stringify(this.smokeChallenge));
+                    this.$router.push('overview')
+                }).catch(function (error) {
+                    console.log(error.response);
+                })
             },
         },
         mounted: function(){
