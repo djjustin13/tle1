@@ -8,7 +8,7 @@
                         {{ error }}
                     </div>
 
-                    <h3>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} km per week. Hiermee stoot je <span class="grey">{{weeklyCo2}} kilo CO₂</span> uit</h3>
+                    <h2>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} km per week. Hiermee stoot je <span class="grey">{{weeklyCo2}} kilo CO₂</span> uit</h2>
                     <div id = "image-container">
                         <img id="image" class="card-img" src="/img/car.png" alt="car image">
                     </div>
@@ -22,9 +22,9 @@
                             :dot-size= 30
                     />
                     <small>Vul in hoeveel kilometer je minder wilt gaan rijden</small>
-                    <p>Hiermee bespaar je weekelijks <span class="orange">{{co2.toFixed(2)}} Kilo CO₂</span></p>
+                    <p class="challenge-response">Hiermee bespaar je weekelijks <br /> <span class="orange challenge-response-data">{{co2.toFixed(2)}} </span><br />Kilo CO₂</p>
 
-                    <div class="py-4">
+                    <div class="py-4 challenge-btn-container">
                         <button class="btn btn-light question-btn px-4" @click="saveCar()">save</button>
                     </div>
 
@@ -133,6 +133,11 @@
 </script>
 
 <style>
+    .question-btn{
+        color: #44999E;
+        width: 70%;
+    }
+
     .challenge{
         background-color: #44999E;
     }

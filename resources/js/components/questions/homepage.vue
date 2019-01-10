@@ -43,14 +43,10 @@
 </script>
 
 <style lang="scss" scoped>
-
+    
     .question-btn{
         color: #54c0eb;
         width: 70%;
-    }
-
-    h1, h2 {
-        font-family: Helvetica, Arial, sans-serif;
     }
 
     .background {

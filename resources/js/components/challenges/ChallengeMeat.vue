@@ -12,14 +12,14 @@
 
                     <img class="card-img" src="/img/meat.png" alt="meat image">
 
-                    <p>Vul in hoeveel extra dagen je vleesvrij wilt gaan eten:</p>
+                    <p class="challenge-question">Vul in hoeveel extra dagen je vleesvrij wilt gaan eten:</p>
 
                     <div class="v-select">
                         <v-select id="meat" v-model="targetDays" :options="maxTargetDays">
                         </v-select>
                     </div>
 
-                    <p>Door {{targetDays.value}} extra {{dayDays(targetDays.value)}} per week geen vlees te eten, bespaar je weekelijks {{co2.toFixed(2)}} kilo Co2</p>
+                    <p class="challenge-response">Door {{targetDays.value}} extra {{dayDays(targetDays.value)}} per week geen vlees te eten, bespaar je wekelijks <span class="orange challenge-response-data"><br /> {{co2.toFixed(2)}} <br /></span> kilo Co2</p>
 
                     <div class="py-4">
                         <button class="btn btn-light question-btn px-4" @click="saveMeat()">save</button>
@@ -114,6 +114,11 @@
 </script>
 
 <style scoped>
+
+    .question-btn{
+        color: #5A5C84;
+        width: 70%;
+    }
 
     .challenge{
         background-color: #5A5C84;
