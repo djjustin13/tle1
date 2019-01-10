@@ -27,18 +27,18 @@
                 <div class="modal-body">
                     Auto Rijden:
                     <div v-if="answers.car == false" class="text-success">Je hebt geen auto 👍</div>
-                    <div v-else-if="carBelowAverage" class="text-danger">Je rijdt meer dan de gemiddelde Nederlander </div>
-                    <div v-else class="text-success">Je rijdt minder dan de gemiddelde Nederlander 👍</div>
+                    <div v-else-if="carBelowAverage" class="text-success">Je rijdt minder dan de gemiddelde Nederlander 👍</div>
+                    <div v-else class="text-danger">Je rijdt meer dan de gemiddelde Nederlander</div>
                     Vlees eten: <br>
-                    <div v-if="meatBelowAverage" class="text-danger">Je eet meer vlees dan de gemiddelde Nederlander</div>
-                    <div class="text-success" v-else>Je eet minder vlees dan de gemiddelde Nederlander 👍</div>
+                    <div v-if="meatBelowAverage" class="text-success">Je eet minder vlees dan de gemiddelde Nederlander 👍</div>
+                    <div class="text-danger" v-else>Je eet meer vlees dan de gemiddelde Nederlander</div>
                     Douchen: <br>
-                    <div v-if="showerBelowAverage" class="text-danger">Je doucht langer dan de gemiddelde Nederlander</div>
-                    <div class="text-success" v-else>Je doucht korter dan de gemiddelede Nederlander 👍</div>
+                    <div v-if="showerBelowAverage" class="text-success">Je doucht korter dan de gemiddelede Nederlander 👍</div>
+                    <div class="text-danger" v-else>Je doucht langer dan de gemiddelde Nederlander</div>
                     Roken:
                     <div v-if="answers.smoke == false" class="text-success">Je rookt niet 👍</div>
-                    <div v-else-if="smokeBelowAverage" class="text-danger">Je rookt meer dan de gemiddelde Nederlander</div>
-                    <div class="text-success" v-else>Je rookt minder dan de gemiddelde Nederlander 👍</div>
+                    <div v-else-if="smokeBelowAverage" class="text-success">Je rookt minder dan de gemiddelde Nederlander 👍</div>
+                    <div class="text-danger" v-else>Je rookt meer dan de gemiddelde Nederlander</div>
 
                 </div>
                 <div class="modal-footer">
