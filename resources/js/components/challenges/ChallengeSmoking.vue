@@ -62,9 +62,7 @@
                 })
             },
             saveSmoke:function(){
-                this.smokeChallenge["oldAmount"] = this.cigarettesPerDay
                 this.smokeChallenge["newAmount"] = this.targetCigarettesDays
-                this.smokeChallenge["oldCo2"] = this.weeklyCo2
                 this.smokeChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
                 localStorage.setItem('smokeChallenge', JSON.stringify(this.smokeChallenge));
                 this.$router.push('overview')

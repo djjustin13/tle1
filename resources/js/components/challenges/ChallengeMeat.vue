@@ -86,12 +86,8 @@
             },
 
             saveMeat:function(){
-                this.meatChallenge["oldDays"] = this.meatDays
                 this.meatChallenge["newDays"] = (this.meatDays - this.targetDays.value)
-                this.meatChallenge["oldCo2"] = this.weeklyCo2
                 this.meatChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
-                this.meatChallenge["avgCo2"] = ((this.avgDischargeYear / 365)* 7)
-
                 localStorage.setItem('meatChallenge', JSON.stringify(this.meatChallenge));
                 this.$router.push('overview')
             },

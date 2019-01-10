@@ -95,11 +95,8 @@
             },
             //Saves all data. Values are per week.
             saveShower:function(){
-                this.showerChallenge["oldDays"] = this.shower.days
-                this.showerChallenge["oldMinutes"] = this.shower.minutes
                 this.showerChallenge["newDays"] = this.targetDays
                 this.showerChallenge["newMinutes"] = this.targetMinutes
-                this.showerChallenge["oldCo2"] = this.weeklyCo2
                 this.showerChallenge["newCo2"] = (this.weeklyCo2 - this.calculateSave)
                 localStorage.setItem('showerChallenge', JSON.stringify(this.showerChallenge));
                 this.$router.push('overview')

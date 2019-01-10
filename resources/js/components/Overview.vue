@@ -3,12 +3,43 @@
         <div v-if="error" class="alert alert-light" role="alert">
                 {{ error }}
         </div>
-        <div class="row justify-content-center top-text">      
+        <div class="row justify-content-center top-text">    
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Wat kan beter?
+            </button>  
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                 <!-- <p>Jouw levensstijl staat op dit moment gelijk aan 2 zonnepanelen.</p> -->
                 <p v-if="totalScore">Jij gooit {{ totalScore }} Kilo's aan CO2 in de lucht!</p>
             </div>
         </div>
+        
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Wat kan beter?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Auto Rijden: <br>
+                    Vlees eten: <br>
+                    Douchen: <br>
+                    Roken:
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+            </div>
         <img class="sun asset" src="/img/sun.png" alt="Sun">
         <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
         <img class="cloud2 asset" src="/img/cloud_lg.png" alt="Cloud">
@@ -92,7 +123,21 @@
                     this.meatChallenge = JSON.parse(data)
                     console.log(this.meatChallenge)
                 }
-            }
+            },
+            getSmokeChallenge:function() {
+                let data = localStorage.getItem('smokeChallenge')
+                if (data){
+                    this.meatChallenge = JSON.parse(data)
+                    console.log(this.meatChallenge)
+                }
+            },
+            getShowerChallenge:function() {
+                let data = localStorage.getItem('showerChallenge')
+                if (data){
+                    this.meatChallenge = JSON.parse(data)
+                    console.log(this.meatChallenge)
+                }
+            },
         },
         computed: {
             totalScore: function () {
@@ -117,10 +162,12 @@
             }
         },
         mounted: function() {
-            this.getAnswers();
-            this.getCarChallenge();
-            this.getMeatChallenge();
-            this.sendData();
+            this.getAnswers()
+            this.getCarChallenge()
+            this.getMeatChallenge()
+            this.getSmokeChallenge()
+            this.getShowerChallenge()
+            this.sendData()
         }
     }
 </script>
