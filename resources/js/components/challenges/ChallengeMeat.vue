@@ -12,14 +12,18 @@
 
                     <img class="card-img" src="/img/meat.png" alt="meat image">
 
-                    <p>Vul in hoeveel extra dagen je vleesvrij wilt gaan eten:</p>
+                    <p class="challenge-question">Vul in hoeveel extra dagen je vleesvrij wilt gaan eten:</p>
 
                     <div class="v-select">
                         <v-select id="meat" v-model="targetDays" :options="maxTargetDays">
                         </v-select>
                     </div>
 
-                    <p>Door {{targetDays.value}} extra {{dayDays(targetDays.value)}} per week geen vlees te eten, bespaar je weekelijks {{co2}} kilo Co2</p>
+                    <p class="challenge-response">Door {{targetDays.value}} extra {{dayDays(targetDays.value)}} per week geen vlees te eten, bespaar je wekelijks <span class="orange challenge-response-data"><br /> {{co2.toFixed(2)}} <br /></span> kilo Co2</p>
+
+                    <div class="py-4">
+                        <button class="btn btn-light question-btn px-4" @click="saveMeat()">save</button>
+                    </div>
 
                 </div>
             </div>
@@ -43,7 +47,7 @@
                 targetDays: {label: '1 dag', value: 1},
                 maxTargetDays: [],
                 day1: '',
-
+                meatChallenge: {},
 
             }
         },methods:{
@@ -60,9 +64,9 @@
                 axios.post('api/compare/flesheaters', {
                     input: this.meatDays,
                 }).then((response)  =>  {
-                    this.weeklyCo2 = response.data.usrWeeklyDischarge / 1000
+                    console.log(response)
+                    this.weeklyCo2 = response.data.usrDischargePerWeek / 1000
                     this.dailyCo2 = response.data.avgDischargePerKG / 10
-                    //console.log(response)
                 }).catch(function (error) {
                     console.log(error.response);
                 })
@@ -82,18 +86,31 @@
                 }
             },
 
-            saveKm:function(){
-                this.car['km'] = this.kms;
-                this.nextSlide()
+            saveMeat:function(){
+                this.meatDays = (this.meatDays - this.targetDays.value)
+                axios.post('api/compare/flesheaters', {
+                    input: this.meatDays
+                }).then((response)  =>  {
+                    this.meatChallenge["newDays"] = this.meatDays
+                    this.meatChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
+                    this.meatChallenge["newUsrBelowAverage"] = response.data.usrBelowAverage
+                    localStorage.setItem('meatChallenge', JSON.stringify(this.meatChallenge));
+                    this.$router.push('overview')
+                }).catch(function (error) {
+                    console.log(error.response);
+                })
+
+                
+                
             },
 
         },
 
         mounted: function(){
 
-            this.parseJson();
-            this.getData();
-            this.calculateTargetDays();
+            this.parseJson()
+            this.getData()
+            this.calculateTargetDays()
         },
 
         computed: {
@@ -105,6 +122,11 @@
 </script>
 
 <style scoped>
+
+    .question-btn{
+        color: #5A5C84;
+        width: 70%;
+    }
 
     .challenge{
         background-color: #5A5C84;

@@ -5,8 +5,25 @@ body{
   -webkit-touch-callout: none;
 }
 
+.home-title {
+  text-transform: uppercase;
+  font-family: $font-family-sans-serif;
+  font-size: 40px;
+  color: #21476b;
+  font-weight:700;
+}
+
+.ula-container p{
+  font-size:10px;
+}
+
+.ula-container a{
+  text-decoration:underline !important;
+}
+
 h1{
   font-size: 24px;
+  font-family: $font-family-sans-serif;
 }
 
 p{
@@ -115,3 +132,44 @@ p{
   width: 70%;
 }
 
+      // RESPONSIVE IPHONE 6
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation : portrait) { 
+    .challenge .card-img {
+      width: 60%;
+      margin: 30px auto;
+    }
+
+    .question .card-img {
+      width: 70%;
+      margin: 30px auto;
+    }
+
+    .challenge h2 {
+      font-size: 20px;
+    }
+
+    .challenge-question {
+      font-size: 12px;
+      line-height:16px;
+    }
+
+    .challenge-response {
+      font-size:14px;
+      line-height: 20px;
+      padding-top:20px;
+    }
+
+    .challenge-response-data {
+      font-size: 30px;
+      margin-top: 0px;
+      line-height: 30px;
+    }
+
+    .shower-challenge .card-img {
+      margin-top:0px;
+    }
+
+    .challenge-btn-container {
+      padding-top:0px !important;
+    }
+}

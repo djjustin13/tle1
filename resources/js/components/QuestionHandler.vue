@@ -43,6 +43,7 @@
                     arrows: false,
                     draggable: false,
                     mobileFirst: true,
+                    swipe: false
                 });
             },
 

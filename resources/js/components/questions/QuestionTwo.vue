@@ -12,7 +12,7 @@
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
 
                     <div v-if="hasCar === null">
-                        <h1 class="py-2">Heb je een auto?</h1>
+                        <h1 class="py-2">Rijd je wel eens auto?</h1>
                         <img class="card-img" src="/img/car.png" alt="meat">
                         <div class="py-4">
                             <button class="btn btn-light yes-no-btn mx-1" @click="yes()">Ja</button>
@@ -130,9 +130,10 @@
     }
 
     .background {
-        background: linear-gradient(-100deg,#23A6D5, #23D5AB) !important;
-	    background-size: 400% 400%;
-        animation: Gradient 15s ease infinite;
+        // background: linear-gradient(-100deg,#23A6D5, #23D5AB) !important;
+	    // background-size: 400% 400%;
+        // animation: Gradient 15s ease infinite;
+        background-color:#44999E;
     }
 
 </style>

@@ -23,7 +23,7 @@
                     <div v-if="doesSmoke === true">
                         <h1 class="py-2">Hoeveel sigaretten rook je gemiddeld per dag?</h1>
                         <img class="card-img" src="/img/cigarette.png" alt="meat">
-                        <input class="form-control" type="number" v-model="cigaretteAmount">
+                        <v-numberInput controls :min=1 :max=60 placeholder="vul in" v-model="cigaretteAmount"></v-numberInput>
                         <label> {{cigaretteAmount}} sigaretten</label>
                         <div class="py-4">
                             <button class="btn btn-light question-btn px-4" @click="saveCigaretteAmount()">Volgende</button>
@@ -43,7 +43,7 @@
         data(){
             return{
                 doesSmoke: null,
-                cigaretteAmount: null,
+                cigaretteAmount: 25,
                 answer: null,
                 error: null,
             }
@@ -93,8 +93,9 @@
     }
 
     .background {
-        background: linear-gradient(-100deg,#23D5AB, #58B4D5) !important;
-        background-size: 400% 400%;
-        animation: Gradient 15s ease infinite;
+        // background: linear-gradient(-100deg,#23D5AB, #58B4D5) !important;
+        // background-size: 400% 400%;
+        // animation: Gradient 15s ease infinite;
+        background-color:#6A7FAD;
     }
 </style>

@@ -8,7 +8,7 @@
                         {{ error }}
                     </div>
 
-                    <h3>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} km per week. Hiermee stoot je <span class="grey">{{weeklyCo2}} kilo CO₂</span> uit</h3>
+                    <h2>Je hebt een {{ carType }}. Daarmee rij je nu {{ car.km }} km per week. Hiermee stoot je <span class="grey">{{weeklyCo2}} kilo CO₂</span> uit</h2>
                     <div id = "image-container">
                         <img id="image" class="card-img" src="/img/car.png" alt="car image">
                     </div>
@@ -22,10 +22,10 @@
                             :dot-size= 30
                     />
                     <small>Vul in hoeveel kilometer je minder wilt gaan rijden</small>
-                    <p>Hiermee bespaar je weekelijks <span class="orange">{{co2}} Kilo CO₂</span></p>
+                    <p class="challenge-response">Hiermee bespaar je weekelijks <br /> <span class="orange challenge-response-data">{{co2.toFixed(2)}} </span><br />Kilo CO₂</p>
 
-                    <div class="py-4">
-                        <button class="btn btn-light question-btn px-4" @click="saveKm()">save</button>
+                    <div class="py-4 challenge-btn-container">
+                        <button class="btn btn-light question-btn px-4" @click="saveCar()">save</button>
                     </div>
 
                     <small>nieuwe auto? klik hier om je type te veranderen.</small>
@@ -64,12 +64,13 @@
                 axios.post('api/compare/'+ this.car.type, {
                     input: this.car,
                 }).then((response)  =>  {
+                    console.log(response)
                     this.co2PerKm = response.data.avgDischargeKM
                     this.avgDischargeYear = response.data.avgDischargeYear
-                    this.weeklyCo2 = response.data.usrWeeklyDischarge / 1000
+                    this.weeklyCo2 = response.data.usrDischargePerWeek / 1000
                 }).catch(function (error) {
                         console.log(error.response);
-                    })
+                })
             },
 
             checkCar: function(){
@@ -89,39 +90,41 @@
                 }
 
             },
-            //Saves all data. Values are per week.
-            saveKm:function(){
-                this.carChallenge["oldKm"] = this.car.km
-                this.carChallenge["newKm"] = (this.car.km - this.targetKm)
-                this.carChallenge["oldCo2"] = this.weeklyCo2
-                this.carChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
-                this.carChallenge["avgCo2"] = ((this.avgDischargeYear / 365)* 7)
+            //Saves all data. Values are per year.
+            saveCar:function(){
+                this.car.km = (this.car.km - this.targetKm)
+                axios.post('api/compare/'+ this.car.type, {
+                    input: this.car,
+                }).then((response)  =>  {
+                    console.log(response)
 
-                //document.getElementById("image").style.WebkitTransform = "rotate(20deg)";
-
-                let elem = document.getElementById("image");
-                let pos = 0;
-                let id = setInterval(frame, 1);
-                let that = this
-                function frame() {
-                    if (pos >= 900) {
-                        clearInterval(id);
-                        localStorage.setItem('carChallenge', JSON.stringify(that.carChallenge));
-                        that.$router.push('overview')
-                    } else {
-                        pos+=3;
-                        elem.style.left = pos + "px";
-                        document.getElementById("image").style.WebkitTransform = "rotate(340deg)";
+                    this.carChallenge["newKm"] = this.car.km
+                    this.carChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
+                    this.carChallenge["newUsrBelowAverage"] = response.data.usrBelowAverage
+                    
+                    let elem = document.getElementById("image");
+                    let pos = 0;
+                    let id = setInterval(frame, 1);
+                    let that = this
+                    function frame() {
+                        if (pos >= 900) {
+                            clearInterval(id);
+                            localStorage.setItem('carChallenge', JSON.stringify(that.carChallenge));
+                            that.$router.push('overview')
+                        } else {
+                            pos+=3;
+                            elem.style.left = pos + "px";
+                            document.getElementById("image").style.WebkitTransform = "rotate(340deg)";
+                        }
                     }
-                }
+                    
+                }).catch(function (error) {
+                        console.log(error.response);
+                })
 
+                
 
-
-
-                //setTimeout(() => this.$router.push('overview'), 2000);
-
-
-
+     
             },
 
         },
@@ -138,13 +141,16 @@
             co2 : function(){
                 return (this.targetKm * this.co2PerKm)/1000
             },
-
         }
-
     }
 </script>
 
 <style>
+    .question-btn{
+        color: #44999E;
+        width: 70%;
+    }
+
     .challenge{
         background-color: #44999E;
     }

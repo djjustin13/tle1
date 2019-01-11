@@ -65,7 +65,7 @@
             },
             setDayArray: function () {
                 for (let i = 7; i > 0; i--) {
-                    this.dayArray.push({label: i + ' keer', value: i + 1})
+                    this.dayArray.push({label: i + ' keer', value: i})
                 }
             },
             saveWeekAnswer:function(){
@@ -103,9 +103,10 @@
     }
 
     .background {
-        background: linear-gradient(-100deg, #58B4D5, #23A6D5,) !important;
-        background-size: 400% 400%;
-        animation: Gradient 15s ease infinite;
+        // background: linear-gradient(-100deg, #58B4D5, #23A6D5,) !important;
+        // background-size: 400% 400%;
+        // animation: Gradient 15s ease infinite;
+        background-color:#6AAD80;
     }
 
 </style>

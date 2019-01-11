@@ -31,12 +31,19 @@ class DataController extends Controller
 
 
         // Calculate meat answer
-        //     Call meat function
+        if($request->meat != false){
+            $data= Data::where('data_name', '=', 'flesheaters')->first();
+            $flesheaters = $this->flesheaters($data, $request->meat);
+        } else {
+            $flesheaters = false;
+        }
 
         // Calculate car answer
         if($request->car != false){
             $data = Data::where('data_name', '=', $request->car['type'])->first();
             $car = $this->vehicle($data, $request->car);
+        } else {
+            $car = false;
         }
 
         //Calculate shower answer
@@ -46,12 +53,17 @@ class DataController extends Controller
 
         //Calculate smoke answer
         if($request->smoke != false){
-            //call smoke function
+            $data= Data::where('data_name', '=', 'smoking')->first();
+            $smoking = $this->smoking($data, $request->smoke);
+        } else {
+            $smoking = false;
         }
 
         $data = [
             'car' => $car,
             'shower' => $shower,
+            'meat' => $flesheaters,
+            'smoking' => $smoking
         ];
 
         return response()->json($data);
@@ -95,7 +107,7 @@ class DataController extends Controller
         $usrDischargePerDay = $usrDailyMin * $avgDischargeMin;
 
         // We divide by 1000 to transform the gram to kilogram.
-        $usrDischargePerYear = $usrDischargePerDay * $this->numDaysYear / 1000;
+        $usrDischargePerYear = ($usrDischargePerDay * $numDaysWeek * $this->numWeeksYear) / 1000;
 
         if ($usrDischargePerYear == $avgDischargeYear || $usrDischargePerYear > $avgDischargeYear) {
             $work = false;
@@ -104,12 +116,15 @@ class DataController extends Controller
         }
 
         $calculations = [
+            //Average
             'avgDischargeYear' => $avgDischargeYear,
             'avgDischargeMin' => $avgDischargeMin,
+            //Topic specific
             'usrDailyMin' => $usrDailyMin,
             'usrWeeklyMin' => $usrWeeklyMin,
-            'usrDischargePerDay' => $usrDischargePerDay,
-            'usrDischargePerYear' => $usrDischargePerYear,
+            //Global discharge
+            'usrDischargePerDay' => $usrDischargePerDay, //In G
+            'usrDischargePerYear' => $usrDischargePerYear, //In KG
             'usrBelowAverage' => $work
         ];
 
@@ -125,6 +140,8 @@ class DataController extends Controller
         $avgDischargeKm = $resultFromDB->co2_by_unit;
 
         $usrWeeklyDischarge = $numKMWeek * $avgDischargeKm;
+        $usrDischargePerDay = $usrWeeklyDischarge / 7;
+
         $usrAnnualDischarge = $usrWeeklyDischarge * $this->numWeeksYear / 1000;
 
         if ($usrAnnualDischarge == $avgDischargeYear || $usrAnnualDischarge > $avgDischargeYear) {
@@ -134,11 +151,15 @@ class DataController extends Controller
         }
 
         $calculations = [
+            //Average
             'avgDischargeYear' => $avgDischargeYear,
             'avgDischargeKM' => $avgDischargeKm,
-            'usrWeeklyDischarge' => $usrWeeklyDischarge,
+            //Topic specific
             'usrWeeklyKM' => $numKMWeek,
-            'usrAnnualDischarge' => $usrAnnualDischarge,
+            //Global discharge
+            'usrDischargePerDay' => $usrDischargePerDay, //In G
+            'usrDischargePerWeek' => $usrWeeklyDischarge, // In G
+            'usrDischargePerYear' => $usrAnnualDischarge, //In KG
             'usrBelowAverage' => $work
         ];
 
@@ -170,13 +191,17 @@ class DataController extends Controller
         }
 
         $calculations = [
+            //Average
             'avgDischargeYear' => $avgDischargePerYear,
             'avgDischargePerKG' => $avgDischargePerKG,
-            'usrWeeklyAmountOfFleshInGrams' => $usrWeeklyAmountOfFlesh,
-            'usrWeeklyDischarge' => $usrWeeklyDischarge,
-            'usrYearlyDischarge' => $usrYearlyDischarge,
+            //Topic specific
+            'usrWeeklyMeat' => $usrWeeklyAmountOfFlesh,
+            //Global discharge
+            'usrDischargePerWeek' => $usrWeeklyDischarge, // In G
+            'usrDischargePerYear' => $usrYearlyDischarge, // In KG
             'usrBelowAverage' => $work
         ];
+
         return $calculations;
     }
 
@@ -200,11 +225,14 @@ class DataController extends Controller
         }
 
         $calculations = [
+            //Average
             'avgDischargeYear' => $avgAnnualDischarge,
-            'UitstootPerPeuk' => $avgDischargePerPeuk,
-            'usrAmountOfCigs' => $usrAmountOfCigs,
-            'usrDischargePerWeek' => $usrDischargePerWeek,
-            'usrAnnualDischarge' => $usrAnnualDischarge,
+            'avgDischargeCig' => $avgDischargePerPeuk,
+            //Topic specific
+            'usrWeeklyCig' => $usrAmountOfCigs,
+            //Global discharge
+            'usrDischargePerWeek' => $usrDischargePerWeek, // In G
+            'usrDischargePerYear' => $usrAnnualDischarge, // In KG
             'usrBelowAverage' => $work
         ];
         return $calculations;
