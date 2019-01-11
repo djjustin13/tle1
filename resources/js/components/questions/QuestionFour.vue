@@ -43,7 +43,7 @@
         data(){
             return{
                 doesSmoke: null,
-                cigaretteAmount: 25,
+                cigaretteAmount: 10,
                 answer: null,
                 error: null,
             }

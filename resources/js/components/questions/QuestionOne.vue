@@ -29,7 +29,7 @@
         name: 'question-one',
         data() {
             return {
-                answer: {label: '7 dagen', value: 7},
+                answer: {label: '5 dagen', value: 5},
                 error: null,
                 dayArray: []
             }

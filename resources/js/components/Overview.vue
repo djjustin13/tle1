@@ -24,7 +24,7 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" v-if="this.answers">
                     Auto Rijden:
                     <div v-if="answers.car == false" class="text-success">Je hebt geen auto 👍</div>
                     <div v-else-if="carBelowAverage" class="text-success">Je rijdt minder dan de gemiddelde Nederlander 👍</div>

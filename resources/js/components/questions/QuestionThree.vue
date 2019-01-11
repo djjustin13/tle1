@@ -11,7 +11,7 @@
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
 
                     <div v-if="weekAnswerSet === false">
-                        <h1 class="py-2">Hoevaak per week douche je?</h1>
+                        <h1 class="py-2">Hoeveel dagen per week douche je?</h1>
                         <img class="card-img" src="/img/shower.png" alt="meat">
                         <br>
                         <br>
@@ -48,7 +48,7 @@
         name: 'question-three',
         data(){
             return{
-                weekAnswer: {label: '7 keer', value: 7},
+                weekAnswer: {label: '7 dagen', value: 7},
                 weekAnswerSet: false,
                 minuteAnswer: 5,
                 answer: {},
@@ -65,7 +65,7 @@
             },
             setDayArray: function () {
                 for (let i = 7; i > 0; i--) {
-                    this.dayArray.push({label: i + ' keer', value: i})
+                    this.dayArray.push({label: i + ' dagen', value: i})
                 }
             },
             saveWeekAnswer:function(){
