@@ -17,7 +17,7 @@
                         <br>
 
                         <div class="v-select">
-                            <v-select id="shower" v-model="weekAnswer" :options="dayArray"></v-select>
+                            <v-select id="shower" v-model="weekAnswer" :options="dayArray" :searchable=false></v-select>
                         </div>
 
                         <div class="py-4">

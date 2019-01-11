@@ -13,8 +13,6 @@ Vue.component('v-numberInput', VueNumberInput);
 Vue.component('v-select', vSelect);
 Vue.component('v-slider', vueSlider);
 
-
-
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
