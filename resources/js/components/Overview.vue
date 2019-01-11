@@ -180,7 +180,6 @@
             if (Object.keys(this.userData).length != 0){
                 if(this.carChallenge){
                     total += this.carChallenge.newCo2*52
-                    console.log("Challenge")
                 }else if(this.userData.car != false){
                     total += this.userData.car.usrDischargePerYear
                 }
