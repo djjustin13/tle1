@@ -10,7 +10,7 @@
             </button>  
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                 <!-- <p>Jouw levensstijl staat op dit moment gelijk aan 2 zonnepanelen.</p> -->
-                <p v-if="totalScore">Jij gooit {{ originalScore }} Kilo's aan CO2 in de lucht!</p>
+                <p v-if="totalScore">Jij gooit {{ globalScore }} Kilo's aan CO2 in de lucht!</p>
             </div>
         </div>
         
@@ -39,7 +39,8 @@
                     <div v-if="answers.smoke == false" class="text-success">Je rookt niet 👍</div>
                     <div v-else-if="smokeBelowAverage" class="text-success">Je rookt minder dan de gemiddelde Nederlander 👍</div>
                     <div class="text-danger" v-else>Je rookt meer dan de gemiddelde Nederlander</div>
-
+                    <hr>
+                    Klik op de iconen in je huis om te kijken wat je kunt veranderen om je leven duurzamer te maken!
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -50,6 +51,8 @@
         <img class="sun asset" src="/img/sun.png" alt="Sun">
         <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
         <img class="cloud2 asset" src="/img/cloud_lg.png" alt="Cloud">
+        <img v-if="userState == 0" class="background" src="/img/factories.png" alt="">
+        <img v-if="userState > 1" class="background" src="/img/trees.png" alt="">
         <div class="container-fluid">
             <div class="row justify-content-center">      
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
@@ -71,11 +74,11 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center bottom-text">      
+        <!-- <div class="row justify-content-center bottom-text">      
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                 <p>Klik op de iconen in je huis om te kijken wat je kunt veranderen om je leven duurzamer te maken!</p>
             </div>
-        </div>
+        </div> -->
     </div>
 
 </template>
@@ -91,6 +94,7 @@
                 answers: {},
                 answers: null,
                 globalScore: 0,
+                userState: 1,
                 userData: {},
                 carChallenge: null,
                 meatChallenge: null,
@@ -176,12 +180,16 @@
             updateOverview: function (){
 
                 if(this.globalScore >= 3000){
+                    this.userState = 0
                     console.log('Slecht')
-                }else if (this.globalScore < 3000 && this.globalScore <= 2000){
+                }else if (this.globalScore < 3000 && this.globalScore >= 2000){
+                    this.userState = 1
                     console.log('Gemiddeld')
-                }else if(this.globalScore < 2000 && this.globalScore >= 3000){
+                }else if(this.globalScore < 2000 && this.globalScore >= 1000){
+                    this.userState = 2
                     console.log('Goed')
-                }else if(this.globalScore < 2000){
+                }else if(this.globalScore < 1000){
+                    this.userState = 3
                     console.log('Supergoed')
                 }
             }
@@ -292,6 +300,12 @@
            top: 9%;
            left: 30%;
         }
+    }
+
+    .background{
+        position: fixed;
+        margin: 0 auto;
+        left: calc(50% - 188px);
     }
 
     .house{
