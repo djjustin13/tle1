@@ -64,6 +64,7 @@
                 axios.post('api/compare/flesheaters', {
                     input: this.meatDays,
                 }).then((response)  =>  {
+                    console.log(response)
                     this.weeklyCo2 = response.data.usrDischargePerWeek / 1000
                     this.dailyCo2 = response.data.avgDischargePerKG / 10
                 }).catch(function (error) {
@@ -86,10 +87,21 @@
             },
 
             saveMeat:function(){
-                this.meatChallenge["newDays"] = (this.meatDays - this.targetDays.value)
-                this.meatChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
-                localStorage.setItem('meatChallenge', JSON.stringify(this.meatChallenge));
-                this.$router.push('overview')
+                this.meatDays = (this.meatDays - this.targetDays.value)
+                axios.post('api/compare/flesheaters', {
+                    input: this.meatDays
+                }).then((response)  =>  {
+                    this.meatChallenge["newDays"] = this.meatDays
+                    this.meatChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
+                    this.meatChallenge["newUsrBelowAverage"] = response.data.usrBelowAverage
+                    localStorage.setItem('meatChallenge', JSON.stringify(this.meatChallenge));
+                    this.$router.push('overview')
+                }).catch(function (error) {
+                    console.log(error.response);
+                })
+
+                
+                
             },
 
         },

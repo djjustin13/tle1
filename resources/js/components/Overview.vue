@@ -14,8 +14,6 @@
             </div>
         </div>
         
-
-
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -27,15 +25,24 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Auto Rijden: <br>
+                    Auto Rijden:
+                    <div v-if="answers.car == false" class="text-success">Je hebt geen auto 👍</div>
+                    <div v-else-if="carBelowAverage" class="text-success">Je rijdt minder dan de gemiddelde Nederlander 👍</div>
+                    <div v-else class="text-danger">Je rijdt meer dan de gemiddelde Nederlander</div>
                     Vlees eten: <br>
+                    <div v-if="meatBelowAverage" class="text-success">Je eet minder vlees dan de gemiddelde Nederlander 👍</div>
+                    <div class="text-danger" v-else>Je eet meer vlees dan de gemiddelde Nederlander</div>
                     Douchen: <br>
+                    <div v-if="showerBelowAverage" class="text-success">Je doucht korter dan de gemiddelede Nederlander 👍</div>
+                    <div class="text-danger" v-else>Je doucht langer dan de gemiddelde Nederlander</div>
                     Roken:
+                    <div v-if="answers.smoke == false" class="text-success">Je rookt niet 👍</div>
+                    <div v-else-if="smokeBelowAverage" class="text-success">Je rookt minder dan de gemiddelde Nederlander 👍</div>
+                    <div class="text-danger" v-else>Je rookt meer dan de gemiddelde Nederlander</div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
                 </div>
             </div>
@@ -81,6 +88,7 @@
         data(){
             return{
                 error: null,
+                answers: {},
                 answers: null,
                 globalScore: 0,
                 userData: {},
@@ -88,6 +96,10 @@
                 meatChallenge: null,
                 smokeChallenge: null,
                 showerChallenge: null,
+                carBelowAverage: null,
+                meatBelowAverage: null,
+                smokeBelowAverage: null,
+                showerBelowAverage: null
             }
         },methods:{
             reset:function(){
@@ -95,50 +107,71 @@
                 this.answers = null;
                 this.$router.push('/')
             },
+            getAnswers:function() {
+                let data = localStorage.getItem('answers')
+                if (data){
+                    this.answers = JSON.parse(data)
+                    console.log(this.answers)
+                }     
+            },
             sendData:function(){
                 axios.post('api/calculate', this.answers)
                 .then((response)  =>  {
-                    console.log(response.data)
+                    console.log(response)
                     this.userData = response.data
+                    this.getCarChallenge()
+                    this.getMeatChallenge()
+                    this.getSmokeChallenge()
+                    this.getShowerChallenge()
                 })
                 .catch(function (error) {
                     console.log(error.response)
                 })
             },
-            getAnswers:function() {
-                let data = localStorage.getItem('answers')
-                if (data){
-                    this.answers = JSON.parse(data)
-                }
-            },
             getCarChallenge:function() {
                 let data = localStorage.getItem('carChallenge')
-                console.log(data)
                 if (data){
                     this.carChallenge =  JSON.parse(data)
-                    console.log(this.carChallenge)
+                    this.carBelowAverage = this.carChallenge.newUsrBelowAverage
+                    console.log("wel car challenge " + this.carBelowAverage)
+                }else{
+                    this.carBelowAverage = this.userData.car.usrBelowAverage
+                    console.log("geen car challenge " + this.carBelowAverage)
                 }
+                
             },
             getMeatChallenge:function() {
                 let data = localStorage.getItem('meatChallenge')
                 if (data){
                     this.meatChallenge = JSON.parse(data)
-                    console.log(this.meatChallenge)
+                    this.meatBelowAverage = this.meatChallenge.newUsrBelowAverage
+                    console.log("wel meat challenge " + this.meatBelowAverage)
+                }else{
+                    this.meatBelowAverage = this.userData.meat.usrBelowAverage
+                    console.log("geen meat challenge " + this.meatBelowAverage)
                 }
             },
             getSmokeChallenge:function() {
                 let data = localStorage.getItem('smokeChallenge')
                 if (data){
                     this.smokeChallenge = JSON.parse(data)
-                    console.log(this.smokeChallenge)
-                }
+                    this.smokeBelowAverage = this.smokeChallenge.newUsrBelowAverage
+                    console.log("wel smoke challenge " + this.smokeBelowAverage)
+                }else{
+                    this.smokeBelowAverage = this.userData.smoking.usrBelowAverage
+                    console.log("geen smoke challenge " + this.smokeBelowAverage)
+                }   
             },
             getShowerChallenge:function() {
                 let data = localStorage.getItem('showerChallenge')
                 if (data){
                     this.showerChallenge = JSON.parse(data)
-                    console.log(this.showerChallenge)
-                }
+                    this.showerBelowAverage = this.showerChallenge.newUsrBelowAverage
+                    console.log("wel shower challenge " + this.showerBelowAverage)
+                }else{
+                    this.showerBelowAverage = this.userData.shower.usrBelowAverage
+                    console.log("geen shower challenge " + this.showerBelowAverage)
+                } 
             },
             updateOverview: function (){
 
@@ -179,7 +212,7 @@
 
             if (Object.keys(this.userData).length != 0){
                 if(this.carChallenge){
-                    total += this.carChallenge.newCo2*52
+                    total += this.carChallenge.newCo2
                 }else if(this.userData.car != false){
                     total += this.userData.car.usrDischargePerYear
                 }
@@ -207,10 +240,6 @@
         },
         mounted: function() {
             this.getAnswers()
-            this.getCarChallenge()
-            this.getMeatChallenge()
-            this.getSmokeChallenge()
-            this.getShowerChallenge()
             this.sendData()
         }
     }

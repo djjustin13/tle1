@@ -64,12 +64,13 @@
                 axios.post('api/compare/'+ this.car.type, {
                     input: this.car,
                 }).then((response)  =>  {
+                    console.log(response)
                     this.co2PerKm = response.data.avgDischargeKM
                     this.avgDischargeYear = response.data.avgDischargeYear
                     this.weeklyCo2 = response.data.usrDischargePerWeek / 1000
                 }).catch(function (error) {
                         console.log(error.response);
-                    })
+                })
             },
 
             checkCar: function(){
@@ -89,26 +90,41 @@
                 }
 
             },
-            //Saves all data. Values are per week.
+            //Saves all data. Values are per year.
             saveCar:function(){
-                this.carChallenge["newKm"] = (this.car.km - this.targetKm)
-                this.carChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
-                
-                let elem = document.getElementById("image");
-                let pos = 0;
-                let id = setInterval(frame, 1);
-                let that = this
-                function frame() {
-                    if (pos >= 900) {
-                        clearInterval(id);
-                        localStorage.setItem('carChallenge', JSON.stringify(that.carChallenge));
-                        that.$router.push('overview')
-                    } else {
-                        pos+=3;
-                        elem.style.left = pos + "px";
-                        document.getElementById("image").style.WebkitTransform = "rotate(340deg)";
+                this.car.km = (this.car.km - this.targetKm)
+                axios.post('api/compare/'+ this.car.type, {
+                    input: this.car,
+                }).then((response)  =>  {
+                    console.log(response)
+
+                    this.carChallenge["newKm"] = this.car.km
+                    this.carChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
+                    this.carChallenge["newUsrBelowAverage"] = response.data.usrBelowAverage
+                    
+                    let elem = document.getElementById("image");
+                    let pos = 0;
+                    let id = setInterval(frame, 1);
+                    let that = this
+                    function frame() {
+                        if (pos >= 900) {
+                            clearInterval(id);
+                            localStorage.setItem('carChallenge', JSON.stringify(that.carChallenge));
+                            that.$router.push('overview')
+                        } else {
+                            pos+=3;
+                            elem.style.left = pos + "px";
+                            document.getElementById("image").style.WebkitTransform = "rotate(340deg)";
+                        }
                     }
-                }
+                    
+                }).catch(function (error) {
+                        console.log(error.response);
+                })
+
+                
+
+     
             },
 
         },
