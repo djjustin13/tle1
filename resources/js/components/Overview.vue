@@ -217,17 +217,17 @@
                     total += this.userData.car.usrDischargePerYear
                 }
                 if(this.meatChallenge){
-                    total += this.meatChallenge.newCo2*52
+                    total += this.meatChallenge.newCo2
                 }else if(this.userData.meat != false){
                     total += this.userData.meat.usrDischargePerYear
                 } 
                 if(this.showerChallenge){
-                    total += this.showerChallenge.newCo2*52
+                    total += this.showerChallenge.newCo2
                 }else if(this.userData.shower != false){
                     total += this.userData.shower.usrDischargePerYear
                 } 
                 if(this.smokeChallenge){
-                    total += this.smokeChallenge.newCo2*52
+                    total += this.smokeChallenge.newCo2
                 }else if(this.userData.smoking != false){
                     total += this.userData.smoking.usrDischargePerYear
                 } 
