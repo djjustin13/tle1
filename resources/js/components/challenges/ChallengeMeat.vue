@@ -8,7 +8,7 @@
                         {{ error }}
                     </div>
 
-                    <h2>Je eet nu {{meatDays}} {{dayDays(meatDays)}} per week vlees. Hiermee stoot je {{weeklyCo2}} kg Co2 uit.</h2>
+                    <h2>Je eet nu {{meatDays}} {{dayDays(meatDays)}} per week vlees. Hiermee stoot je {{weeklyCo2}} kg CO2 uit.</h2>
 
                     <img class="card-img" src="/img/meat.png" alt="meat image">
 
@@ -19,7 +19,7 @@
                         </v-select>
                     </div>
 
-                    <p class="challenge-response">Door {{targetDays.value}} extra {{dayDays(targetDays.value)}} per week geen vlees te eten, bespaar je wekelijks <span class="orange challenge-response-data"><br /> {{co2.toFixed(2)}} <br /></span> kilo Co2</p>
+                    <p class="challenge-response">Door {{targetDays.value}} extra {{dayDays(targetDays.value)}} per week geen vlees te eten, bespaar je wekelijks <span class="orange challenge-response-data"><br /> {{co2.toFixed(2)}} <br /></span> kilo CO2</p>
 
                     <div class="py-4">
                         <button class="btn btn-light question-btn px-4" @click="saveMeat()">save</button>

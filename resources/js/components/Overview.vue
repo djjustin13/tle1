@@ -5,7 +5,7 @@
         </div>
         <div class="row justify-content-center top-text">    
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
                 Wat kan beter?
             </button>  
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
@@ -15,37 +15,57 @@
         </div>
         
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Wat kan beter?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Wat kan beter?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!-- <div class="modal-body"> -->
+                        <ul class="list-group ">
+                            <li class="list-group-item d-flex justify-content-between rounded-0">
+                                <div>
+                                    Auto rijden:
+                                    <div v-if="answers.car == false" class="text-success"> Je hebt geen auto 👍</div>
+                                    <div v-else-if="carBelowAverage" class="text-success">Je rijdt minder dan de gemiddelde Nederlander 👍</div>
+                                    <div v-else class="text-danger">Je rijdt meer dan de gemiddelde Nederlander</div>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between rounded-0">
+                                <div>
+                                    Vlees eten:
+                                    <div v-if="meatBelowAverage" class="text-success">Je eet minder vlees dan de gemiddelde Nederlander 👍</div>
+                                    <div class="text-danger" v-else>Je eet meer vlees dan de gemiddelde Nederlander</div>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between rounded-0">
+                                <div>
+                                    Douchen:
+                                    <div v-if="showerBelowAverage" class="text-success">Je doucht korter dan de gemiddelede Nederlander 👍</div>
+                                    <div class="text-danger" v-else>Je doucht langer dan de gemiddelde Nederlander</div>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between rounded-0">
+                                <div>
+                                    Roken:
+                                    <div v-if="answers.smoke == false" class="text-success">Je rookt niet 👍</div>
+                                    <div v-else-if="smokeBelowAverage" class="text-success">Je rookt minder dan de gemiddelde Nederlander 👍</div>
+                                    <div class="text-danger" v-else>Je rookt meer dan de gemiddelde Nederlander</div>
+                                </div>
+                            </li>
+                        </ul>
+                    
+                        
+                        
+                    <!-- </div> -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    Auto Rijden:
-                    <div v-if="answers.car == false" class="text-success">Je hebt geen auto 👍</div>
-                    <div v-else-if="carBelowAverage" class="text-success">Je rijdt minder dan de gemiddelde Nederlander 👍</div>
-                    <div v-else class="text-danger">Je rijdt meer dan de gemiddelde Nederlander</div>
-                    Vlees eten: <br>
-                    <div v-if="meatBelowAverage" class="text-success">Je eet minder vlees dan de gemiddelde Nederlander 👍</div>
-                    <div class="text-danger" v-else>Je eet meer vlees dan de gemiddelde Nederlander</div>
-                    Douchen: <br>
-                    <div v-if="showerBelowAverage" class="text-success">Je doucht korter dan de gemiddelede Nederlander 👍</div>
-                    <div class="text-danger" v-else>Je doucht langer dan de gemiddelde Nederlander</div>
-                    Roken:
-                    <div v-if="answers.smoke == false" class="text-success">Je rookt niet 👍</div>
-                    <div v-else-if="smokeBelowAverage" class="text-success">Je rookt minder dan de gemiddelde Nederlander 👍</div>
-                    <div class="text-danger" v-else>Je rookt meer dan de gemiddelde Nederlander</div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-                </div>
-            </div>
             </div>
         <img class="sun asset" src="/img/sun.png" alt="Sun">
         <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">

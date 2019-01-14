@@ -7,13 +7,13 @@
                         {{ error }}
                     </div>
 
-                    <h2>Je rookt nu {{ this.weeklyCigarette }} sigaretten per week. Daarmee stoot je {{ this.weeklyCo2 }} gram CO2 uit.</h2>
+                    <h2>Je rookt nu {{ this.weeklyCigarette }} {{sigaretSigatetten(this.weeklyCigarette)}} per week. Daarmee stoot je {{ this.weeklyCo2 }} gram CO2 uit.</h2>
                     <div id = "image-container">
                         <img id="image" class="card-img" src="/img/cigarette.png" alt="car image">
                     </div>
                     <p class="challenge-question">Vul in hoevaal sigaretten je vanaf nu wilt gaan roken per dag</p>
                     <v-numberInput controls :min=0 :max=cigarettesPerDay placeholder="vul in" v-model="targetCigarettesDays"></v-numberInput>
-                    <p class="challenge-response">Dit bespaart je weekelijks <br /> <span class="orange challenge-response-data">{{co2.toFixed(2)}}</span> <br />gram CO₂</p>
+                    <p class="challenge-response">Dit bespaart je weekelijks <br /> <span class="orange challenge-response-data">{{co2.toFixed(2)}}</span> <br />gram CO2</p>
 
                     <div class="py-4">
                         <button class="btn btn-light question-btn px-4" @click="saveSmoke()">save</button>
@@ -61,6 +61,7 @@
                     console.log(error.response);
                 })
             },
+
             saveSmoke:function(){
                 axios.post('api/compare/smoking', {
                     input: this.targetCigarettesDays

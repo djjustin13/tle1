@@ -7,7 +7,7 @@
                         {{ error }}
                     </div>
 
-                    <h2>Je douchet {{shower.days}} {{dayDays(shower.days)}} per week en {{shower.minutes}} minuten per dag. Hiermee stoot je <span class="grey">{{weeklyCo2}} kilo CO₂</span> uit</h2>
+                    <h2>Je douchet {{shower.days}} {{dayDays(shower.days)}} per week en {{shower.minutes}} minuten per dag. Hiermee stoot je <span class="grey">{{weeklyCo2}} kilo CO2</span> uit</h2>
                     <div id = "image-container">
                         <img id="image" class="card-img" src="/img/shower.png" alt="car image">
                     </div>
@@ -15,7 +15,7 @@
                     <v-numberInput controls :min=1 :max=shower.days placeholder="vul in" v-model="targetDays"></v-numberInput><span>{{dayDays(targetDays)}}</span>
                     <v-numberInput controls :min=1 :max=shower.minutes placeholder="vul in" v-model="targetMinutes"></v-numberInput><span>{{minuteMinutes(targetMinutes)}}</span>
 
-                    <p class="challenge-response">Dit bespaart je weekelijks <br /> <span class="orange challenge-response-data">{{co2.toFixed(2)}} <br /></span>Kilo CO₂</p>
+                    <p class="challenge-response">Dit bespaart je weekelijks <br /> <span class="orange challenge-response-data">{{co2.toFixed(2)}} <br /></span>Kilo CO2</p>
 
                     <div class="py-4 challenge-btn-container">
                         <button class="btn btn-light question-btn px-4" @click="saveShower()">save</button>

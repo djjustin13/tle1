@@ -24,7 +24,7 @@
                         <h1 class="py-2">Hoeveel sigaretten rook je gemiddeld per dag?</h1>
                         <img class="card-img" src="/img/cigarette.png" alt="meat">
                         <v-numberInput controls :min=1 :max=60 placeholder="vul in" v-model="cigaretteAmount"></v-numberInput>
-                        <label> {{cigaretteAmount}} sigaretten</label>
+                        <label> {{cigaretteAmount}} {{sigaretSigatetten(cigaretteAmount)}}</label>
                         <div class="py-4">
                             <button class="btn btn-light question-btn px-4" @click="saveCigaretteAmount()">Volgende</button>
                         </div>
@@ -62,6 +62,13 @@
                 this.doesSmoke = false
                 this.answer = this.doesSmoke
                 this.nextSlide()
+            },
+            sigaretSigatetten:function(input){
+                if(input == 1){
+                    return 'sigaret'
+                }else{
+                    return 'sigaretten'
+                }
             },
             saveCigaretteAmount:function(){
                 this.answer = this.cigaretteAmount
