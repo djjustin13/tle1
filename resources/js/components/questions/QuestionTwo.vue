@@ -44,6 +44,7 @@
                                 :interval="1"
                                 formatter='{value} kilometer'
                                 :dot-size="30"
+                                :searchable=false
                         />
 
                         <div class="py-4">

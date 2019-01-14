@@ -10,7 +10,7 @@
             </button>  
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                 <!-- <p>Jouw levensstijl staat op dit moment gelijk aan 2 zonnepanelen.</p> -->
-                <p v-if="totalScore">Jij gooit {{ originalScore }} Kilo's aan CO2 in de lucht!</p>
+                <p v-if="totalScore">Jij gooit {{ globalScore }} Kilo's aan CO2 in de lucht!</p>
             </div>
         </div>
         
@@ -25,7 +25,7 @@
                         </button>
                     </div>
                     <!-- <div class="modal-body"> -->
-                        <ul class="list-group ">
+                        <ul class="list-group" v-if="this.answers">
                             <li class="list-group-item d-flex justify-content-between rounded-0">
                                 <div>
                                     Auto rijden:
@@ -57,7 +57,8 @@
                                 </div>
                             </li>
                         </ul>
-                    
+                     <hr>
+                    Klik op de iconen in je huis om te kijken wat je kunt veranderen om je leven duurzamer te maken!
                         
                         
                     <!-- </div> -->
@@ -70,6 +71,8 @@
         <img class="sun asset" src="/img/sun.png" alt="Sun">
         <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
         <img class="cloud2 asset" src="/img/cloud_lg.png" alt="Cloud">
+        <img v-if="userState == 0" class="background" src="/img/factories.png" alt="">
+        <img v-if="userState > 1" class="background" src="/img/trees.png" alt="">
         <div class="container-fluid">
             <div class="row justify-content-center">      
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
@@ -91,11 +94,11 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center bottom-text">      
+        <!-- <div class="row justify-content-center bottom-text">      
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                 <p>Klik op de iconen in je huis om te kijken wat je kunt veranderen om je leven duurzamer te maken!</p>
             </div>
-        </div>
+        </div> -->
     </div>
 
 </template>
@@ -111,6 +114,7 @@
                 answers: {},
                 answers: null,
                 globalScore: 0,
+                userState: 1,
                 userData: {},
                 carChallenge: null,
                 meatChallenge: null,
@@ -196,12 +200,16 @@
             updateOverview: function (){
 
                 if(this.globalScore >= 3000){
+                    this.userState = 0
                     console.log('Slecht')
-                }else if (this.globalScore < 3000 && this.globalScore <= 2000){
+                }else if (this.globalScore < 3000 && this.globalScore >= 2000){
+                    this.userState = 1
                     console.log('Gemiddeld')
-                }else if(this.globalScore < 2000 && this.globalScore >= 3000){
+                }else if(this.globalScore < 2000 && this.globalScore >= 1000){
+                    this.userState = 2
                     console.log('Goed')
-                }else if(this.globalScore < 2000){
+                }else if(this.globalScore < 1000){
+                    this.userState = 3
                     console.log('Supergoed')
                 }
             }
@@ -237,17 +245,17 @@
                     total += this.userData.car.usrDischargePerYear
                 }
                 if(this.meatChallenge){
-                    total += this.meatChallenge.newCo2*52
+                    total += this.meatChallenge.newCo2
                 }else if(this.userData.meat != false){
                     total += this.userData.meat.usrDischargePerYear
                 } 
                 if(this.showerChallenge){
-                    total += this.showerChallenge.newCo2*52
+                    total += this.showerChallenge.newCo2
                 }else if(this.userData.shower != false){
                     total += this.userData.shower.usrDischargePerYear
                 } 
                 if(this.smokeChallenge){
-                    total += this.smokeChallenge.newCo2*52
+                    total += this.smokeChallenge.newCo2
                 }else if(this.userData.smoking != false){
                     total += this.userData.smoking.usrDischargePerYear
                 } 
@@ -312,6 +320,13 @@
            top: 9%;
            left: 30%;
         }
+    }
+
+    .background{
+        position: fixed;
+        margin: 0 auto;
+        margin-top: -17px;
+        left: calc(50% - 188px);
     }
 
     .house{

@@ -23,7 +23,7 @@
                     <div v-if="doesSmoke === true">
                         <h1 class="py-2">Hoeveel sigaretten rook je gemiddeld per dag?</h1>
                         <img class="card-img" src="/img/cigarette.png" alt="meat">
-                        <v-numberInput controls :min=1 :max=60 placeholder="vul in" v-model="cigaretteAmount"></v-numberInput>
+                        <v-numberInput controls :min=1 :max=60 placeholder="vul in" v-model="cigaretteAmount" :searchable=false></v-numberInput>
                         <label> {{cigaretteAmount}} {{sigaretSigatetten(cigaretteAmount)}}</label>
                         <div class="py-4">
                             <button class="btn btn-light question-btn px-4" @click="saveCigaretteAmount()">Volgende</button>
@@ -43,7 +43,7 @@
         data(){
             return{
                 doesSmoke: null,
-                cigaretteAmount: 25,
+                cigaretteAmount: 10,
                 answer: null,
                 error: null,
             }
