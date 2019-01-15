@@ -124,7 +124,7 @@
         <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
         <img class="cloud2 asset" src="/img/cloud_lg.png" alt="Cloud">
         <img v-if="userState == 0" class="background" src="/img/factories.png" alt="">
-        <img v-if="userState > 1" class="background" src="/img/trees.png" alt="">
+        <img v-if="userState > 1" class="background" src="/img/good_bg.png" alt="">
         <div class="container-fluid">
             <div class="row justify-content-center">      
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
@@ -141,6 +141,7 @@
                         <area target="" alt="Meat" title="Vlees eten" @click="$router.push('challengemeat')" coords="177,253,269,249,272,326,179,349" shape="poly">
                         <area target="" alt="Shower" title="Douchen" @click="$router.push('challengeshower')" coords="273,249,325,246,325,309,273,327" shape="poly">
                     </map>
+                    <img v-if="userState > 1" class="background" src="/img/good_fg.png" alt="">
                    
                     <!-- <a @click="reset()" href="#">Clear storage & restart</a> -->
                 </div>
