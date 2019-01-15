@@ -9,8 +9,9 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-        <title>TLE</title>
+        <title>Awareness010</title>
         <link rel="manifest" href="/manifest.json">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/app.css')  }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">

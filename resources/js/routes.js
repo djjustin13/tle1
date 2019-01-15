@@ -6,6 +6,7 @@ import ChallengeCar from './components/challenges/ChallengeCar';
 import ChallengeMeat from './components/challenges/ChallengeMeat';
 import ChallengeShower from './components/challenges/ChallengeShower';
 import ChallengeSmoking from './components/challenges/ChallengeSmoking';
+import PrivacyStatement from './components/PrivacyStatement';
 
 export const routes = [
     {
@@ -31,6 +32,10 @@ export const routes = [
     {
         path: '/challengesmoking',
         component: ChallengeSmoking
+    },
+    {
+        path: '/privacy',
+        component: PrivacyStatement
     },
 
     //App routes before this section//
