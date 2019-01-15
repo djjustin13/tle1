@@ -7,7 +7,7 @@
                         {{ error }}
                     </div>
 
-                    <h2>Je rookt nu {{ this.weeklyCigarette }} {{sigaretSigatetten(this.weeklyCigarette)}} per week. Daarmee stoot je {{ this.weeklyCo2 }} gram CO2 uit.</h2>
+                    <h2>Je rookt nu {{ this.weeklyCigarette }} {{this.weeklyCigarette}} per week. Daarmee stoot je {{ this.weeklyCo2 }} gram CO2 uit.</h2>
                     <div id = "image-container">
                         <img id="image" class="card-img" src="/img/cigarette.png" alt="car image">
                     </div>
