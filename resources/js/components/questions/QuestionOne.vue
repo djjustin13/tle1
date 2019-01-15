@@ -39,6 +39,7 @@
                 if (this.answer != null) {
                     this.$emit('save', ["meat", this.answer.value])
                     $(".slider").slick('slickNext');
+                    $('body').css("background-color","#44999E")
                 } else {
                     this.error = "Je moet iets invullen"
                 }
@@ -60,10 +61,8 @@
 
             }
         },
-
         mounted: function () {
-
-            this.setDayArray();
+            this.setDayArray()
         }
     }
 </script>

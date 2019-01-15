@@ -108,6 +108,7 @@
                 if(this.answer != null){
                     this.$emit('save', ['car', this.answer])
                     $(".slider").slick('slickNext');
+                    $('body').css("background-color","#6AAD80")
                 }else{
                     this.error = "Je moet iets invullen"
                 }
@@ -118,7 +119,6 @@
 
 <style lang="scss" scoped>
     .question{
-        //background-color: #70BEE7;
         background-color: #44999E;
     }
 
