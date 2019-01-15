@@ -78,6 +78,7 @@
                 if(this.answer != null){
                     this.$emit('save', ["smoke", this.answer])
                     this.$router.push('overview')
+
                 }else{
                     this.error = "Je moet iets invullen"
                 }        

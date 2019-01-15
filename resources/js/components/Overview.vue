@@ -24,9 +24,9 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <!-- <div class="modal-body"> -->
+                    <div class="modal-body"> 
                         <ul class="list-group" v-if="this.answers">
-                            <li class="list-group-item d-flex justify-content-between rounded-0">
+                            <li class="list-group-item d-flex justify-content-between">
                                 <div>
                                     Auto rijden:
                                     <div v-if="answers.car == false" class="text-success"> Je hebt geen auto 👍</div>
@@ -58,10 +58,13 @@
                             </li>
                         </ul>
                      <hr>
-                    Klik op de iconen in je huis om te kijken wat je kunt veranderen om je leven duurzamer te maken!
+                     <div>
+                        Klik op de iconen in je huis om te kijken wat je kunt veranderen om je leven duurzamer te maken!
+                     </div>
+                    
                         
                         
-                    <!-- </div> -->
+                     </div> 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
