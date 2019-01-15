@@ -1,8 +1,10 @@
 <template>
-<div id="statement>">
+<div class="statement">
+  <router-link :to=" '/' " class="btn btn-link"><i class="fas fa-crow backbutton"></i></router-link>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-sm-8 col-md-6 col-lg-8 text-center">
+        
         <h1 class="py-2 home-title">Privacy Statement</h1>
         <p>18 december 2018 door Hugo Caminada
           <br>Awareness010, gevestigd aan Wijnhaven 99 te Rotterdam, is verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze privacyverklaring.
@@ -53,6 +55,13 @@ Awareness010 wil u er tevens op wijzen dat u de mogelijkheid hebt om een klacht 
 </template>
 
 <style scoped>
+.backbutton {
+  position: absolute;
+  font-size: 2.35em;
+  left: 25px;
+  top: 25px;
+  color: #FFFFFF;
+}
 p {
   font-size: 1.35em;
 }
@@ -68,13 +77,5 @@ b {
 
 export default {
   name: "PrivacyStatement",
-
-  mounted: function() {
-    const bodyScrollLock = require('body-scroll-lock');
-    bodyScrollLock.clearAllBodyScrollLocks();
-    // const enableBodyScroll = bodyScrollLock.enableBodyScroll;
-    // const targetElement = document.querySelector("#statement");
-    // enableBodyScroll(targetElement);
-  }
 };
 </script>
