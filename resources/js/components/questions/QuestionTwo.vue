@@ -105,8 +105,7 @@
             nextSlide:function(){
                 if(this.answer != null){
                     this.$emit('save', ['car', this.answer])
-                    $(".slider").slick('slickNext');
-                    $('body').css("background-color","#6AAD80")
+                    $(".slider").slick('slickNext')
                 }else{
                     this.error = "Je moet iets invullen"
                 }

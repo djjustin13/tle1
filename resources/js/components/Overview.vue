@@ -14,89 +14,140 @@
             </div>
         </div>
         
-            <!-- Modal -->
-            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Wat kan beter?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body"> 
-                        <ul class="list-group" v-if="this.answers">
-                            <li class="list-group-item d-flex justify-content-between">
-                                <div>
-                                    Auto rijden:
-                                    <div v-if="answers.car == false" class="text-success"> Je hebt geen auto 👍</div>
-                                    <div v-else-if="carBelowAverage" class="text-success">Je rijdt minder dan de gemiddelde Nederlander 👍</div>
-                                    <div v-else class="text-danger">Je rijdt meer dan de gemiddelde Nederlander</div>
+                    <div class="modal-body accordion p-0" id="accordion"> 
+                        <!-- car -->
+                        <div class="card">
+                            <div class="card-header row  d-flex justify-content-between m-0"> 
+                                <div>       
+                                    <div>
+                                        Auto rijden:
+                                        <div v-if="answers.car == false" class="text-success"> Je hebt geen auto 👍</div>
+                                        <div v-else-if="carBelowAverage" class="text-success">Je rijdt minder dan de gemiddelde Nederlander 👍</div>
+                                        <div v-else class="text-danger">Je rijdt meer dan de gemiddelde Nederlander</div>
+                                    </div>
                                 </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between rounded-0">
-                                <div>
-                                    Vlees eten:
-                                    <div v-if="meatBelowAverage" class="text-success">Je eet minder vlees dan de gemiddelde Nederlander 👍</div>
-                                    <div class="text-danger" v-else>Je eet meer vlees dan de gemiddelde Nederlander</div>
+                                <button class="btn btn-warning col-auto" data-toggle="collapse" data-target="#car">Edit</button>
+                            </div>
+                            <div id="car" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="row justify-content-md-center">
+                                        <button id="ConfirmBtn" class="btn btn-primary col-md-auto" data-toggle="collapse" data-target="#car">Confirm</button>
+                                    </div>
                                 </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between rounded-0">
+                            </div>
+                        </div>
+
+                        <!-- meat -->
+                        <div class="card">
+                            <div class="card-header row  d-flex justify-content-between m-0">  
                                 <div>
-                                    Douchen:
-                                    <div v-if="showerBelowAverage" class="text-success">Je doucht korter dan de gemiddelede Nederlander 👍</div>
-                                    <div class="text-danger" v-else>Je doucht langer dan de gemiddelde Nederlander</div>
+                                    <div>
+                                        Vlees eten:
+                                        <div v-if="answers.meat < 7" class="text-success">Je eet minder vlees dan de gemiddelde Nederlander 👍</div>
+                                        <div class="text-danger" v-else>Je eet meer vlees dan de gemiddelde Nederlander</div>
+                                    </div>
                                 </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between rounded-0">
+                                <button class="btn btn-warning col-auto" data-toggle="collapse" data-target="#meat">Edit</button>
+                            </div>
+                            <div id="meat" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="row justify-content-md-center">
+                                        <button id="ConfirmBtn" class="btn btn-primary col-md-auto" data-toggle="collapse" data-target="#meat">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- shower -->
+                        <div class="card">
+                            <div class="card-header row  d-flex justify-content-between m-0"> 
+                                <div>       
+                                    <div>
+                                        Douchen:
+                                        <div v-if="showerBelowAverage" class="text-success">Je doucht korter dan de gemiddelede Nederlander 👍</div>
+                                        <div class="text-danger" v-else>Je doucht langer dan de gemiddelde Nederlander</div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-warning col-auto" data-toggle="collapse" data-target="#shower">Edit</button>
+                            </div>
+                            <div id="shower" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="row justify-content-md-center">
+                                        <button id="ConfirmBtn" class="btn btn-primary col-md-auto" data-toggle="collapse" data-target="#shower">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                        <!-- smoke -->
+                        <div class="card">
+                            <div class="card-header row  d-flex justify-content-between m-0">   
                                 <div>
-                                    Roken:
-                                    <div v-if="answers.smoke == false" class="text-success">Je rookt niet 👍</div>
-                                    <div v-else-if="smokeBelowAverage" class="text-success">Je rookt minder dan de gemiddelde Nederlander 👍</div>
-                                    <div class="text-danger" v-else>Je rookt meer dan de gemiddelde Nederlander</div>
+                                    <div>
+                                        Roken:
+                                        <div v-if="answers.smoke == false" class="text-success">Je rookt niet 👍</div>
+                                        <div v-else-if="smokeBelowAverage" class="text-success">Je rookt minder dan de gemiddelde Nederlander 👍</div>
+                                        <div class="text-danger" v-else>Je rookt meer dan de gemiddelde Nederlander</div>
+                                    </div>
+                                </div>    
+                                <button class="btn btn-warning col-auto" data-toggle="collapse" data-target="#smoke">Edit</button>
+                            </div>
+                            <div id="smoke" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="row justify-content-md-center">
+                                        <button id="ConfirmBtn" class="btn btn-primary col-md-auto" data-toggle="collapse" data-target="#smoke">Confirm</button>
+                                    </div>
                                 </div>
-                            </li>
-                        </ul>
-                     <hr>
-                     <div>
+                            </div>
+                        </div>
+                    <hr>
+                    <div>
                         Klik op de iconen in je huis om te kijken wat je kunt veranderen om je leven duurzamer te maken!
-                     </div>
-                    
-                        
-                        
-                     </div> 
+                    </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div> 
+
         <img class="sun asset" src="/img/sun.png" alt="Sun">
         <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
         <img class="cloud2 asset" src="/img/cloud_lg.png" alt="Cloud">
         <img v-if="userState == 0" class="background" src="/img/factories.png" alt="">
-        <img v-if="userState > 1" class="background" src="/img/good_bg.png" alt="">
+        <img v-if="userState > 2" class="asset good_2" src="/img/good_2_tree.png" alt="">
         <div class="container-fluid">
             <div class="row justify-content-center">      
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                     <div class="house">
                         <img class="house-img" src="/img/house.png" alt="house" usemap="#image-map">
-                        <span class="icon icon-car" @click="$router.push('challengecar')"></span>
-                        <span class="icon icon-smoke" @click="$router.push('challengesmoking')"></span>
+                        
+                        <span v-if="answers.car" class="icon icon-car" @click="$router.push('challengecar')"></span>
+                        <span v-if="answers.smoke" class="icon icon-smoke" @click="$router.push('challengesmoking')"></span>
                         <span class="icon icon-meat" @click="$router.push('challengemeat')"></span>
                         <span class="icon icon-shower" @click="$router.push('challengeshower')"></span>
                     </div>
                     <map name="image-map">
-                        <area target="" alt="Garage" title="Auto gebruik" @click="$router.push('challengecar')" coords="20,253,55,258,54,316,20,307" shape="poly">
-                        <area target="" alt="Smoke" title="Roken" @click="$router.push('challengesmoking')" coords="177,178,269,190,270,239,177,239" shape="poly">
+                        <area v-if="answers.car" target="" alt="Garage" title="Auto gebruik" @click="$router.push('challengecar')" coords="20,253,55,258,54,316,20,307" shape="poly">
+                        <area v-if="answers.smoke" target="" alt="Smoke" title="Roken" @click="$router.push('challengesmoking')" coords="177,178,269,190,270,239,177,239" shape="poly">
                         <area target="" alt="Meat" title="Vlees eten" @click="$router.push('challengemeat')" coords="177,253,269,249,272,326,179,349" shape="poly">
                         <area target="" alt="Shower" title="Douchen" @click="$router.push('challengeshower')" coords="273,249,325,246,325,309,273,327" shape="poly">
                     </map>
-                    <img v-if="userState > 1" class="background" src="/img/good_fg.png" alt="">
                    
                     <!-- <a @click="reset()" href="#">Clear storage & restart</a> -->
                 </div>
             </div>
+            <img v-if="userState > 1" class="good_1 asset" src="/img/good_2_bush.png" alt="">
+            
         </div>
         <!-- <div class="row justify-content-center bottom-text">      
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
@@ -116,7 +167,6 @@
             return{
                 error: null,
                 answers: {},
-                answers: null,
                 globalScore: 0,
                 userState: 1,
                 userData: {},
@@ -323,6 +373,17 @@
         &.cloud2{
            top: 9%;
            left: 30%;
+        }
+        &.good_1 {
+            top: 73%;
+            left: 30%;
+            transform: scale(1, 1);
+        }
+        &.good_2 {
+            top: 48%;
+            left: 2%;
+            -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
         }
     }
 

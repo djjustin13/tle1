@@ -78,7 +78,6 @@
                 if(this.answer != null){
                     this.$emit('save', ["shower", this.answer])
                     $(".slider").slick('slickNext')
-                    $('body').css("background-color","#6A7FAD")
 
                 }else{
                      this.error = "Je moet iets invullen"
