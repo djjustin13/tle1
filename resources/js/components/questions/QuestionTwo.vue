@@ -25,7 +25,7 @@
                         <img class="card-img" src="/img/car.png" alt="meat">
 
                         <div class="v-select">
-                            <v-select id="car" v-model="carType" :options="car"></v-select>
+                            <v-select id="car" v-model="carType" :options="car" :searchable=false></v-select>
                         </div>
 
                         <div class="py-4">

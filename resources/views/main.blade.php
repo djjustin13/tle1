@@ -9,7 +9,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-        <title>TLE</title>
+        <title>Awareness010</title>
         <link rel="manifest" href="/manifest.json">
         <link rel="stylesheet" href="{{ asset('css/app.css')  }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
