@@ -28,21 +28,23 @@
                         <!-- car -->
                         <div class="card">
                             <div class="card-header row  d-flex justify-content-between m-0"> 
-                                <div>       
-                                    <div>
-                                        Auto rijden:
-                                        <div v-if="answers.car == false" class="text-success"> Je hebt geen auto 👍</div>
-                                        <div v-else-if="carBelowAverage" class="text-success">Je rijdt minder dan de gemiddelde Nederlander 👍</div>
-                                        <div v-else class="text-danger">Je rijdt meer dan de gemiddelde Nederlander</div>
-                                    </div>
+                                <div class="accordion-content">
+                                    Auto rijden:
+                                    <div v-if="answers.car == false" class="text-success"> Je hebt geen auto 👍</div>
+                                    <div v-else-if="carBelowAverage" class="text-success">Je rijdt zuiniger dan de gemiddelde Nederlander 👍</div>
+                                    <div v-else class="text-danger">Je rijdt meer dan de gemiddelde Nederlander</div>
                                 </div>
-                                <button class="btn btn-warning col-auto" data-toggle="collapse" data-target="#car">Edit</button>
+                                <button v-if="sideArrow.car" @click="sideArrow.car = false" class="btn btn-success col-auto" data-toggle="collapse" data-target="#car">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button v-if="sideArrow.car == false" @click="sideArrow.car = true" class="btn btn-success col-auto" data-toggle="collapse" data-target="#car">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
                             </div>
                             <div id="car" class="collapse" data-parent="#accordion">
                                 <div class="card-body">
-                                    <div class="row justify-content-md-center">
-                                        <button id="ConfirmBtn" class="btn btn-primary col-md-auto" data-toggle="collapse" data-target="#car">Confirm</button>
-                                    </div>
+                                    De gemiddelde Nederlander stoot per jaar ongeveer {{avgDischargeYear.car}} kilo CO2 uit met auto rijden.
+                                    Jij stoot hiermee {{dischargeYear.car}} kilo CO2 uit per jaar.
                                 </div>
                             </div>
                         </div>
@@ -50,70 +52,76 @@
                         <!-- meat -->
                         <div class="card">
                             <div class="card-header row  d-flex justify-content-between m-0">  
-                                <div>
-                                    <div>
-                                        Vlees eten:
-                                        <div v-if="answers.meat < 7" class="text-success">Je eet minder vlees dan de gemiddelde Nederlander 👍</div>
-                                        <div class="text-danger" v-else>Je eet meer vlees dan de gemiddelde Nederlander</div>
-                                    </div>
+                                <div class="accordion-content">
+                                    Vlees eten:
+                                    <div v-if="answers.meat < 7" class="text-success">Je eet minder vlees dan de gemiddelde Nederlander 👍</div>
+                                    <div class="text-danger" v-else>Je eet meer vlees dan de gemiddelde Nederlander</div>
                                 </div>
-                                <button class="btn btn-warning col-auto" data-toggle="collapse" data-target="#meat">Edit</button>
+                                <button v-if="sideArrow.meat" @click="sideArrow.meat = false" class="btn btn-success col-auto" data-toggle="collapse" data-target="#meat">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button v-if="sideArrow.meat == false" @click="sideArrow.meat = true" class="btn btn-success col-auto" data-toggle="collapse" data-target="#meat">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
                             </div>
                             <div id="meat" class="collapse" data-parent="#accordion">
                                 <div class="card-body">
-                                    <div class="row justify-content-md-center">
-                                        <button id="ConfirmBtn" class="btn btn-primary col-md-auto" data-toggle="collapse" data-target="#meat">Confirm</button>
-                                    </div>
+                                    De gemiddelde Nederlander stoot per jaar ongeveer {{avgDischargeYear.meat}} kilo CO2 uit door vlees te eten.
+                                    Jij stoot hiermee {{dischargeYear.meat}} kilo CO2 uit per jaar.
+                                   
                                 </div>
                             </div>
                         </div>
                         <!-- shower -->
                         <div class="card">
                             <div class="card-header row  d-flex justify-content-between m-0"> 
-                                <div>       
-                                    <div>
-                                        Douchen:
-                                        <div v-if="showerBelowAverage" class="text-success">Je doucht korter dan de gemiddelede Nederlander 👍</div>
-                                        <div class="text-danger" v-else>Je doucht langer dan de gemiddelde Nederlander</div>
-                                    </div>
+                                <div class="accordion-content">    
+                                    Douchen:
+                                    <div v-if="showerBelowAverage" class="text-success">Je doucht korter dan de gemiddelede Nederlander 👍</div>
+                                    <div class="text-danger" v-else>Je doucht langer dan de gemiddelde Nederlander</div>
                                 </div>
-                                <button class="btn btn-warning col-auto" data-toggle="collapse" data-target="#shower">Edit</button>
+                                <button v-if="sideArrow.shower" @click="sideArrow.shower = false" class="btn btn-success col-auto" data-toggle="collapse" data-target="#shower">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button v-if="sideArrow.shower == false" @click="sideArrow.shower = true" class="btn btn-success col-auto" data-toggle="collapse" data-target="#shower">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
                             </div>
                             <div id="shower" class="collapse" data-parent="#accordion">
                                 <div class="card-body">
-                                    <div class="row justify-content-md-center">
-                                        <button id="ConfirmBtn" class="btn btn-primary col-md-auto" data-toggle="collapse" data-target="#shower">Confirm</button>
-                                    </div>
+                                    De gemiddelde Nederlander stoot per jaar ongeveer {{avgDischargeYear.shower}} kilo CO2 uit door te douchen.
+                                    Jij stoot hiermee {{dischargeYear.shower}} kilo CO2 uit per jaar.
                                 </div>
                             </div>
                         </div>    
                         <!-- smoke -->
                         <div class="card">
                             <div class="card-header row  d-flex justify-content-between m-0">   
-                                <div>
-                                    <div>
-                                        Roken:
-                                        <div v-if="answers.smoke == false" class="text-success">Je rookt niet 👍</div>
-                                        <div v-else-if="smokeBelowAverage" class="text-success">Je rookt minder dan de gemiddelde Nederlander 👍</div>
-                                        <div class="text-danger" v-else>Je rookt meer dan de gemiddelde Nederlander</div>
-                                    </div>
+                                <div class="accordion-content">
+                                    Roken:
+                                    <div v-if="answers.smoke == false" class="text-success">Je rookt niet 👍</div>
+                                    <div v-else-if="smokeBelowAverage" class="text-success">Je rookt minder dan de gemiddelde Nederlander 👍</div>
+                                    <div class="text-danger" v-else>Je rookt meer dan de gemiddelde Nederlander</div>
                                 </div>    
-                                <button class="btn btn-warning col-auto" data-toggle="collapse" data-target="#smoke">Edit</button>
+                                <button v-if="sideArrow.smoke" @click="sideArrow.smoke = false" class="btn btn-success col-auto" data-toggle="collapse" data-target="#smoke">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button v-if="sideArrow.smoke == false" @click="sideArrow.smoke = true" class="btn btn-success col-auto" data-toggle="collapse" data-target="#smoke">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
                             </div>
                             <div id="smoke" class="collapse" data-parent="#accordion">
                                 <div class="card-body">
-                                    <div class="row justify-content-md-center">
-                                        <button id="ConfirmBtn" class="btn btn-primary col-md-auto" data-toggle="collapse" data-target="#smoke">Confirm</button>
-                                    </div>
+                                    De gemiddelde Nederlander stoot per jaar ongeveer {{avgDischargeYear.smoke}} kilo CO2 uit door te roken.
+                                    Jij stoot hiermee {{dischargeYear.smoke}} kilo CO2 uit per jaar.
                                 </div>
                             </div>
                         </div>
-                    <hr>
-                    <div>
-                        Klik op de iconen in je huis om te kijken wat je kunt veranderen om je leven duurzamer te maken!
-                    </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <div class="accordion-content">
+                                Tik op de iconen op jouw huis om een challenge aan te gaan!
+                            </div>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
                         </div>
                     </div>
                 </div>
@@ -175,7 +183,15 @@
                 carBelowAverage: null,
                 meatBelowAverage: null,
                 smokeBelowAverage: null,
-                showerBelowAverage: null
+                showerBelowAverage: null,
+                dischargeYear: {},
+                avgDischargeYear: {},
+                sideArrow: {
+                    car: true,
+                    meat: true,
+                    shower: true,
+                    smoke: true
+                },
             }
         },methods:{
             reset:function(){
@@ -190,64 +206,74 @@
                     console.log(this.answers)
                 }     
             },
-            sendData:function(){
+            calculateData:function(){
                 axios.post('api/calculate', this.answers)
                 .then((response)  =>  {
                     console.log(response)
                     this.userData = response.data
-                    this.getCarChallenge()
-                    this.getMeatChallenge()
-                    this.getSmokeChallenge()
-                    this.getShowerChallenge()
+                    this.checkCarChallenge()
+                    this.checkMeatChallenge()
+                    this.checkSmokeChallenge()
+                    this.checkShowerChallenge()
                 })
                 .catch(function (error) {
                     console.log(error.response)
                 })
             },
-            getCarChallenge:function() {
+            checkCarChallenge:function() {
                 let data = localStorage.getItem('carChallenge')
+                this.avgDischargeYear.car = this.userData.car.avgDischargeYear
                 if (data){
                     this.carChallenge =  JSON.parse(data)
                     this.carBelowAverage = this.carChallenge.newUsrBelowAverage
+                    this.dischargeYear.car = ((this.carChallenge.newCo2 / 7) * 365).toFixed(2)
                     console.log("wel car challenge " + this.carBelowAverage)
                 }else{
                     this.carBelowAverage = this.userData.car.usrBelowAverage
+                    this.dischargeYear.car = this.userData.car.usrDischargePerYear.toFixed(2)
                     console.log("geen car challenge " + this.carBelowAverage)
                 }
                 
             },
-            getMeatChallenge:function() {
+            checkMeatChallenge:function() {
                 let data = localStorage.getItem('meatChallenge')
+                this.avgDischargeYear.meat = this.userData.meat.avgDischargeYear
                 if (data){
                     this.meatChallenge = JSON.parse(data)
                     this.meatBelowAverage = this.meatChallenge.newUsrBelowAverage
-                    console.log("wel meat challenge " + this.meatBelowAverage)
+                    this.dischargeYear.meat = ((this.meatChallenge.newCo2 / 7) * 365).toFixed(2)
                 }else{
                     this.meatBelowAverage = this.userData.meat.usrBelowAverage
-                    console.log("geen meat challenge " + this.meatBelowAverage)
+                    this.dischargeYear.meat = this.userData.meat.usrDischargePerYear.toFixed(2)
                 }
             },
-            getSmokeChallenge:function() {
+            checkSmokeChallenge:function() {
                 let data = localStorage.getItem('smokeChallenge')
+                this.avgDischargeYear.smoke = this.userData.smoking.avgDischargeYear
                 if (data){
                     this.smokeChallenge = JSON.parse(data)
                     this.smokeBelowAverage = this.smokeChallenge.newUsrBelowAverage
-                    console.log("wel smoke challenge " + this.smokeBelowAverage)
+                    this.dischargeYear.smoke = ((this.smokeChallenge.newCo2 / 7) * 365).toFixed(2)
                 }else{
                     this.smokeBelowAverage = this.userData.smoking.usrBelowAverage
-                    console.log("geen smoke challenge " + this.smokeBelowAverage)
+                    this.dischargeYear.smoke = this.userData.smoking.usrDischargePerYear.toFixed(2)
                 }   
             },
-            getShowerChallenge:function() {
+            checkShowerChallenge:function() {
                 let data = localStorage.getItem('showerChallenge')
+                this.avgDischargeYear.shower = this.userData.shower.avgDischargeYear
                 if (data){
                     this.showerChallenge = JSON.parse(data)
                     this.showerBelowAverage = this.showerChallenge.newUsrBelowAverage
-                    console.log("wel shower challenge " + this.showerBelowAverage)
+                    this.dischargeYear.shower = ((this.showerChallenge.newCo2 / 7) * 365).toFixed(2)
                 }else{
                     this.showerBelowAverage = this.userData.shower.usrBelowAverage
-                    console.log("geen shower challenge " + this.showerBelowAverage)
+                    this.dischargeYear.shower = this.userData.shower.usrDischargePerYear.toFixed(2)
                 } 
+            },
+            rotateArrow: function(arrow){
+                let elem = document.getElementById(arrow)
+                elem.style.transform = "rotate(-90deg)"
             },
             updateOverview: function (){
 
@@ -318,14 +344,23 @@
             return Math.round( total * 100 ) / 100
             }
         },
-        mounted: function() {
+        created: function() {
             this.getAnswers()
-            this.sendData()
+            this.calculateData()
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    button{
+        min-width: 20%;
+        max-height: 48px;
+    }
+
+    .accordion-content{
+        max-width: 70%;
+    }
+
     .alert{
         position: absolute;
         top: 0;
