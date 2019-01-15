@@ -37,12 +37,8 @@
         methods: {
             nextSlide: function () {
                 $(".slider").slick('slickNext');
-                $('body').css("background-color","#5A5C84")
             },
-        },
-        // created: function () {
-        //     $('body').css("background-color","#54c0eb")
-        // }
+        }
     }
 </script>
 
