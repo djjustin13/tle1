@@ -92,7 +92,7 @@ b {
 export default {
   name: "PrivacyStatement",
   created: function(){
-    const disableBodyScroll = bodyScrollLock.disableBodyScroll;
+    // const disableBodyScroll = bodyScrollLock.disableBodyScroll;
     bodyScrollLock.disableBodyScroll(document.querySelector('.statement'));
   }
 };

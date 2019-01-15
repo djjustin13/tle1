@@ -59,6 +59,6 @@ if (token) {
 window.slick = require('slick-carousel');
 
 window.bodyScrollLock = require('body-scroll-lock');
-const disableBodyScroll = bodyScrollLock.disableBodyScroll;
-const enableBodyScroll = bodyScrollLock.enableBodyScroll;
+// const disableBodyScroll = bodyScrollLock.disableBodyScroll;
+// const enableBodyScroll = bodyScrollLock.enableBodyScroll;
 bodyScrollLock.disableBodyScroll();

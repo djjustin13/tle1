@@ -32,7 +32,7 @@
                     </div>
 
                     <div v-if="carTypeSet">
-                        <h1>Hoeveel kilometer rij je per week?</h1>
+                        <h1>Hoeveel kilometer rijd je per week?</h1>
                         <img class="card-img" src="/img/car.png" alt="meat">
 
                         <v-slider
