@@ -1,3 +1,4 @@
+
 <template>
 <div class="background">
     <div class="question">
@@ -17,7 +18,7 @@
                     </div>
 
                     <div class="ula-container">
-                        <p>Wil je weten wat we met jouw data doen? lees <a href="/PrivacyStatement">Privacy Statement</a></p>
+                        <p>Wil je weten wat we met jouw data doen? lees <router-link :to=" '/privacy' " class="btn btn-link">Privacy Statement</router-link></p>
                     </div>
                 </div>
             </div>
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+
     export default {
         name: 'homepage',
         data() {
