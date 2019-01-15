@@ -132,12 +132,13 @@
         <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
         <img class="cloud2 asset" src="/img/cloud_lg.png" alt="Cloud">
         <img v-if="userState == 0" class="background" src="/img/factories.png" alt="">
-        <img v-if="userState > 1" class="background" src="/img/good_bg.png" alt="">
+        <img v-if="userState > 2" class="asset good_2" src="/img/good_2_tree.png" alt="">
         <div class="container-fluid">
             <div class="row justify-content-center">      
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                     <div class="house">
                         <img class="house-img" src="/img/house.png" alt="house" usemap="#image-map">
+                        
                         <span v-if="answers.car" class="icon icon-car" @click="$router.push('challengecar')"></span>
                         <span v-if="answers.smoke" class="icon icon-smoke" @click="$router.push('challengesmoking')"></span>
                         <span class="icon icon-meat" @click="$router.push('challengemeat')"></span>
@@ -149,11 +150,12 @@
                         <area target="" alt="Meat" title="Vlees eten" @click="$router.push('challengemeat')" coords="177,253,269,249,272,326,179,349" shape="poly">
                         <area target="" alt="Shower" title="Douchen" @click="$router.push('challengeshower')" coords="273,249,325,246,325,309,273,327" shape="poly">
                     </map>
-                    <img v-if="userState > 1" class="background" src="/img/good_fg.png" alt="">
                    
                     <!-- <a @click="reset()" href="#">Clear storage & restart</a> -->
                 </div>
             </div>
+            <img v-if="userState > 1" class="good_1 asset" src="/img/good_2_bush.png" alt="">
+            
         </div>
         <!-- <div class="row justify-content-center bottom-text">      
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
@@ -406,6 +408,17 @@
         &.cloud2{
            top: 9%;
            left: 30%;
+        }
+        &.good_1 {
+            top: 73%;
+            left: 30%;
+            transform: scale(1, 1);
+        }
+        &.good_2 {
+            top: 48%;
+            left: 2%;
+            -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
         }
     }
 

@@ -6,8 +6,6 @@
                 {{ error }}
             </div>
 
-            <a @click="reset()" href="#">Clear storage & restart</a>
-
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
 
@@ -34,7 +32,7 @@
                     </div>
 
                     <div v-if="carTypeSet">
-                        <h1>Hoeveel kilometer rij je per week?</h1>
+                        <h1>Hoeveel kilometer rijd je per week?</h1>
                         <img class="card-img" src="/img/car.png" alt="meat">
 
                         <v-slider
