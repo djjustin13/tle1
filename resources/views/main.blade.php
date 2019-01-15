@@ -17,7 +17,7 @@
 	
 
     </head>
-    <body style="background-color: red">
+    <body>
         <div id="app">
             <main-app></main-app>
         </div>
