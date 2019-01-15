@@ -1,9 +1,9 @@
 <template>
-<div class="statement">
+<div>
   <router-link :to=" '/' " class="btn btn-link backbutton"><i class="fas fa-chevron-left"></i></router-link>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-12 col-sm-8 col-md-6 col-lg-8 text-center">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-8 text-center statement">
         
         <h1 class="py-2 home-title">Privacy Statement</h1>
         <p>18 december 2018 door Hugo Caminada
@@ -68,6 +68,14 @@ Awareness010 wil u er tevens op wijzen dat u de mogelijkheid hebt om een klacht 
   }
   
 }
+.statement{
+  overflow: scroll;
+  height: 100vh;
+  &::-webkit-scrollbar { 
+    display: none; 
+  }
+}
+
 p {
   font-size: 1.35em;
 }
@@ -83,5 +91,9 @@ b {
 
 export default {
   name: "PrivacyStatement",
+  created: function(){
+    const disableBodyScroll = bodyScrollLock.disableBodyScroll;
+    bodyScrollLock.disableBodyScroll(document.querySelector('.statement'));
+  }
 };
 </script>

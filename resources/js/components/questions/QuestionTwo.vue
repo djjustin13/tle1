@@ -6,8 +6,6 @@
                 {{ error }}
             </div>
 
-            <a @click="reset()" href="#">Clear storage & restart</a>
-
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
 
