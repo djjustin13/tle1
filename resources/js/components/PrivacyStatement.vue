@@ -1,6 +1,6 @@
 <template>
 <div class="statement">
-  <router-link :to=" '/' " class="btn btn-link"><i class="fas fa-crow backbutton"></i></router-link>
+  <router-link :to=" '/' " class="btn btn-link backbutton"><i class="fas fa-chevron-left"></i></router-link>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-sm-8 col-md-6 col-lg-8 text-center">
@@ -54,13 +54,19 @@ Awareness010 wil u er tevens op wijzen dat u de mogelijkheid hebt om een klacht 
 
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .backbutton {
   position: absolute;
-  font-size: 2.35em;
-  left: 25px;
-  top: 25px;
-  color: #FFFFFF;
+  left: 10px;
+  top: 5px;
+  padding: 20px;
+  z-index: 50;
+
+  .fas{
+    font-size: 1.5em;
+    color: #FFFFFF;
+  }
+  
 }
 p {
   font-size: 1.35em;
