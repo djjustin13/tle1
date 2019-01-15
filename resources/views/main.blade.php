@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link rel="apple-touch-icon" href="/icons/180x180.png">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <meta name="apple-mobile-web-app-title" content="Awareness010 ">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -17,7 +17,7 @@
 	
 
     </head>
-    <body>
+    <body style="background-color: red">
         <div id="app">
             <main-app></main-app>
         </div>
