@@ -156,16 +156,29 @@
         </div> 
 
         <!-- solarModal -->
-         <div class="modal fade solarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        Jij verbruikt op dit moment {{ globalScore }} kg CO2 met de vier gewoontes waar we naar hebben gevraagd.
-                        <br>
-                        De gemiddelde Nederlander verbruikt hiermee ongeveer 2425 kg CO2 per jaar.
-                        Dat is een verschil van {{avgYearlyCo2 - globalScore}} kg CO2.
-                        <br>
-                        dit staat gelijk aan wat {{ solarPanelBalance }} zonnepanelen jaarlijks opwekken. 
+        <div class="modal fade solarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-lg" role="document">
+               <div class="modal-content">
+                    <div v-if="(avgYearlyCo2 - globalScore) > 0" class="modal-header">
+                        <p class="solar-modal-text">
+                            Jij verbruikt op dit moment {{ globalScore }} kg CO2 met de vier gewoontes waar we naar hebben gevraagd.
+                            <br>
+                            De gemiddelde Nederlander verbruikt hiermee ongeveer 2425 kg CO2 per jaar.
+                            Dat is een verschil van
+                            <span class="text-success">{{avgYearlyCo2 - globalScore}} kg CO2.</span> Lekker bezig!
+                            <br>
+                            {{avgYearlyCo2 - globalScore}} kg CO2 staat gelijk aan wat <span class="text-primary">{{ solarPanelBalance }} zonnepanelen</span> voor een jaar op je dak aan CO2 besparen!
+                        </p>
+                    </div>
+                    <div v-else class="modal-header">
+                        <p class="solar-modal-text">
+                            Jij verbruikt op dit moment {{ globalScore }} kg CO2 met de vier gewoontes waar we naar hebben gevraagd.
+                            <br>
+                            De gemiddelde Nederlander verbruikt hiermee ongeveer 2425 kg CO2 per jaar.
+                            Jij verbruikt dus <span class="text-danger">{{globalScore - avgYearlyCo2}} kg CO2</span> meer.
+                            <br>
+                            Ga challenges aan om zonnepanelen te verdienen!
+                        </p>
                     </div>
                     <div class="card-body py-0">
                         <div class="row justify-content-start">
@@ -176,11 +189,14 @@
                     </div>
                     
                     <div class="modal-footer">
+                        <div class="accordion-content">
+                            Haal zonnepanelen door challenges aan te gaan!
+                        </div>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
                     </div>
-                </div>
-            </div>
-         </div>
+               </div>
+           </div>
+        </div>
 
         <img class="sun asset" src="/img/sun.png" alt="Sun">
         <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
@@ -220,7 +236,7 @@
         </div>
         <div class="row justify-content-center bottom-text">      
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
-                <p v-if="totalScore">Jouw jaarlijkse uitstoot op dit moment: {{ globalScore }} KG CO2</p>
+                <p v-if="totalScore">Jouw jaarlijkse uitstoot op dit moment: {{ globalScore }} kg CO2</p>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".solarModal">
                 Wat betekend dit?
                 </button> 
@@ -451,6 +467,10 @@
         margin-right: auto;
         max-width: 100%;
     }
+    .solar-modal-text{
+        font-size: 16px;
+        line-height: normal;
+     }
 
     .alert{
         position: absolute;
