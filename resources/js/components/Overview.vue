@@ -34,11 +34,21 @@
                                     <div v-else-if="carBelowAverage" class="text-success">Je rijdt zuiniger dan de gemiddelde Nederlander 👍</div>
                                     <div v-else class="text-danger">Je rijdt meer dan de gemiddelde Nederlander</div>
                                 </div>
-                                <button v-if="sideArrow.car" @click="sideArrow.car = false" class="btn btn-success col-auto" data-toggle="collapse" data-target="#car">
-                                    <i class="fas fa-chevron-left"></i>
+                                <button 
+                                    v-if="leftArrow.car" 
+                                    @click="leftArrow.car = false, leftArrow.meat = true, leftArrow.shower = true, leftArrow.smoke = true"
+                                    class="btn btn-success col-auto" 
+                                    data-toggle="collapse" 
+                                    data-target="#car">
+                                        <i class="fas fa-chevron-left"></i>
                                 </button>
-                                <button v-if="sideArrow.car == false" @click="sideArrow.car = true" class="btn btn-success col-auto" data-toggle="collapse" data-target="#car">
-                                    <i class="fas fa-chevron-down"></i>
+                                <button
+                                    v-if="leftArrow.car == false"
+                                    @click="leftArrow.car = true, leftArrow.meat = true, leftArrow.shower = true, leftArrow.smoke = true"
+                                    class="btn btn-success col-auto"
+                                    data-toggle="collapse"
+                                    data-target="#car">
+                                        <i class="fas fa-chevron-down"></i>
                                 </button>
                             </div>
                             <div id="car" class="collapse" data-parent="#accordion">
@@ -57,11 +67,21 @@
                                     <div v-if="answers.meat < 7" class="text-success">Je eet minder vlees dan de gemiddelde Nederlander 👍</div>
                                     <div class="text-danger" v-else>Je eet meer vlees dan de gemiddelde Nederlander</div>
                                 </div>
-                                <button v-if="sideArrow.meat" @click="sideArrow.meat = false" class="btn btn-success col-auto" data-toggle="collapse" data-target="#meat">
-                                    <i class="fas fa-chevron-left"></i>
+                                <button
+                                    v-if="leftArrow.meat"
+                                    @click="leftArrow.meat = false, leftArrow.car = true, leftArrow.shower = true, leftArrow.smoke = true"
+                                    class="btn btn-success col-auto"
+                                    data-toggle="collapse"
+                                    data-target="#meat">
+                                        <i class="fas fa-chevron-left"></i>
                                 </button>
-                                <button v-if="sideArrow.meat == false" @click="sideArrow.meat = true" class="btn btn-success col-auto" data-toggle="collapse" data-target="#meat">
-                                    <i class="fas fa-chevron-down"></i>
+                                <button
+                                    v-if="leftArrow.meat == false"
+                                    @click="leftArrow.meat = true, leftArrow.car = true, leftArrow.shower = true, leftArrow.smoke = true"
+                                    class="btn btn-success col-auto"
+                                    data-toggle="collapse"
+                                    data-target="#meat">
+                                        <i class="fas fa-chevron-down"></i>
                                 </button>
                             </div>
                             <div id="meat" class="collapse" data-parent="#accordion">
@@ -80,11 +100,21 @@
                                     <div v-if="showerBelowAverage" class="text-success">Je doucht korter dan de gemiddelede Nederlander 👍</div>
                                     <div class="text-danger" v-else>Je doucht langer dan de gemiddelde Nederlander</div>
                                 </div>
-                                <button v-if="sideArrow.shower" @click="sideArrow.shower = false" class="btn btn-success col-auto" data-toggle="collapse" data-target="#shower">
-                                    <i class="fas fa-chevron-left"></i>
+                                <button
+                                    v-if="leftArrow.shower"
+                                    @click="leftArrow.shower = false, leftArrow.car = true, leftArrow.meat = true, leftArrow.smoke = true"
+                                    class="btn btn-success col-auto"
+                                    data-toggle="collapse"
+                                    data-target="#shower">
+                                        <i class="fas fa-chevron-left"></i>
                                 </button>
-                                <button v-if="sideArrow.shower == false" @click="sideArrow.shower = true" class="btn btn-success col-auto" data-toggle="collapse" data-target="#shower">
-                                    <i class="fas fa-chevron-down"></i>
+                                <button
+                                    v-if="leftArrow.shower == false"
+                                    @click="leftArrow.shower = true, leftArrow.car = true, leftArrow.meat = true, leftArrow.smoke = true"
+                                    class="btn btn-success col-auto"
+                                    data-toggle="collapse"
+                                    data-target="#shower">
+                                        <i class="fas fa-chevron-down"></i>
                                 </button>
                             </div>
                             <div id="shower" class="collapse" data-parent="#accordion">
@@ -103,11 +133,21 @@
                                     <div v-else-if="smokeBelowAverage" class="text-success">Je rookt minder dan de gemiddelde Nederlander 👍</div>
                                     <div class="text-danger" v-else>Je rookt meer dan de gemiddelde Nederlander</div>
                                 </div>    
-                                <button v-if="sideArrow.smoke" @click="sideArrow.smoke = false" class="btn btn-success col-auto" data-toggle="collapse" data-target="#smoke">
-                                    <i class="fas fa-chevron-left"></i>
+                                <button
+                                    v-if="leftArrow.smoke"
+                                    @click="leftArrow.smoke = false, leftArrow.car = true, leftArrow.meat = true, leftArrow.shower = true"
+                                    class="btn btn-success col-auto"
+                                    data-toggle="collapse"
+                                    data-target="#smoke">
+                                        <i id="#smokeArrow" class="fas fa-chevron-left"></i>
                                 </button>
-                                <button v-if="sideArrow.smoke == false" @click="sideArrow.smoke = true" class="btn btn-success col-auto" data-toggle="collapse" data-target="#smoke">
-                                    <i class="fas fa-chevron-down"></i>
+                                <button
+                                    v-if="leftArrow.smoke == false"
+                                    @click="leftArrow.smoke = true, leftArrow.car = true, leftArrow.meat = true, leftArrow.shower = true"
+                                    class="btn btn-success col-auto"
+                                    data-toggle="collapse"
+                                    data-target="#smoke">
+                                        <i class="fas fa-chevron-down"></i>
                                 </button>
                             </div>
                             <div id="smoke" class="collapse" data-parent="#accordion">
@@ -188,7 +228,7 @@
                 showerBelowAverage: null,
                 dischargeYear: {},
                 avgDischargeYear: {},
-                sideArrow: {
+                leftArrow: {
                     car: true,
                     meat: true,
                     shower: true,
@@ -273,10 +313,6 @@
                     this.dischargeYear.shower = this.userData.shower.usrDischargePerYear.toFixed(2)
                 } 
             },
-            rotateArrow: function(arrow){
-                let elem = document.getElementById(arrow)
-                elem.style.transform = "rotate(-90deg)"
-            },
             updateOverview: function (){
 
                 if(this.globalScore >= 3000){
@@ -316,35 +352,41 @@
             return Math.round( total * 100 ) / 100
             },
             totalScore: function () {
-            let total = 0
+                let total = 0
 
-            if (Object.keys(this.userData).length != 0){
-                if(this.carChallenge){
-                    total += this.carChallenge.newCo2
-                }else if(this.userData.car != false){
-                    total += this.userData.car.usrDischargePerYear
+                if (Object.keys(this.userData).length != 0){
+                    if(this.carChallenge){
+                        total += this.carChallenge.newCo2
+                    }else if(this.userData.car != false){
+                        total += this.userData.car.usrDischargePerYear
+                    }
+                    if(this.meatChallenge){
+                        total += this.meatChallenge.newCo2
+                    }else if(this.userData.meat != false){
+                        total += this.userData.meat.usrDischargePerYear
+                    } 
+                    if(this.showerChallenge){
+                        total += this.showerChallenge.newCo2
+                    }else if(this.userData.shower != false){
+                        total += this.userData.shower.usrDischargePerYear
+                    } 
+                    if(this.smokeChallenge){
+                        total += this.smokeChallenge.newCo2
+                    }else if(this.userData.smoking != false){
+                        total += this.userData.smoking.usrDischargePerYear
+                    } 
                 }
-                if(this.meatChallenge){
-                    total += this.meatChallenge.newCo2
-                }else if(this.userData.meat != false){
-                    total += this.userData.meat.usrDischargePerYear
-                } 
-                if(this.showerChallenge){
-                    total += this.showerChallenge.newCo2
-                }else if(this.userData.shower != false){
-                    total += this.userData.shower.usrDischargePerYear
-                } 
-                if(this.smokeChallenge){
-                    total += this.smokeChallenge.newCo2
-                }else if(this.userData.smoking != false){
-                    total += this.userData.smoking.usrDischargePerYear
-                } 
+                console.log("new " + total + "--- original "+ this.originalScore)
+                this.globalScore = Math.round( total * 100 ) / 100
+                this.updateOverview()
+                return Math.round( total * 100 ) / 100
+            },
+            checkCollapse : function(){
+                $('.collapse').on('hidden.bs.collapse', function () {
+                    console.log("collapse")
+                })
             }
-            console.log("new " + total + "--- original "+ this.originalScore)
-            this.globalScore = Math.round( total * 100 ) / 100
-            this.updateOverview()
-            return Math.round( total * 100 ) / 100
-            }
+        
         },
         created: function() {
             this.getAnswers()
