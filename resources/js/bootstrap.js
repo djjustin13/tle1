@@ -64,7 +64,7 @@ const enableBodyScroll = bodyScrollLock.enableBodyScroll;
 
 disableBodyScroll();
 
-// Service Worker registration
+// Service Worker registration / 67-94 made by Frank
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js', { scope: '/' }).then(function(reg) {
   
@@ -84,7 +84,8 @@ if ('serviceWorker' in navigator) {
 
   function promptForPwa() {
     console.log('Your navigator.platform is ' + navigator.platform)
-    let mobileUsers =  ['iPhone', 'iPad', 'iPod', 'Android', 'MacIntel'].includes(navigator.platform);
+    let currentPlatform = navigator.platform;
+    let mobileUsers =  ['iPhone', 'iPad', 'iPod', 'Android'].includes(navigator.platform);
     if(mobileUsers){
       // Prompt to download the PWA
       console.log('Current platform falls under mobileUsers.')
