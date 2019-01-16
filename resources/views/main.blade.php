@@ -15,6 +15,18 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
 	
+        <!-- Global site tag (gtag.js) - Google Analytics / Frank -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132568261-1"></script>
+        <script>
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-132568261-1');
+
+        </script>
+
 
     
     </head>
