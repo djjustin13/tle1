@@ -7,7 +7,7 @@
                         {{ error }}
                     </div>
 
-                    <h2>Je rookt nu {{ this.weeklyCigarette }} {{this.weeklyCigarette}} per week. Daarmee stoot je {{ this.weeklyCo2 }} gram CO2 uit.</h2>
+                    <h2>Je rookt nu {{cigarettesPerDay}} {{sigaretSigatetten(cigarettesPerDay)}} per dag. Daarmee stoot je {{ this.weeklyCo2 }} gram CO2 uit.</h2>
                     <div id = "image-container">
                         <img id="image" class="card-img" src="/img/cigarette.png" alt="car image">
                     </div>
@@ -30,12 +30,11 @@
         data(){
             return{
                 error: null,
-                cigarettesPerDay: null,
-                weeklyCigarette: null,
+                cigarettesPerDay: 0,
                 weeklyCo2: null,
                 targetCigarettesDays: 0,
+                dischargePerCigarette: 0,
                 smokeChallenge: {},
-
             }
         },methods:{
             parseJson:function() {
@@ -54,21 +53,26 @@
                     input: this.cigarettesPerDay,
                 }).then((response)  =>  {
                     console.log(response)
-                    this.weeklyCigarette = response.data.usrWeeklyCig
                     this.dischargePerCigarette = response.data.avgDischargeCig
                     this.weeklyCo2 = response.data.usrDischargePerWeek
                 }).catch(function (error) {
                     console.log(error.response);
                 })
             },
-
+            sigaretSigatetten:function(input){
+                if(input == 1){
+                    return 'sigaret'
+                }else{
+                    return 'sigaretten'
+                }
+            },
             saveSmoke:function(){
                 axios.post('api/compare/smoking', {
                     input: this.targetCigarettesDays
                 }).then((response)  =>  {
                     console.log(response)
                     this.smokeChallenge["newAmount"] = this.targetCigarettesDays
-                    this.smokeChallenge["newCo2"] = (this.weeklyCo2 - this.co2)
+                    this.smokeChallenge["newCo2"] = (this.weeklyCo2 - this.co2) / 1000
                     this.smokeChallenge["newUsrBelowAverage"] = response.data.usrBelowAverage
                     localStorage.setItem('smokeChallenge', JSON.stringify(this.smokeChallenge));
                     this.$router.push('overview')
@@ -85,7 +89,7 @@
         computed: {
             
             co2 : function() {
-                return (this.weeklyCigarette - this.targetCigarettesDays * 7) * this.dischargePerCigarette
+                return ((this.cigarettesPerDay - this.targetCigarettesDays) * this.dischargePerCigarette)
             }
 
         }
