@@ -1,6 +1,26 @@
 
 <template>
   <div class="background">
+    <!-- Modal for PWA Notification -->
+          <div class="modal" tabindex="-1" role="dialog" id="myModal">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Download de app!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Download onze applicatie via het 'Deel'-venster van je browser.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
     <div class="question">
       <div class="container">
         <div v-if="error" class="alert alert-light" role="alert">{{ error }}</div>
@@ -20,43 +40,19 @@
                 <router-link :to=" '/privacy' " class="btn btn-link">Privacy Statement</router-link>
               </p>
             </div>
-          </div>
-
-          <!-- Modal for PWA Notification -->
-          <div v-if="mobile">
-          <transition name="modal">
-            <div class="modal-mask">
-              <div class="modal-wrapper">
-                <div class="modal-container">
-                  <!-- Modal Header -->
-                  <div class="modal-header">
-                    <h5 name="header">Download de applicatie!</h5>
-                  </div>
-
-                  <!-- Modal Body -->
-                  <div class="modal-body">
-                    <p
-                      name="body"
-                    >Je kunt deze applicatie downloaden door op te tikken in je browser.</p>
-                  </div>
-
-                  <div class="modal-footer">
-                    <button class="modal-default-button">Cool</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </transition>
-          </div>
-          <div v-else></div>
+            <button v-if="mobile" type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>
+            <button type="button" v-else="">Geen modal</button>
+          </div>  
         </div>
+        
       </div>
     </div>
-  </div>
+  </div> 
 </template>
 
 <script>
-let mobile = ["iPhone", "iPad", "iPod", "Android"].includes(navigator.platform);
+let mobile = ["iPhone", "iPad", "iPod", "Android", "MacIntel"].includes(navigator.platform);
+
 export default {
   name: "homepage",
   data() {
@@ -96,49 +92,6 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   display: table;
   transition: opacity 0.3s ease;
-}
-/* Styles for Modal */
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.modal-container {
-  width: 300px;
-  margin: 0px auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
-
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
-}
-
-.modal-enter {
-  opacity: 0;
-}
-
-.modal-leave-active {
-  opacity: 0;
-}
-
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
 }
 </style>
 
