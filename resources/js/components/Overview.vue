@@ -167,7 +167,7 @@
                         <br>
                         dit staat gelijk aan wat {{ solarPanelBalance }} zonnepanelen jaarlijks opwekken. 
                     </div>
-                    <div class="card-body m-2">
+                    <div class="card-body py-0">
                         <div class="row justify-content-start">
                             <div class="col-3 py-2 justify-content-center" v-for="panel in solarPanelArray" v-bind:key="panel.id">
                                 <img class="solarPanel" src="/icons/50x50.png" alt="solarPanel">
