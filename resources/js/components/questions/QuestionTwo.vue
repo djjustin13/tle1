@@ -35,15 +35,17 @@
                         <h1>Hoeveel kilometer rijd je per week?</h1>
                         <img class="card-img" src="/img/car.png" alt="meat">
 
-                        <v-slider
-                                v-model="km"
-                                :min='1'
-                                :max='500'
-                                :interval="1"
-                                formatter='{value} kilometer'
-                                :dot-size="30"
-                                :searchable=false
-                        />
+                        <div class="slider">
+                            <v-slider
+                                    v-model="km"
+                                    :min='1'
+                                    :max='500'
+                                    :interval="1"
+                                    formatter='{value} kilometer'
+                                    :dot-size="30"
+                                    :searchable=false
+                            />
+                        </div>
 
                         <div class="py-4">
                             <button class="btn btn-light question-btn px-4" @click="saveKm()">Volgende</button>
@@ -125,6 +127,13 @@
 
     .yes-no-btn{
         color: #44999E;
+    }
+    
+    .slider{
+        display: block;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .background {

@@ -156,31 +156,39 @@
         </div> 
 
         <!-- solarModal -->
-         <div class="modal fade solarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        Jij verbruikt op dit moment {{ globalScore }} kg CO2 met de vier gewoontes waar we naar hebben gevraagd.
-                        <br>
-                        De gemiddelde Nederlander verbruikt hiermee ongeveer 2425 kg CO2 per jaar.
-                        Dat is een verschil van {{avgYearlyCo2 - globalScore}} kg CO2.
-                        <br>
-                        dit staat gelijk aan wat {{ solarPanelBalance }} zonnepanelen jaarlijks opwekken. 
-                    </div>
-                    <div class="card-body py-0">
-                        <div class="row justify-content-start">
-                            <div class="col-3 py-2 justify-content-center" v-for="panel in solarPanelArray" v-bind:key="panel.id">
-                                <img class="solarPanel" src="/icons/50x50.png" alt="solarPanel">
-                            </div>
-                        </div>    
-                    </div>
-                    
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
-                    </div>
-                </div>
-            </div>
-         </div>
+        <div class="modal fade solarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-lg" role="document">
+               <div class="modal-content">
+                   <div v-if="(avgYearlyCo2 - globalScore) > 0" class="modal-header">
+                       Jij verbruikt op dit moment {{ globalScore }} kg CO2 met de vier gewoontes waar we naar hebben gevraagd.
+                       <br>
+                       De gemiddelde Nederlander verbruikt hiermee ongeveer 2425 kg CO2 per jaar.
+                       Dat is een verschil van {{avgYearlyCo2 - globalScore}} kg CO2. Lekker bezig! 👍
+                       <br>
+                       dit staat gelijk aan wat {{ solarPanelBalance }} zonnepanelen jaarlijks opwekken. 
+                   </div>
+                   <div v-else class="modal-header">
+                       Jij verbruikt op dit moment {{ globalScore }} kg CO2 met de vier gewoontes waar we naar hebben gevraagd.
+                       <br>
+                       De gemiddelde Nederlander verbruikt hiermee ongeveer 2425 kg CO2 per jaar.
+                       Jij verbruikt dus {{globalScore - avgYearlyCo2}} kg CO2 meer.
+                       <br>
+                       Ga challenges aan om Zonnepanelen te verdienen!
+                   </div>
+                   <div class="card-body py-0">
+                       <div class="row justify-content-start">
+                           <div class="col-3 py-2 justify-content-center" v-for="panel in solarPanelArray" v-bind:key="panel.id">
+                               <img class="solarPanel" src="/icons/50x50.png" alt="solarPanel">
+                           </div>
+                       </div>    
+                   </div>
+                   
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
+                   </div>
+               </div>
+           </div>
+        </div>
 
         <img class="sun asset" src="/img/sun.png" alt="Sun">
         <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
