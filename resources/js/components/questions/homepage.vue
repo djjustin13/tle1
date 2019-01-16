@@ -41,7 +41,7 @@
                   </div>
 
                   <div class="modal-footer">
-                    <button class="modal-default-button" @click="$emit('close')">Cool</button>
+                    <button class="modal-default-button">Cool</button>
                   </div>
                 </div>
               </div>
