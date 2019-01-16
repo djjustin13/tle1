@@ -12,15 +12,18 @@
                     <div id = "image-container">
                         <img id="image" class="card-img" src="/img/car.png" alt="car image">
                     </div>
-
-                    <v-slider
+                    <div class="slider">
+                        <v-slider
                             v-model="targetKm"
                             :min= 1
                             :max='car.km'
                             :interval= 1
                             formatter='{value} kilometer'
                             :dot-size= 30
-                    />
+                        />
+                    </div>
+
+                    
                     <small>Vul in hoeveel kilometer je minder wilt gaan rijden</small>
                     <p class="challenge-response">Hiermee bespaar je weekelijks <br /> <span class="orange challenge-response-data">{{co2.toFixed(2)}} </span><br />Kilo CO2</p>
 
@@ -164,6 +167,13 @@
 
     .grey{
         color: rgb(80, 76, 89)
+    }
+
+    .slider{
+        display: block;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     #image{
