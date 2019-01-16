@@ -3,16 +3,6 @@
         <div v-if="error" class="alert alert-light" role="alert">
                 {{ error }}
         </div>
-        <div class="row justify-content-center top-text">    
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-                Wat kan beter?
-            </button>  
-            <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
-                <!-- <p>Jouw levensstijl staat op dit moment gelijk aan 2 zonnepanelen.</p> -->
-                <p v-if="totalScore">Jij gooit {{ globalScore }} Kilo's aan CO2 in de lucht!</p>
-            </div>
-        </div>
         
         <!-- Modal -->
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -37,7 +27,7 @@
                                     class="btn btn-success col-auto" 
                                     data-toggle="collapse" 
                                     data-target="#car">
-                                        <i class="fas fa-chevron-left"></i>
+                                        <i class="fas fa-chevron-down"></i>
                                 </button>
                                 <button
                                     v-if="leftArrow.car == false"
@@ -45,7 +35,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#car">
-                                        <i class="fas fa-chevron-down"></i>
+                                        <i class="fas fa-chevron-up"></i>
                                 </button>
                             </div>
                             <div id="car" class="collapse" data-parent="#accordion">
@@ -70,7 +60,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#meat">
-                                        <i class="fas fa-chevron-left"></i>
+                                        <i class="fas fa-chevron-down"></i>
                                 </button>
                                 <button
                                     v-if="leftArrow.meat == false"
@@ -78,7 +68,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#meat">
-                                        <i class="fas fa-chevron-down"></i>
+                                        <i class="fas fa-chevron-up"></i>
                                 </button>
                             </div>
                             <div id="meat" class="collapse" data-parent="#accordion">
@@ -103,7 +93,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#shower">
-                                        <i class="fas fa-chevron-left"></i>
+                                        <i class="fas fa-chevron-down"></i>
                                 </button>
                                 <button
                                     v-if="leftArrow.shower == false"
@@ -111,7 +101,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#shower">
-                                        <i class="fas fa-chevron-down"></i>
+                                        <i class="fas fa-chevron-up"></i>
                                 </button>
                             </div>
                             <div id="shower" class="collapse" data-parent="#accordion">
@@ -136,7 +126,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#smoke">
-                                        <i id="#smokeArrow" class="fas fa-chevron-left"></i>
+                                        <i id="#smokeArrow" class="fas fa-chevron-down"></i>
                                 </button>
                                 <button
                                     v-if="leftArrow.smoke == false"
@@ -144,7 +134,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#smoke">
-                                        <i class="fas fa-chevron-down"></i>
+                                        <i class="fas fa-chevron-up"></i>
                                 </button>
                             </div>
                             <div id="smoke" class="collapse" data-parent="#accordion">
@@ -171,6 +161,14 @@
         <img v-if="userState == 0" class="background" src="/img/factories.png" alt="">
         <img v-if="userState > 2" class="asset good_2" src="/img/good_2_tree.png" alt="">
         <div class="container-fluid">
+            <div class="row justify-content-center">    
+                <!-- Button trigger modal -->
+                <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center modal-button">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                    Wat kan beter?
+                    </button> 
+                </div>
+            </div>
             <div class="row justify-content-center">      
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                     <div class="house">
@@ -192,13 +190,12 @@
                 </div>
             </div>
             <img v-if="userState > 1" class="good_1 asset" src="/img/good_2_bush.png" alt="">
-            
         </div>
-        <!-- <div class="row justify-content-center bottom-text">      
+        <div class="row justify-content-center bottom-text">      
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
-                <p>Klik op de iconen in je huis om te kijken wat je kunt veranderen om je leven duurzamer te maken!</p>
+                <p v-if="totalScore">Jouw jaarlijkse uitstoot op dit moment: {{ globalScore }} KG CO2</p>
             </div>
-        </div> -->
+        </div>
     </div>
 
 </template>
@@ -408,10 +405,10 @@
         width: 100%;
     }
 
-    .top-text{
+    .modal-button{
         position: absolute;
         margin: 0;
-        top: 6%;
+        top: 4%;
         width: 100%;
         z-index: 5;
     }
