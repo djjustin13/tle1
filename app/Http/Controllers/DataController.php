@@ -14,7 +14,7 @@ class DataController extends Controller
      */
     // Global variables used by various functions
     public $numDaysYear = 365;
-    public $numWeeksYear = 52;
+    public $numWeeksYear = 52.1428571429;
 
     public function index()
     {

@@ -86,3 +86,7 @@ if ('serviceWorker' in navigator) {
 
 
 
+window.bodyScrollLock = require('body-scroll-lock');
+// const disableBodyScroll = bodyScrollLock.disableBodyScroll;
+// const enableBodyScroll = bodyScrollLock.enableBodyScroll;
+bodyScrollLock.disableBodyScroll();

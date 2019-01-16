@@ -38,8 +38,7 @@
             nextSlide: function () {
                 if (this.answer != null) {
                     this.$emit('save', ["meat", this.answer.value])
-                    $(".slider").slick('slickNext');
-                    $('body').css("background-color","#44999E")
+                    $(".slider").slick('slickNext')
                 } else {
                     this.error = "Je moet iets invullen"
                 }
