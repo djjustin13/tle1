@@ -17,7 +17,7 @@
                             <div class="card-header row  d-flex justify-content-between m-0"> 
                                 <div class="accordion-content">
                                     Auto rijden:
-                                    <div v-if="answers.car == false" class="text-success"> Je hebt geen auto 👍</div>
+                                    <div v-if="answers.car == false" class="text-success"> Je rijdt geen auto 👍</div>
                                     <div v-else-if="carBelowAverage" class="text-success">Je rijdt zuiniger dan de gemiddelde Nederlander 👍</div>
                                     <div v-else class="text-danger">Je rijdt meer dan de gemiddelde Nederlander</div>
                                 </div>
@@ -39,9 +39,13 @@
                                 </button>
                             </div>
                             <div id="car" class="collapse" data-parent="#accordion">
-                                <div class="card-body">
+                                <div v-if="avgDischargeYear.car" class="card-body">
                                     De gemiddelde Nederlander stoot per jaar ongeveer {{avgDischargeYear.car}} kilo CO2 uit met auto rijden.
                                     Jij stoot hiermee {{dischargeYear.car}} kilo CO2 uit per jaar.
+                                </div>
+                                <div v-else class="card-body">
+                                    De gemiddelde Nederlander stoot per jaar ongeveer 1388 kilo CO2 uit met auto rijden.
+                                    Jij rijdt niet en stoot dus niks uit!
                                 </div>
                             </div>
                         </div>
@@ -138,9 +142,13 @@
                                 </button>
                             </div>
                             <div id="smoke" class="collapse" data-parent="#accordion">
-                                <div class="card-body">
+                                <div v-if="avgDischargeYear.smoke" class="card-body">
                                     De gemiddelde Nederlander stoot per jaar ongeveer {{avgDischargeYear.smoke}} kilo CO2 uit door te roken.
                                     Jij stoot hiermee {{dischargeYear.smoke}} kilo CO2 uit per jaar.
+                                </div>
+                                <div v-else class="card-body">
+                                    De gemiddelde Nederlander stoot per jaar ongeveer 5 kilo CO2 uit door te roken.
+                                    Jij rookt niet en stoot dus niks uit!
                                 </div>
                             </div>
                         </div>
