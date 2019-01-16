@@ -4,8 +4,8 @@
                 {{ error }}
         </div>
         
-        <!-- Modal -->
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- improveModal -->
+        <div class="modal fade improveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -22,16 +22,16 @@
                                     <div v-else class="text-danger">Je rijdt meer dan de gemiddelde Nederlander</div>
                                 </div>
                                 <button 
-                                    v-if="leftArrow.car" 
-                                    @click="leftArrow.car = false, leftArrow.meat = true, leftArrow.shower = true, leftArrow.smoke = true"
+                                    v-if="downArrow.car" 
+                                    @click="downArrow.car = false, downArrow.meat = true, downArrow.shower = true, downArrow.smoke = true"
                                     class="btn btn-success col-auto" 
                                     data-toggle="collapse" 
                                     data-target="#car">
                                         <i class="fas fa-chevron-down"></i>
                                 </button>
                                 <button
-                                    v-if="leftArrow.car == false"
-                                    @click="leftArrow.car = true, leftArrow.meat = true, leftArrow.shower = true, leftArrow.smoke = true"
+                                    v-if="downArrow.car == false"
+                                    @click="downArrow.car = true, downArrow.meat = true, downArrow.shower = true, downArrow.smoke = true"
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#car">
@@ -55,16 +55,16 @@
                                     <div class="text-danger" v-else>Je eet meer vlees dan de gemiddelde Nederlander</div>
                                 </div>
                                 <button
-                                    v-if="leftArrow.meat"
-                                    @click="leftArrow.meat = false, leftArrow.car = true, leftArrow.shower = true, leftArrow.smoke = true"
+                                    v-if="downArrow.meat"
+                                    @click="downArrow.meat = false, downArrow.car = true, downArrow.shower = true, downArrow.smoke = true"
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#meat">
                                         <i class="fas fa-chevron-down"></i>
                                 </button>
                                 <button
-                                    v-if="leftArrow.meat == false"
-                                    @click="leftArrow.meat = true, leftArrow.car = true, leftArrow.shower = true, leftArrow.smoke = true"
+                                    v-if="downArrow.meat == false"
+                                    @click="downArrow.meat = true, downArrow.car = true, downArrow.shower = true, downArrow.smoke = true"
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#meat">
@@ -88,16 +88,16 @@
                                     <div class="text-danger" v-else>Je doucht langer dan de gemiddelde Nederlander</div>
                                 </div>
                                 <button
-                                    v-if="leftArrow.shower"
-                                    @click="leftArrow.shower = false, leftArrow.car = true, leftArrow.meat = true, leftArrow.smoke = true"
+                                    v-if="downArrow.shower"
+                                    @click="downArrow.shower = false, downArrow.car = true, downArrow.meat = true, downArrow.smoke = true"
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#shower">
                                         <i class="fas fa-chevron-down"></i>
                                 </button>
                                 <button
-                                    v-if="leftArrow.shower == false"
-                                    @click="leftArrow.shower = true, leftArrow.car = true, leftArrow.meat = true, leftArrow.smoke = true"
+                                    v-if="downArrow.shower == false"
+                                    @click="downArrow.shower = true, downArrow.car = true, downArrow.meat = true, downArrow.smoke = true"
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#shower">
@@ -121,16 +121,16 @@
                                     <div class="text-danger" v-else>Je rookt meer dan de gemiddelde Nederlander</div>
                                 </div>    
                                 <button
-                                    v-if="leftArrow.smoke"
-                                    @click="leftArrow.smoke = false, leftArrow.car = true, leftArrow.meat = true, leftArrow.shower = true"
+                                    v-if="downArrow.smoke"
+                                    @click="downArrow.smoke = false, downArrow.car = true, downArrow.meat = true, downArrow.shower = true"
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#smoke">
                                         <i id="#smokeArrow" class="fas fa-chevron-down"></i>
                                 </button>
                                 <button
-                                    v-if="leftArrow.smoke == false"
-                                    @click="leftArrow.smoke = true, leftArrow.car = true, leftArrow.meat = true, leftArrow.shower = true"
+                                    v-if="downArrow.smoke == false"
+                                    @click="downArrow.smoke = true, downArrow.car = true, downArrow.meat = true, downArrow.shower = true"
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#smoke">
@@ -155,6 +155,33 @@
             </div>
         </div> 
 
+        <!-- solarModal -->
+         <div class="modal fade solarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Jij verbruikt op dit moment {{ globalScore }} kg CO2 met de vier gewoontes waar we naar hebben gevraagd.
+                        <br>
+                        De gemiddelde Nederlander verbruikt hiermee ongeveer 2425 kg CO2 per jaar.
+                        Dat is een verschil van {{avgYearlyCo2 - globalScore}} kg CO2.
+                        <br>
+                        dit staat gelijk aan wat {{ solarPanelBalance }} zonnepanelen jaarlijks opwekken. 
+                    </div>
+                    <div class="card-body m-2">
+                        <div class="row justify-content-start">
+                            <div class="col-3 py-2 justify-content-center" v-for="panel in solarPanelArray" v-bind:key="panel.id">
+                                <img class="solarPanel" src="/icons/50x50.png" alt="solarPanel">
+                            </div>
+                        </div>    
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluit</button>
+                    </div>
+                </div>
+            </div>
+         </div>
+
         <img class="sun asset" src="/img/sun.png" alt="Sun">
         <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
         <img class="cloud2 asset" src="/img/cloud_lg.png" alt="Cloud">
@@ -164,7 +191,7 @@
             <div class="row justify-content-center">    
                 <!-- Button trigger modal -->
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center modal-button">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".improveModal">
                     Wat kan beter?
                     </button> 
                 </div>
@@ -194,6 +221,9 @@
         <div class="row justify-content-center bottom-text">      
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
                 <p v-if="totalScore">Jouw jaarlijkse uitstoot op dit moment: {{ globalScore }} KG CO2</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".solarModal">
+                Wat betekend dit?
+                </button> 
             </div>
         </div>
     </div>
@@ -222,12 +252,16 @@
                 showerBelowAverage: null,
                 dischargeYear: {},
                 avgDischargeYear: {},
-                leftArrow: {
+                downArrow: {
                     car: true,
                     meat: true,
                     shower: true,
                     smoke: true
                 },
+                avgYearlyCo2: 2425,
+                yearlySolarGeneration: 95,
+                solarPanelArray: [],
+                solarPanelBalance: 0,
             }
         },methods:{
             reset:function(){
@@ -251,6 +285,8 @@
                     this.checkMeatChallenge()
                     this.checkSmokeChallenge()
                     this.checkShowerChallenge()
+                    this.totalScore()
+                    this.makeSolarPanelArray()
                 })
                 .catch(function (error) {
                     console.log(error.response)
@@ -322,30 +358,7 @@
                     this.userState = 3
                     console.log('Supergoed')
                 }
-            }
-        },
-        computed: {
-            originalScore: function () {
-            let total = 0
-
-            if (Object.keys(this.userData).length != 0){
-                if(this.userData.car != false){
-                    total += this.userData.car.usrDischargePerYear
-                } 
-                if(this.userData.meat != false){
-                    total += this.userData.meat.usrDischargePerYear
-                } 
-                if(this.userData.shower != false){
-                    total += this.userData.shower.usrDischargePerYear
-                } 
-                if(this.userData.smoking != false){
-                    total += this.userData.smoking.usrDischargePerYear
-                } 
-            }
-            
-            return Math.round( total * 100 ) / 100
-            },
-            totalScore: function () {
+            },totalScore: function () {
                 let total = 0
 
                 if (Object.keys(this.userData).length != 0){
@@ -375,17 +388,50 @@
                 this.updateOverview()
                 return Math.round( total * 100 ) / 100
             },
+            makeSolarPanelArray: function (){
+                console.log(this.globalScore)
+                this.solarPanelBalance = ((this.avgYearlyCo2 - this.globalScore) / this.yearlySolarGeneration).toFixed(0)
+                
+                console.log(this.solarPanelBalance)
+                for(let i = 0; i < this.solarPanelBalance; i++) {
+                    this.solarPanelArray.push(i)
+                    console.log('test')
+                }
+            }
+        },
+        computed: {
+            originalScore: function () {
+            let total = 0
+
+            if (Object.keys(this.userData).length != 0){
+                if(this.userData.car != false){
+                    total += this.userData.car.usrDischargePerYear
+                } 
+                if(this.userData.meat != false){
+                    total += this.userData.meat.usrDischargePerYear
+                } 
+                if(this.userData.shower != false){
+                    total += this.userData.shower.usrDischargePerYear
+                } 
+                if(this.userData.smoking != false){
+                    total += this.userData.smoking.usrDischargePerYear
+                } 
+            }
+            
+            return Math.round( total * 100 ) / 100
+            },
             checkCollapse : function(){
                 $('.collapse').on('hidden.bs.collapse', function () {
                     console.log("collapse")
                 })
-            }
+            },
         
         },
-        created: function() {
+        mounted: function() {
             this.getAnswers()
             this.calculateData()
-        }
+        },
+           
     }
 </script>
 
@@ -397,6 +443,13 @@
 
     .accordion-content{
         max-width: 70%;
+    }
+    
+    .solarPanel{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
     }
 
     .alert{
