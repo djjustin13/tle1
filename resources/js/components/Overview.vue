@@ -40,7 +40,7 @@
                                     class="btn btn-success col-auto" 
                                     data-toggle="collapse" 
                                     data-target="#car">
-                                        <i class="fas fa-chevron-left"></i>
+                                        <i class="fas fa-chevron-down"></i>
                                 </button>
                                 <button
                                     v-if="leftArrow.car == false"
@@ -48,7 +48,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#car">
-                                        <i class="fas fa-chevron-down"></i>
+                                        <i class="fas fa-chevron-up"></i>
                                 </button>
                             </div>
                             <div id="car" class="collapse" data-parent="#accordion">
@@ -73,7 +73,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#meat">
-                                        <i class="fas fa-chevron-left"></i>
+                                        <i class="fas fa-chevron-down"></i>
                                 </button>
                                 <button
                                     v-if="leftArrow.meat == false"
@@ -81,7 +81,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#meat">
-                                        <i class="fas fa-chevron-down"></i>
+                                        <i class="fas fa-chevron-up"></i>
                                 </button>
                             </div>
                             <div id="meat" class="collapse" data-parent="#accordion">
@@ -106,7 +106,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#shower">
-                                        <i class="fas fa-chevron-left"></i>
+                                        <i class="fas fa-chevron-down"></i>
                                 </button>
                                 <button
                                     v-if="leftArrow.shower == false"
@@ -114,7 +114,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#shower">
-                                        <i class="fas fa-chevron-down"></i>
+                                        <i class="fas fa-chevron-up"></i>
                                 </button>
                             </div>
                             <div id="shower" class="collapse" data-parent="#accordion">
@@ -139,7 +139,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#smoke">
-                                        <i id="#smokeArrow" class="fas fa-chevron-left"></i>
+                                        <i id="#smokeArrow" class="fas fa-chevron-down"></i>
                                 </button>
                                 <button
                                     v-if="leftArrow.smoke == false"
@@ -147,7 +147,7 @@
                                     class="btn btn-success col-auto"
                                     data-toggle="collapse"
                                     data-target="#smoke">
-                                        <i class="fas fa-chevron-down"></i>
+                                        <i class="fas fa-chevron-up"></i>
                                 </button>
                             </div>
                             <div id="smoke" class="collapse" data-parent="#accordion">
