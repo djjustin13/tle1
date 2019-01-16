@@ -20,9 +20,6 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Wat kan beter?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
                     </div>
                     <div class="modal-body accordion p-0" id="accordion"> 
                         <!-- car -->
@@ -356,22 +353,22 @@
 
                 if (Object.keys(this.userData).length != 0){
                     if(this.carChallenge){
-                        total += this.carChallenge.newCo2
+                        total += (this.carChallenge.newCo2 * 52)
                     }else if(this.userData.car != false){
                         total += this.userData.car.usrDischargePerYear
                     }
                     if(this.meatChallenge){
-                        total += this.meatChallenge.newCo2
+                        total += (this.meatChallenge.newCo2  * 52)
                     }else if(this.userData.meat != false){
                         total += this.userData.meat.usrDischargePerYear
                     } 
                     if(this.showerChallenge){
-                        total += this.showerChallenge.newCo2
+                        total += (this.showerChallenge.newCo2  * 52)
                     }else if(this.userData.shower != false){
                         total += this.userData.shower.usrDischargePerYear
                     } 
                     if(this.smokeChallenge){
-                        total += this.smokeChallenge.newCo2
+                        total += (this.smokeChallenge.newCo2  * 52)
                     }else if(this.userData.smoking != false){
                         total += this.userData.smoking.usrDischargePerYear
                     } 
