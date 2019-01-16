@@ -29,11 +29,6 @@
 
 <script>
 
-  promptForPwa() {
-    let today = today;
-    let appleUsers =  ['iPhone', 'iPad', 'iPod'].includes(navigator.platform);
-  };
-
     export default {
         name: 'homepage',
         data() {

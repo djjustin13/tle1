@@ -58,7 +58,6 @@ if (token) {
 //Slick slider
 window.slick = require('slick-carousel');
 
-
 const bodyScrollLock = require('body-scroll-lock');
 const disableBodyScroll = bodyScrollLock.disableBodyScroll;
 const enableBodyScroll = bodyScrollLock.enableBodyScroll;
@@ -83,8 +82,16 @@ if ('serviceWorker' in navigator) {
     });
   }
 
+  function promptForPwa() {
+    console.log('Your navigator.platform is ' + navigator.platform)
+    let mobileUsers =  ['iPhone', 'iPad', 'iPod', 'Android', 'MacIntel'].includes(navigator.platform);
+    if(mobileUsers){
+      // Prompt to download the PWA
+      console.log('Current platform falls under mobileUsers.')
+    }
+  };
 
-
+  promptForPwa();
 
 window.bodyScrollLock = require('body-scroll-lock');
 // const disableBodyScroll = bodyScrollLock.disableBodyScroll;
