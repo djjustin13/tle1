@@ -62,8 +62,14 @@ export default {
   methods: {
     nextSlide: function() {
       $(".slider").slick("slickNext");
-    }
+    },
+  },
+  mounted: function(){
+
+    localStorage.clear();
+      
   }
+
 };
 </script>
 
