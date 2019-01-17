@@ -173,7 +173,7 @@
                             <br>
                             De gemiddelde Nederlander verbruikt hiermee ongeveer 2425 kg CO2 per jaar.
                             Dat is een verschil van
-                            <span class="text-success">{{avgYearlyCo2 - globalScore}} kg CO2.</span> Lekker bezig!
+                            <span class="text-success">{{(avgYearlyCo2 - globalScore).toFixed(2)}} kg CO2.</span> Lekker bezig!
                             <br>
                             {{avgYearlyCo2 - globalScore}} kg CO2 staat gelijk aan wat <span class="text-primary">{{ solarPanelBalance }} zonnepanelen</span> voor een jaar op je dak aan CO2 besparen!
                         </p>
