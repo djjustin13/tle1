@@ -4,7 +4,7 @@
     <div class="question">
       <div class="container">
         <div v-if="error" class="alert alert-light" role="alert">{{ error }}</div>
-        <div v-if="isIos && isInStandaloneMode" class="appMessage alert alert-primary alert-dismissible fade show" role="alert">
+        <div v-if="isIos && window.matchMedia('(display-mode: standalone)').matches" class="appMessage alert alert-primary alert-dismissible fade show" role="alert">
           Download onze applicatie door te klikken op 'Add to Home Screen' in het 'Deel'-venster van je browser.
           <button
             type="button"
