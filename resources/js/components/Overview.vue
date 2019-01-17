@@ -545,7 +545,7 @@
     .background{
         position: fixed;
         margin: 0 auto;
-        margin-top: -17px;
+       
         left: calc(50% - 188px);
     }
 
