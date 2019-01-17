@@ -210,7 +210,7 @@
         <img class="cloud1 asset" src="/img/cloud_lg.png" alt="Cloud">
         <img class="cloud2 asset" src="/img/cloud_lg.png" alt="Cloud">
         <img v-if="userState == 0" class="background" src="/img/factories.png" alt="">
-        <img v-if="userState > 2" class="asset good_2" src="/img/good_2_tree.png" alt="">
+        <img v-if="userState > 2" class="background good_2" src="/img/trees.png" alt="">
         <div class="container-fluid">
             <div class="row justify-content-center">    
                 <!-- Button trigger modal -->
@@ -240,7 +240,7 @@
                     <!-- <a @click="reset()" href="#">Clear storage & restart</a> -->
                 </div>
             </div>
-            <img v-if="userState > 1" class="good_1 asset" src="/img/good_2_bush.png" alt="">
+            
         </div>
         <div class="row justify-content-center bottom-text">      
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
