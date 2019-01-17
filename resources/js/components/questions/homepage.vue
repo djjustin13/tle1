@@ -4,7 +4,7 @@
     <div class="question">
       <div class="container">
         <div v-if="error" class="alert alert-light" role="alert">{{ error }}</div>
-        <div  v-if="mobile" class="alert alert-primary alert-dismissible fade show" role="alert">
+        <div v-if="mobile" class="alert alert-primary alert-dismissible fade show" role="alert">
           Download onze applicatie door te klikken op 'Add to Home Screen' in het 'Deel'-venster van je browser.
           <button
             type="button"
@@ -14,7 +14,7 @@
           >
             <span aria-hidden="true">&times;</span>
           </button>
-        </div><div v-else></div>
+        </div>
 
         <div class="row justify-content-center">
           <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
@@ -31,13 +31,6 @@
                 <router-link :to=" '/privacy' " class="btn btn-link">Privacy Statement</router-link>
               </p>
             </div>
-            <button
-              v-if="mobile"
-              type="button"
-              data-toggle="modal"
-              data-target="#myModal"
-            >Launch modal</button>
-            <button type="button" v-else>Geen modal</button>
           </div>
         </div>
       </div>
