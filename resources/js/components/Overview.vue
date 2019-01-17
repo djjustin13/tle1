@@ -305,10 +305,12 @@
                 .then((response)  =>  {
                     console.log(response)
                     this.userData = response.data
-                    this.checkCarChallenge()
+
+                    this.checkCarChallenge()  
                     this.checkMeatChallenge()
                     this.checkSmokeChallenge()
                     this.checkShowerChallenge()
+                    console.log('test')
                     this.totalScore()
                     this.makeSolarPanelArray()
                 })
@@ -318,13 +320,13 @@
             },
             checkCarChallenge:function() {
                 let data = localStorage.getItem('carChallenge')
-                this.avgDischargeYear.car = this.userData.car.avgDischargeYear
                 if (data){
                     this.carChallenge =  JSON.parse(data)
                     this.carBelowAverage = this.carChallenge.newUsrBelowAverage
                     this.dischargeYear.car = ((this.carChallenge.newCo2 / 7) * 365).toFixed(2)
                     console.log("wel car challenge " + this.carBelowAverage)
-                }else{
+                }else if(this.userData.car){
+                    this.avgDischargeYear.car = this.userData.car.avgDischargeYear
                     this.carBelowAverage = this.userData.car.usrBelowAverage
                     this.dischargeYear.car = this.userData.car.usrDischargePerYear.toFixed(2)
                     console.log("geen car challenge " + this.carBelowAverage)
@@ -345,12 +347,12 @@
             },
             checkSmokeChallenge:function() {
                 let data = localStorage.getItem('smokeChallenge')
-                this.avgDischargeYear.smoke = this.userData.smoking.avgDischargeYear
                 if (data){
                     this.smokeChallenge = JSON.parse(data)
                     this.smokeBelowAverage = this.smokeChallenge.newUsrBelowAverage
                     this.dischargeYear.smoke = ((this.smokeChallenge.newCo2 / 7) * 365).toFixed(2)
-                }else{
+                }else if(this.userData.smoking){
+                    this.avgDischargeYear.smoke = this.userData.smoking.avgDischargeYear
                     this.smokeBelowAverage = this.userData.smoking.usrBelowAverage
                     this.dischargeYear.smoke = this.userData.smoking.usrDischargePerYear.toFixed(2)
                 }   
@@ -384,6 +386,7 @@
                 }
             },totalScore: function () {
                 let total = 0
+                console.log('totalscore aangeroepen')
 
                 if (Object.keys(this.userData).length != 0){
                     if(this.carChallenge){
@@ -451,7 +454,7 @@
             },
         
         },
-        mounted: function() {
+        created: function() {
             this.getAnswers()
             this.calculateData()
         },
