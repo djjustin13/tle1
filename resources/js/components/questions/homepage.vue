@@ -1,29 +1,20 @@
 
 <template>
   <div class="background">
-    <!-- Modal for PWA Notification -->
-          <div class="modal" tabindex="-1" role="dialog" id="myModal">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Download de app!</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <p>Download onze applicatie via het 'Deel'-venster van je browser.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
     <div class="question">
       <div class="container">
         <div v-if="error" class="alert alert-light" role="alert">{{ error }}</div>
+        <div v-if="isIos && !isInStandaloneMode" class="appMessage alert alert-primary alert-dismissible fade show" role="alert">
+          Download onze applicatie door te klikken op 'Add to Home Screen' in het 'Deel'-venster van je browser.
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 
         <div class="row justify-content-center">
           <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
@@ -40,18 +31,25 @@
                 <router-link :to=" '/privacy' " class="btn btn-link">Privacy Statement</router-link>
               </p>
             </div>
-            <button v-if="mobile" type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>
-            <button type="button" v-else="">Geen modal</button>
-          </div>  
+          </div>
         </div>
-        
       </div>
     </div>
-  </div> 
+  </div>
 </template>
 
 <script>
-let mobile = ["iPhone", "iPad", "iPod", "Android", "MacIntel"].includes(navigator.platform);
+let mobile = ["iPhone", "iPad", "iPod", "Android"].includes(
+  navigator.platform
+);
+
+// Detects if device is on iOS 
+const isIos = () => {
+  const userAgent = window.navigator.userAgent.toLowerCase();
+  return /iphone|ipad|ipod/.test( userAgent );
+}
+// Detects if device is in standalone mode
+const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
 
 export default {
   name: "homepage",
@@ -88,16 +86,8 @@ export default {
   background-color: #54c0eb;
 }
 
-.modal-mask {
+.appMessage {
   position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
 }
 </style>
 
